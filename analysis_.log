@@ -1,0 +1,217 @@
+[+] Triton initialized, entry = 0xa70
+[+] Mode = balanced, control_expansion_mode = def-only
+[+] Object DOT view = combined, Inst DOT view = slice
+[+] Secret region tainted: array2 0x2112c0-0x2312bf
+[dbg] inst=20000 pc=0xd7b hit=2854 call_depth=1 call_stack=1 active_ctrl=1 elapsed=9.03s disasm=mov byte ptr [rdx + rax], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=40000 pc=0xd7f hit=5711 call_depth=1 call_stack=1 active_ctrl=1 elapsed=18.03s disasm=add dword ptr [rbp - 0x10], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=60000 pc=0xd83 hit=8569 call_depth=1 call_stack=1 active_ctrl=1 elapsed=27.11s disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=80000 pc=0xd8a hit=11426 call_depth=1 call_stack=1 active_ctrl=1 elapsed=36.05s disasm=jle 0xd6e
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=100000 pc=0xd6e hit=14283 call_depth=1 call_stack=1 active_ctrl=1 elapsed=45.50s disasm=mov eax, dword ptr [rbp - 0x10]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=14283       cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=14283       jle 0xd6e
+              0xd6e  hit=14283       mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=14282       movsxd rdx, eax
+              0xd74  hit=14282       lea rax, [rip + 0x210545]
+              0xd7b  hit=14282       mov byte ptr [rdx + rax], 1
+[dbg] inst=120000 pc=0xd71 hit=17140 call_depth=1 call_stack=1 active_ctrl=1 elapsed=54.85s disasm=movsxd rdx, eax
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=140000 pc=0xd74 hit=19997 call_depth=1 call_stack=1 active_ctrl=1 elapsed=63.92s disasm=lea rax, [rip + 0x210545]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=160000 pc=0xd7b hit=22854 call_depth=1 call_stack=1 active_ctrl=1 elapsed=73.03s disasm=mov byte ptr [rdx + rax], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=180000 pc=0xd7f hit=25711 call_depth=1 call_stack=1 active_ctrl=1 elapsed=82.53s disasm=add dword ptr [rbp - 0x10], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=200000 pc=0xd83 hit=28569 call_depth=1 call_stack=1 active_ctrl=1 elapsed=91.66s disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=28569       cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=28568       jle 0xd6e
+              0xd6e  hit=28568       mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=28568       movsxd rdx, eax
+              0xd74  hit=28568       lea rax, [rip + 0x210545]
+              0xd7b  hit=28568       mov byte ptr [rdx + rax], 1
+[dbg] inst=220000 pc=0xd8a hit=31426 call_depth=1 call_stack=1 active_ctrl=1 elapsed=101.01s disasm=jle 0xd6e
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=240000 pc=0xd6e hit=34283 call_depth=1 call_stack=1 active_ctrl=1 elapsed=110.40s disasm=mov eax, dword ptr [rbp - 0x10]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=260000 pc=0xd71 hit=37140 call_depth=1 call_stack=1 active_ctrl=1 elapsed=119.91s disasm=movsxd rdx, eax
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=280000 pc=0xd74 hit=39997 call_depth=1 call_stack=1 active_ctrl=1 elapsed=129.32s disasm=lea rax, [rip + 0x210545]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=300000 pc=0xd7b hit=42854 call_depth=1 call_stack=1 active_ctrl=1 elapsed=138.76s disasm=mov byte ptr [rdx + rax], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=42854       cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=42854       jle 0xd6e
+              0xd6e  hit=42854       mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=42854       movsxd rdx, eax
+              0xd74  hit=42854       lea rax, [rip + 0x210545]
+              0xd7b  hit=42854       mov byte ptr [rdx + rax], 1
+[dbg] inst=320000 pc=0xd7f hit=45711 call_depth=1 call_stack=1 active_ctrl=1 elapsed=148.81s disasm=add dword ptr [rbp - 0x10], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=340000 pc=0xd83 hit=48569 call_depth=1 call_stack=1 active_ctrl=1 elapsed=158.20s disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[warn] hotspot/stall suspect: pc=0xd83 hit=50000 call_depth=1 active_ctrl=1 disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[warn] hotspot/stall suspect: pc=0xd8a hit=50000 call_depth=1 active_ctrl=1 disasm=jle 0xd6e
+[warn] hotspot/stall suspect: pc=0xd6e hit=50000 call_depth=1 active_ctrl=1 disasm=mov eax, dword ptr [rbp - 0x10]
+[warn] hotspot/stall suspect: pc=0xd71 hit=50000 call_depth=1 active_ctrl=1 disasm=movsxd rdx, eax
+[warn] hotspot/stall suspect: pc=0xd74 hit=50000 call_depth=1 active_ctrl=1 disasm=lea rax, [rip + 0x210545]
+[warn] hotspot/stall suspect: pc=0xd7b hit=50000 call_depth=1 active_ctrl=1 disasm=mov byte ptr [rdx + rax], 1
+[warn] hotspot/stall suspect: pc=0xd7f hit=50000 call_depth=1 active_ctrl=1 disasm=add dword ptr [rbp - 0x10], 1
+[dbg] inst=360000 pc=0xd8a hit=51426 call_depth=1 call_stack=1 active_ctrl=1 elapsed=167.64s disasm=jle 0xd6e
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=380000 pc=0xd6e hit=54283 call_depth=1 call_stack=1 active_ctrl=1 elapsed=177.05s disasm=mov eax, dword ptr [rbp - 0x10]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=400000 pc=0xd71 hit=57140 call_depth=1 call_stack=1 active_ctrl=1 elapsed=186.33s disasm=movsxd rdx, eax
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=57140       cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=57140       jle 0xd6e
+              0xd6e  hit=57140       mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=57140       movsxd rdx, eax
+              0xd74  hit=57139       lea rax, [rip + 0x210545]
+              0xd7b  hit=57139       mov byte ptr [rdx + rax], 1
+[dbg] inst=420000 pc=0xd74 hit=59997 call_depth=1 call_stack=1 active_ctrl=1 elapsed=195.82s disasm=lea rax, [rip + 0x210545]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=440000 pc=0xd7b hit=62854 call_depth=1 call_stack=1 active_ctrl=1 elapsed=205.02s disasm=mov byte ptr [rdx + rax], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=460000 pc=0xd7f hit=65711 call_depth=1 call_stack=1 active_ctrl=1 elapsed=214.41s disasm=add dword ptr [rbp - 0x10], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=480000 pc=0xd83 hit=68569 call_depth=1 call_stack=1 active_ctrl=1 elapsed=223.78s disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=500000 pc=0xd8a hit=71426 call_depth=1 call_stack=1 active_ctrl=1 elapsed=233.12s disasm=jle 0xd6e
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=71426       cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=71426       jle 0xd6e
+              0xd6e  hit=71425       mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=71425       movsxd rdx, eax
+              0xd74  hit=71425       lea rax, [rip + 0x210545]
+              0xd7b  hit=71425       mov byte ptr [rdx + rax], 1
+[dbg] inst=520000 pc=0xd6e hit=74283 call_depth=1 call_stack=1 active_ctrl=1 elapsed=242.44s disasm=mov eax, dword ptr [rbp - 0x10]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=540000 pc=0xd71 hit=77140 call_depth=1 call_stack=1 active_ctrl=1 elapsed=251.75s disasm=movsxd rdx, eax
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=560000 pc=0xd74 hit=79997 call_depth=1 call_stack=1 active_ctrl=1 elapsed=261.08s disasm=lea rax, [rip + 0x210545]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=580000 pc=0xd7b hit=82854 call_depth=1 call_stack=1 active_ctrl=1 elapsed=270.41s disasm=mov byte ptr [rdx + rax], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=600000 pc=0xd7f hit=85711 call_depth=1 call_stack=1 active_ctrl=1 elapsed=279.75s disasm=add dword ptr [rbp - 0x10], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=85711       cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=85711       jle 0xd6e
+              0xd6e  hit=85711       mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=85711       movsxd rdx, eax
+              0xd74  hit=85711       lea rax, [rip + 0x210545]
+              0xd7b  hit=85711       mov byte ptr [rdx + rax], 1
+[dbg] inst=620000 pc=0xd83 hit=88569 call_depth=1 call_stack=1 active_ctrl=1 elapsed=289.10s disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=640000 pc=0xd8a hit=91426 call_depth=1 call_stack=1 active_ctrl=1 elapsed=298.45s disasm=jle 0xd6e
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=660000 pc=0xd6e hit=94283 call_depth=1 call_stack=1 active_ctrl=1 elapsed=308.23s disasm=mov eax, dword ptr [rbp - 0x10]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=680000 pc=0xd71 hit=97140 call_depth=1 call_stack=1 active_ctrl=1 elapsed=317.58s disasm=movsxd rdx, eax
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=700000 pc=0xd74 hit=99997 call_depth=1 call_stack=1 active_ctrl=1 elapsed=326.88s disasm=lea rax, [rip + 0x210545]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=99997       cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=99997       jle 0xd6e
+              0xd6e  hit=99997       mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=99997       movsxd rdx, eax
+              0xd74  hit=99997       lea rax, [rip + 0x210545]
+              0xd7b  hit=99996       mov byte ptr [rdx + rax], 1
+[warn] hotspot/stall suspect: pc=0xd83 hit=100000 call_depth=1 active_ctrl=1 disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[warn] hotspot/stall suspect: pc=0xd8a hit=100000 call_depth=1 active_ctrl=1 disasm=jle 0xd6e
+[warn] hotspot/stall suspect: pc=0xd6e hit=100000 call_depth=1 active_ctrl=1 disasm=mov eax, dword ptr [rbp - 0x10]
+[warn] hotspot/stall suspect: pc=0xd71 hit=100000 call_depth=1 active_ctrl=1 disasm=movsxd rdx, eax
+[warn] hotspot/stall suspect: pc=0xd74 hit=100000 call_depth=1 active_ctrl=1 disasm=lea rax, [rip + 0x210545]
+[warn] hotspot/stall suspect: pc=0xd7b hit=100000 call_depth=1 active_ctrl=1 disasm=mov byte ptr [rdx + rax], 1
+[warn] hotspot/stall suspect: pc=0xd7f hit=100000 call_depth=1 active_ctrl=1 disasm=add dword ptr [rbp - 0x10], 1
+[dbg] inst=720000 pc=0xd7b hit=102854 call_depth=1 call_stack=1 active_ctrl=1 elapsed=336.21s disasm=mov byte ptr [rdx + rax], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=740000 pc=0xd7f hit=105711 call_depth=1 call_stack=1 active_ctrl=1 elapsed=345.45s disasm=add dword ptr [rbp - 0x10], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=760000 pc=0xd83 hit=108569 call_depth=1 call_stack=1 active_ctrl=1 elapsed=354.50s disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=780000 pc=0xd8a hit=111426 call_depth=1 call_stack=1 active_ctrl=1 elapsed=363.55s disasm=jle 0xd6e
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=800000 pc=0xd6e hit=114283 call_depth=1 call_stack=1 active_ctrl=1 elapsed=372.56s disasm=mov eax, dword ptr [rbp - 0x10]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=114283      cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=114283      jle 0xd6e
+              0xd6e  hit=114283      mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=114282      movsxd rdx, eax
+              0xd74  hit=114282      lea rax, [rip + 0x210545]
+              0xd7b  hit=114282      mov byte ptr [rdx + rax], 1
+[dbg] inst=820000 pc=0xd71 hit=117140 call_depth=1 call_stack=1 active_ctrl=1 elapsed=381.60s disasm=movsxd rdx, eax
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=840000 pc=0xd74 hit=119997 call_depth=1 call_stack=1 active_ctrl=1 elapsed=390.63s disasm=lea rax, [rip + 0x210545]
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=860000 pc=0xd7b hit=122854 call_depth=1 call_stack=1 active_ctrl=1 elapsed=399.67s disasm=mov byte ptr [rdx + rax], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=880000 pc=0xd7f hit=125711 call_depth=1 call_stack=1 active_ctrl=1 elapsed=408.73s disasm=add dword ptr [rbp - 0x10], 1
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=900000 pc=0xd83 hit=128569 call_depth=1 call_stack=1 active_ctrl=1 elapsed=417.79s disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+[dbg] top_ctrl=branch_pc=0xd8a alt_pc=0xd8c depth=1 cond_objs=['imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] hotspot pcs:
+              0xd83  hit=128569      cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=128568      jle 0xd6e
+              0xd6e  hit=128568      mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=128568      movsxd rdx, eax
+              0xd74  hit=128568      lea rax, [rip + 0x210545]
+              0xd7b  hit=128568      mov byte ptr [rdx + rax], 1
+[dbg] inst=920000 pc=0xc3c hit=393 call_depth=2 call_stack=2 active_ctrl=4 elapsed=426.84s disasm=mov eax, dword ptr [rbp - 0x20]
+[dbg] top_ctrl=branch_pc=0xc4d alt_pc=0xc4f depth=2 cond_objs=['imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] inst=940000 pc=0xc42 hit=3490 call_depth=2 call_stack=2 active_ctrl=4 elapsed=436.10s disasm=mov dword ptr [rbp - 0x20], eax
+[dbg] top_ctrl=branch_pc=0xc4d alt_pc=0xc4f depth=2 cond_objs=['imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64', 'reg:of', 'reg:sf', 'reg:zf']
+[dbg] elapsed_total=445.84s
+[dbg] max_call_depth_seen=4
+[dbg] max_active_control_context=7
+[dbg] hotspot pcs:
+              0xd83  hit=131073      cmp dword ptr [rbp - 0x10], 0x1ffff
+              0xd8a  hit=131073      jle 0xd6e
+              0xd6e  hit=131072      mov eax, dword ptr [rbp - 0x10]
+              0xd71  hit=131072      movsxd rdx, eax
+              0xd74  hit=131072      lea rax, [rip + 0x210545]
+              0xd7b  hit=131072      mov byte ptr [rdx + rax], 1
+[dbg] loop / repeated dynamic fact patterns:
+       pc=       0xd71 depth=1    count=131072   suppressed=131071   disasm=movsxd rdx, eax
+       pc=       0xd7b depth=1    count=131072   suppressed=131071   disasm=mov byte ptr [rdx + rax], 1
+       pc=       0xd83 depth=1    count=131072   suppressed=131071   disasm=cmp dword ptr [rbp - 0x10], 0x1ffff
+       pc=       0xd8a depth=1    count=131072   suppressed=131071   disasm=jle 0xd6e
+       pc=       0xd6e depth=1    count=131071   suppressed=131070   disasm=mov eax, dword ptr [rbp - 0x10]
+       pc=       0xd7f depth=1    count=131071   suppressed=131070   disasm=add dword ptr [rbp - 0x10], 1
+       pc=       0xd74 depth=1    count=131064   suppressed=131063   disasm=lea rax, [rip + 0x210545]
+       pc=       0xc48 depth=2    count=6029     suppressed=6028     disasm=cmp eax, 0xc7
+       pc=       0xc4d depth=2    count=6029     suppressed=6028     disasm=jle 0xc3c
+       pc=       0xc3f depth=2    count=6000     suppressed=5999     disasm=add eax, 1
+[+] Executed 956212 instructions.
+[+] Tainted registers: []
+[+] Tainted memory addresses: ['0x2112c0']
+[+] Object seeds: ['var:array2']
+[+] Seed instructions: ['0xbba', '0xd7b']
+[+] Backward object reachable: 179 nodes
+[+] Forward object reachable: 38 nodes
+[+] Backward instruction reachable: 106 pcs
+[+] Forward instruction reachable: 5 pcs
+[+] Object DOT nodes after view filter: 185
+[+] Inst DOT nodes after view filter: 109
+[+] Loop summarization unique patterns: 221
+[+] Loop summarization suppressed repeated records: 955961
+[+] Exported files:
+    - inst_dep: _dfg.dot
+    - object_dep: _object_dep.dot
+    - cdfg: _cdfg.dot
+    - path_report_txt: _path_report.txt
+    - path_report_json: _path_report.json
+    - summary: _dependency_summary.json
+[+] Done.

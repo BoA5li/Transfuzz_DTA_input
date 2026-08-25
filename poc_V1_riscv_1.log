@@ -1,0 +1,71 @@
+[+] Triton initialized, entry = 0x4008c0
+[+] Mode = balanced, control_expansion_mode = def-only
+[+] Object DOT view = combined, Inst DOT view = slice
+[+] Secret region tainted: array2 0x614000-0x617fff
+[plan2-fix7] seed address range: var:array2 -> [0x614000, 0x617fff] (size=16384)
+[sse-sim] cvtsi2ss/sd at 0x400a13: xmm0 <- float(2)
+[sse-sim] cvtsi2ss/sd at 0x400a18: xmm1 <- float(256)
+[sse-fix] RIP stall at 0x400a1d: divss xmm1, xmm0, forced advance to 0x400a21
+[sse-fix] RIP stall at 0x400a21: divss xmm1, xmm0, forced advance to 0x400a25
+[sse-fix] RIP stall at 0x400a25: divss xmm1, xmm0, forced advance to 0x400a29
+[sse-fix] RIP stall at 0x400a29: divss xmm1, xmm0, forced advance to 0x400a2d
+[sse-sim] cvttss2si at 0x400a2d: rax <- int(16.0) = 16
+[sse-sim] cvtsi2ss/sd at 0x400a13: xmm0 <- float(2)
+[sse-sim] cvtsi2ss/sd at 0x400a18: xmm1 <- float(256)
+[sse-fix] RIP stall at 0x400a1d: divss xmm1, xmm0, forced advance to 0x400a21
+[sse-fix] RIP stall at 0x400a21: divss xmm1, xmm0, forced advance to 0x400a25
+[sse-fix] RIP stall at 0x400a25: divss xmm1, xmm0, forced advance to 0x400a29
+[sse-fix] RIP stall at 0x400a29: divss xmm1, xmm0, forced advance to 0x400a2d
+[sse-sim] cvttss2si at 0x400a2d: rax <- int(16.0) = 16
+[loop-cut] back edge 0x400ad0->0x400aa6 exceeded 500 iterations, forcing exit to 0x400ad2
+[loop-cut] back edge 0x400b6d->0x400b63 exceeded 500 iterations, forcing exit to 0x400b6f
+[dbg] inst=20000 pc=0x400a82 hit=73 call_depth=3 call_stack=3 active_ctrl=6 elapsed=7.98s disasm=ret
+[dbg] top_ctrl=branch_pc=0x400b6d alt_pc=0x400b63 depth=2 cond_objs=['imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64', 'reg:cf', 'reg:zf']
+[plan2-fix7] total bridge edges in object_edge_meta_global: 0
+[plan2-fix7] node_meta size after bridging: 207
+[recovery] orphans=189 recovered_nodes=0 recovered_edges=0
+[dbg] elapsed_total=9.63s
+[dbg] max_call_depth_seen=4
+[dbg] max_active_control_context=8
+[dbg] hotspot pcs:
+           0x400b68  hit=610         cmp qword ptr [rbp - 0x20], 0x1d
+           0x400b6d  hit=610         jbe 0x400b63
+           0x400ac8  hit=510         cmp qword ptr [rbp - 0x10], 0xff
+           0x400ad0  hit=510         jbe 0x400aa6
+           0x400aa6  hit=500         mov rax, qword ptr [rbp - 0x10]
+           0x400aaa  hit=500         shl rax, 6
+[dbg] loop / repeated dynamic fact patterns:
+       pc=    0x400b6d depth=2    count=609      suppressed=608      disasm=jbe 0x400b63
+       pc=    0x400b68 depth=2    count=440      suppressed=439      disasm=cmp qword ptr [rbp - 0x20], 0x1d
+       pc=    0x400b63 depth=2    count=425      suppressed=424      disasm=add qword ptr [rbp - 0x20], 1
+       pc=    0x400aaa depth=2    count=256      suppressed=255      disasm=shl rax, 6
+       pc=    0x400aae depth=2    count=256      suppressed=255      disasm=mov rdx, rax
+       pc=    0x400ab1 depth=2    count=256      suppressed=255      disasm=lea rax, [rip + 0x213548]
+       pc=    0x400ab8 depth=2    count=256      suppressed=255      disasm=add rax, rdx
+       pc=    0x400abb depth=2    count=256      suppressed=255      disasm=mov rdi, rax
+       pc=    0x4009ca depth=3    count=256      suppressed=255      disasm=mov rbp, rsp
+       pc=    0x4009cd depth=3    count=256      suppressed=255      disasm=mov qword ptr [rbp - 0x18], rdi
+[+] Executed 24064 instructions.
+[+] Tainted registers: ['rax']
+[+] Tainted memory addresses: ['0x614000', '0x614040', '0x614080', '0x6140c0', '0x614100', '0x614140', '0x614180', '0x6141c0', '0x614200', '0x614240', '0x614280', '0x7001ef4f']
+[+] Object seeds: ['var:array2']
+[+] Seed instructions: ['0x400a6c']
+[+] Backward object reachable: 222 nodes
+[+] Forward object reachable: 39 nodes
+[+] Backward instruction reachable: 139 pcs
+[+] Forward instruction reachable: 2 pcs
+[+] Object DOT nodes after view filter: 228
+[+] Inst DOT nodes after view filter: 140
+[+] Loop summarization unique patterns: 339
+[+] Loop summarization suppressed repeated records: 23115
+[plan2-stats] zero_idiom_suppressed=0 partial_rmw_lifted=110 mem_alias_extensions=0 caller_saved_injects=0 imm_inst_edges=404
+[plan2-fix-stats] seed_bridge_edges_injected=0 seed_touch_no_suppress=0 seed_address_ranges=1
+[type-check] inst_edge_meta: 937 total, 937 int-int, 0 mixed-type
+[+] Exported files:
+    - inst_dep: dfg.dot
+    - object_dep: object_dep.dot
+    - cdfg: cdfg.dot
+    - path_report_txt: path_report.txt
+    - path_report_json: path_report.json
+    - summary: dependency_summary.json
+[+] Done.

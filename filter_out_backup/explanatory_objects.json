@@ -1,0 +1,557 @@
+[
+  {
+    "object_id": "mem:0x602ff0",
+    "object_type": "mem",
+    "explanation_value": "backward 相关内存地址，辅助理解污染传播路径",
+    "semantic_tags": [],
+    "semantic_roles": [
+      "near_seed_path",
+      "call_related",
+      "memory_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "near_seed_path",
+      "call_related",
+      "memory_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008e4"
+    ],
+    "representative_disasm": [
+      "0x4008e4: call qword ptr [rip + 0x202706]"
+    ],
+    "related_strong_objects": []
+  },
+  {
+    "object_id": "reg:af",
+    "object_type": "reg",
+    "explanation_value": "flags 寄存器，分支条件语义",
+    "semantic_tags": [],
+    "semantic_roles": [
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "value_defined",
+      "arithmetic_related",
+      "memory_related"
+    ],
+    "contextual_semantic_roles": [
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4009ea",
+      "0x400a37",
+      "0x400a48",
+      "0x400a79",
+      "0x400aaa"
+    ],
+    "representative_disasm": [
+      "0x4009ea: sub rsp, 0x20",
+      "0x400a37: cmp qword ptr [rbp - 0x18], rax",
+      "0x400a48: add rax, rdx"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x400ab5:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400aba:operand_imm:1:0xff:i64",
+      "imm_occurrence:0x400b55:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400b5a:operand_imm:1:0x1d:i64",
+      "imm_occurrence:0x400b6d:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400b72:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400b7d:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400b82:operand_imm:1:0x9:i64",
+      "reg:rax",
+      "reg:rcx"
+    ]
+  },
+  {
+    "object_id": "reg:cf",
+    "object_type": "reg",
+    "explanation_value": "flags 寄存器，分支条件语义",
+    "semantic_tags": [
+      "controlling_operand"
+    ],
+    "semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "call_related",
+      "branch_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "call_related",
+      "branch_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c0",
+      "0x4008c9",
+      "0x4009a7",
+      "0x4009a8",
+      "0x4009ab"
+    ],
+    "representative_disasm": [
+      "0x4008c0: xor ebp, ebp",
+      "0x4008c9: and rsp, 0xfffffffffffffff0",
+      "0x4009a7: push rbp"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+      "imm_occurrence:0x4009f2:operand_imm:1:0x2:i8",
+      "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+      "imm_occurrence:0x400a0f:operand_imm:1:0x3:i8",
+      "imm_occurrence:0x400a21:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400a51:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400a8e:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400a9c:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400ab5:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400aba:operand_imm:1:0xff:i64"
+    ]
+  },
+  {
+    "object_id": "reg:of",
+    "object_type": "reg",
+    "explanation_value": "flags 寄存器，分支条件语义",
+    "semantic_tags": [
+      "controlling_operand"
+    ],
+    "semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c0",
+      "0x4008c9",
+      "0x4009ba",
+      "0x4009c4",
+      "0x4009ea"
+    ],
+    "representative_disasm": [
+      "0x4008c0: xor ebp, ebp",
+      "0x4008c9: and rsp, 0xfffffffffffffff0",
+      "0x4009ba: shl rax, 0x20"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+      "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+      "imm_occurrence:0x400a0f:operand_imm:1:0x3:i8",
+      "imm_occurrence:0x400a21:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400a51:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400a9c:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400ab5:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400aba:operand_imm:1:0xff:i64",
+      "imm_occurrence:0x400afc:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400b02:operand_imm:1:0x3f:i8"
+    ]
+  },
+  {
+    "object_id": "reg:pf",
+    "object_type": "reg",
+    "explanation_value": "flags 寄存器，分支条件语义",
+    "semantic_tags": [],
+    "semantic_roles": [
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "value_defined",
+      "arithmetic_related",
+      "memory_related"
+    ],
+    "contextual_semantic_roles": [
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c0",
+      "0x4008c9",
+      "0x4009ba",
+      "0x4009c4",
+      "0x4009ea"
+    ],
+    "representative_disasm": [
+      "0x4008c0: xor ebp, ebp",
+      "0x4008c9: and rsp, 0xfffffffffffffff0",
+      "0x4009ba: shl rax, 0x20"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+      "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+      "imm_occurrence:0x400a0f:operand_imm:1:0x3:i8",
+      "imm_occurrence:0x400a21:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400a51:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400a9c:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400ab5:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400aba:operand_imm:1:0xff:i64",
+      "imm_occurrence:0x400afc:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400b02:operand_imm:1:0x3f:i8"
+    ]
+  },
+  {
+    "object_id": "reg:rbp",
+    "object_type": "reg",
+    "explanation_value": "栈/帧指针",
+    "semantic_tags": [
+      "address_base"
+    ],
+    "semantic_roles": [
+      "address_base",
+      "near_seed_path",
+      "address_related",
+      "memory_related",
+      "arithmetic_related",
+      "value_defined",
+      "comparison_operand",
+      "comparison_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "address_base",
+      "near_seed_path",
+      "address_related",
+      "memory_related",
+      "arithmetic_related",
+      "value_defined",
+      "comparison_operand",
+      "comparison_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c0",
+      "0x4009a7",
+      "0x4009a8",
+      "0x4009ae",
+      "0x4009b1"
+    ],
+    "representative_disasm": [
+      "0x4008c0: xor ebp, ebp",
+      "0x4009a7: push rbp",
+      "0x4009a8: mov rbp, rsp"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x4009f2:operand_imm:1:0x2:i8",
+      "imm_occurrence:0x400a81:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400a8e:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400ab5:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400aba:operand_imm:1:0xff:i64",
+      "imm_occurrence:0x400ac4:operand_imm:1:0xa:i64",
+      "imm_occurrence:0x400b4b:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400b55:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400b5a:operand_imm:1:0x1d:i64",
+      "imm_occurrence:0x400b6d:operand_imm:1:0x1:i64"
+    ]
+  },
+  {
+    "object_id": "reg:rsp",
+    "object_type": "reg",
+    "explanation_value": "栈/帧指针",
+    "semantic_tags": [],
+    "semantic_roles": [
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "call_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "call_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c5",
+      "0x4008c6",
+      "0x4008c9",
+      "0x4008cd",
+      "0x4008ce"
+    ],
+    "representative_disasm": [
+      "0x4008c5: pop rsi",
+      "0x4008c9: and rsp, 0xfffffffffffffff0",
+      "0x4008cd: push rax"
+    ],
+    "related_strong_objects": [
+      "reg:rax",
+      "reg:rsi",
+      "stack:[rbp-0x28]",
+      "stack:[rbp-0x30]",
+      "stack:[rbp-0x38]",
+      "stack:[rbp-0x40]",
+      "stack:[rbp-0x48]",
+      "stack:[rbp-0x50]"
+    ]
+  },
+  {
+    "object_id": "reg:sf",
+    "object_type": "reg",
+    "explanation_value": "flags 寄存器，分支条件语义",
+    "semantic_tags": [
+      "controlling_operand"
+    ],
+    "semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "call_related",
+      "branch_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "call_related",
+      "branch_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c0",
+      "0x4008c9",
+      "0x4009a7",
+      "0x4009a8",
+      "0x4009ab"
+    ],
+    "representative_disasm": [
+      "0x4008c0: xor ebp, ebp",
+      "0x4008c9: and rsp, 0xfffffffffffffff0",
+      "0x4009a7: push rbp"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+      "imm_occurrence:0x4009f2:operand_imm:1:0x2:i8",
+      "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+      "imm_occurrence:0x400a0f:operand_imm:1:0x3:i8",
+      "imm_occurrence:0x400a21:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400a51:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400a8e:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400a9c:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400ab5:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400aba:operand_imm:1:0xff:i64"
+    ]
+  },
+  {
+    "object_id": "reg:zf",
+    "object_type": "reg",
+    "explanation_value": "flags 寄存器，分支条件语义",
+    "semantic_tags": [
+      "controlling_operand"
+    ],
+    "semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "call_related",
+      "branch_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "controlling_operand",
+      "near_seed_path",
+      "value_defined",
+      "arithmetic_related",
+      "memory_related",
+      "call_related",
+      "branch_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c0",
+      "0x4008c9",
+      "0x4009a7",
+      "0x4009a8",
+      "0x4009ab"
+    ],
+    "representative_disasm": [
+      "0x4008c0: xor ebp, ebp",
+      "0x4008c9: and rsp, 0xfffffffffffffff0",
+      "0x4009a7: push rbp"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+      "imm_occurrence:0x4009f2:operand_imm:1:0x2:i8",
+      "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+      "imm_occurrence:0x400a0f:operand_imm:1:0x3:i8",
+      "imm_occurrence:0x400a21:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400a51:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400a8e:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400a9c:operand_imm:1:0x6:i8",
+      "imm_occurrence:0x400ab5:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400aba:operand_imm:1:0xff:i64"
+    ]
+  },
+  {
+    "object_id": "stack:[rbp-0x14]",
+    "object_type": "stack",
+    "explanation_value": "backward 相关栈变量（去重后的非代表成员）",
+    "semantic_tags": [],
+    "semantic_roles": [
+      "near_seed_path",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "near_seed_path"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x400c72",
+      "0x400ca8"
+    ],
+    "representative_disasm": [],
+    "related_strong_objects": []
+  },
+  {
+    "object_id": "stack:[rbp-0x4]",
+    "object_type": "stack",
+    "explanation_value": "backward 相关栈变量（去重后的非代表成员）",
+    "semantic_tags": [],
+    "semantic_roles": [
+      "near_seed_path",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "near_seed_path"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4009ae",
+      "0x4009c1",
+      "0x400c75",
+      "0x400ca5",
+      "0x40156e"
+    ],
+    "representative_disasm": [],
+    "related_strong_objects": []
+  },
+  {
+    "object_id": "stack:[rsp-0x8]",
+    "object_type": "stack",
+    "explanation_value": "backward 相关栈变量（去重后的非代表成员）",
+    "semantic_tags": [],
+    "semantic_roles": [
+      "near_seed_path",
+      "backward_related",
+      "backward_leaf"
+    ],
+    "direct_semantic_roles": [
+      "near_seed_path"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "backward_leaf"
+    ],
+    "representative_pcs": [
+      "0x4008c5",
+      "0x400cb7",
+      "0x400cb8"
+    ],
+    "representative_disasm": [
+      "0x4008c5: pop rsi"
+    ],
+    "related_strong_objects": [
+      "reg:rsi"
+    ]
+  },
+  {
+    "object_id": "var:array2",
+    "object_type": "var",
+    "explanation_value": "污染源 seed 对象",
+    "semantic_tags": [
+      "taint_seed"
+    ],
+    "semantic_roles": [
+      "taint_seed",
+      "near_seed_path",
+      "memory_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "taint_seed",
+      "near_seed_path",
+      "memory_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x400a5e"
+    ],
+    "representative_disasm": [
+      "0x400a5e: movzx eax, byte ptr [rdx + rax]"
+    ],
+    "related_strong_objects": [
+      "reg:rax",
+      "reg:rdx"
+    ]
+  }
+]

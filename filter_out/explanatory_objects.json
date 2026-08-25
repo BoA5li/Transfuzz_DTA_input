@@ -1,0 +1,94 @@
+[
+  {
+    "object_id": "reg:rbp",
+    "object_type": "reg",
+    "explanation_value": "栈/帧指针",
+    "semantic_tags": [
+      "address_base"
+    ],
+    "semantic_roles": [
+      "address_base",
+      "near_seed_path",
+      "address_related",
+      "memory_related",
+      "arithmetic_related",
+      "comparison_operand",
+      "comparison_related",
+      "value_defined",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "address_base",
+      "near_seed_path",
+      "address_related",
+      "memory_related",
+      "arithmetic_related",
+      "comparison_operand",
+      "comparison_related",
+      "value_defined"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x4008c0",
+      "0x4009a7",
+      "0x4009a8",
+      "0x4009ae",
+      "0x4009b1"
+    ],
+    "representative_disasm": [
+      "0x4008c0: xor ebp, ebp",
+      "0x4009a7: push rbp",
+      "0x4009a8: mov rbp, rsp"
+    ],
+    "related_strong_objects": [
+      "imm_occurrence:0x4009f2:operand_imm:1:0x2:i8",
+      "imm_occurrence:0x400a8f:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400a9c:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400ac8:operand_imm:1:0xff:i64",
+      "imm_occurrence:0x400ad2:operand_imm:1:0xa:i64",
+      "imm_occurrence:0x400b59:operand_imm:1:0x0:i64",
+      "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+      "imm_occurrence:0x400b68:operand_imm:1:0x1d:i64",
+      "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64"
+    ]
+  },
+  {
+    "object_id": "var:array2",
+    "object_type": "var",
+    "explanation_value": "污染源 seed 对象",
+    "semantic_tags": [
+      "taint_seed"
+    ],
+    "semantic_roles": [
+      "taint_seed",
+      "near_seed_path",
+      "memory_related",
+      "backward_related",
+      "forward_related"
+    ],
+    "direct_semantic_roles": [
+      "taint_seed",
+      "near_seed_path",
+      "memory_related"
+    ],
+    "contextual_semantic_roles": [
+      "backward_related",
+      "forward_related"
+    ],
+    "representative_pcs": [
+      "0x400a6c"
+    ],
+    "representative_disasm": [
+      "0x400a6c: movzx eax, byte ptr [rdx + rax]"
+    ],
+    "related_strong_objects": [
+      "reg:rax",
+      "reg:rdx"
+    ]
+  }
+]

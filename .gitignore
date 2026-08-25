@@ -1,0 +1,25 @@
+/poc_trans/
+
+# Build outputs
+build/
+cmake-build-*/
+*.o
+*.so
+*.a
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+/Triton/
+/Triton_backup/
+/capstone/
+/capstone_backup/
+/z3/
+/Triton/
+/Triton_backup/
+/capstone/
+/capstone_backup/
+/z3/

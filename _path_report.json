@@ -1,0 +1,5196 @@
+{
+  "config": {
+    "max_depth": 48,
+    "per_target": 3,
+    "top_targets": 24,
+    "edge_pcs_limit": 8
+  },
+  "backward_paths": [
+    {
+      "target": "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+      "target_label": "imm@0xd8a:operand_imm:0:0xd6e/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd8a:operand_imm:0:0xd6e/i64",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+              "src_label": "imm@0xd8a:operand_imm:0:0xd6e/i64",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "control": 1
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd8a:operand_imm:0:0xd6e/i64",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+              "src_label": "imm@0xd8a:operand_imm:0:0xd6e/i64",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "control"
+              ],
+              "count": 34,
+              "kind_counts": {
+                "control": 34
+              },
+              "pcs": [
+                "0xb7e",
+                "0xb93",
+                "0xba4",
+                "0xbad",
+                "0xbc5",
+                "0xbf9",
+                "0xc11",
+                "0xc14"
+              ],
+              "pcs_truncated": 26
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd8a:operand_imm:0:0xd6e/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+              "src_label": "imm@0xd8a:operand_imm:0:0xd6e/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 47,
+              "kind_counts": {
+                "control": 47
+              },
+              "pcs": [
+                "0xb8b",
+                "0xb91",
+                "0xba0",
+                "0xba4",
+                "0xba7",
+                "0xbaa",
+                "0xbad",
+                "0xbb3"
+              ],
+              "pcs_truncated": 39
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+      "target_label": "imm@0xc4d:operand_imm:0:0xc3c/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc4d:operand_imm:0:0xc3c/i64",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+              "src_label": "imm@0xc4d:operand_imm:0:0xc3c/i64",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "control"
+              ],
+              "count": 28,
+              "kind_counts": {
+                "control": 28
+              },
+              "pcs": [
+                "0xb7e",
+                "0xb93",
+                "0xba4",
+                "0xbad",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc16"
+              ],
+              "pcs_truncated": 20
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc4d:operand_imm:0:0xc3c/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+              "src_label": "imm@0xc4d:operand_imm:0:0xc3c/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 40,
+              "kind_counts": {
+                "control": 40
+              },
+              "pcs": [
+                "0xb8b",
+                "0xb91",
+                "0xba0",
+                "0xba4",
+                "0xba7",
+                "0xbaa",
+                "0xbad",
+                "0xbb3"
+              ],
+              "pcs_truncated": 32
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc4d:operand_imm:0:0xc3c/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+              "src_label": "imm@0xc4d:operand_imm:0:0xc3c/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 9,
+              "kind_counts": {
+                "control": 9
+              },
+              "pcs": [
+                "0xb99",
+                "0xbb0",
+                "0xbba",
+                "0xc10",
+                "0xc11",
+                "0xc52",
+                "0xc59",
+                "0xc60"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+      "target_label": "imm@0xcaf:operand_imm:0:0xc0d/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xcaf:operand_imm:0:0xc0d/i64",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+              "src_label": "imm@0xcaf:operand_imm:0:0xc0d/i64",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "control"
+              ],
+              "count": 28,
+              "kind_counts": {
+                "control": 28
+              },
+              "pcs": [
+                "0xb7e",
+                "0xb93",
+                "0xba4",
+                "0xbad",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc16"
+              ],
+              "pcs_truncated": 20
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xcaf:operand_imm:0:0xc0d/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+              "src_label": "imm@0xcaf:operand_imm:0:0xc0d/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 40,
+              "kind_counts": {
+                "control": 40
+              },
+              "pcs": [
+                "0xb8b",
+                "0xb91",
+                "0xba0",
+                "0xba4",
+                "0xba7",
+                "0xbaa",
+                "0xbad",
+                "0xbb3"
+              ],
+              "pcs_truncated": 32
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xcaf:operand_imm:0:0xc0d/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+              "src_label": "imm@0xcaf:operand_imm:0:0xc0d/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 9,
+              "kind_counts": {
+                "control": 9
+              },
+              "pcs": [
+                "0xb99",
+                "0xbb0",
+                "0xbba",
+                "0xc10",
+                "0xc11",
+                "0xc52",
+                "0xc59",
+                "0xc60"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "reg:unknown",
+      "target_label": "unknown",
+      "paths": [
+        {
+          "nodes": [
+            "reg:unknown",
+            "var:array2"
+          ],
+          "labels": [
+            "unknown",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "reg:unknown",
+              "src_label": "unknown",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "reg:unknown",
+            "stack:[rbp-0x10]",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "unknown",
+            "stack[rbp-0x10]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "reg:unknown",
+              "src_label": "unknown",
+              "dst": "stack:[rbp-0x10]",
+              "dst_label": "stack[rbp-0x10]",
+              "kinds": [
+                "addr"
+              ],
+              "count": 12,
+              "kind_counts": {
+                "addr": 12
+              },
+              "pcs": [
+                "0xc77",
+                "0xc7b",
+                "0xc83",
+                "0xc8f",
+                "0xc97",
+                "0xc9b",
+                "0xd65",
+                "0xd6e"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "stack:[rbp-0x10]",
+              "src_label": "stack[rbp-0x10]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 8,
+              "kind_counts": {
+                "data": 8
+              },
+              "pcs": [
+                "0xc83",
+                "0xc8f",
+                "0xd7f",
+                "0xd83"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "reg:unknown",
+            "stack:[rbp-0x10]",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "unknown",
+            "stack[rbp-0x10]",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "reg:unknown",
+              "src_label": "unknown",
+              "dst": "stack:[rbp-0x10]",
+              "dst_label": "stack[rbp-0x10]",
+              "kinds": [
+                "addr"
+              ],
+              "count": 12,
+              "kind_counts": {
+                "addr": 12
+              },
+              "pcs": [
+                "0xc77",
+                "0xc7b",
+                "0xc83",
+                "0xc8f",
+                "0xc97",
+                "0xc9b",
+                "0xd65",
+                "0xd6e"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "stack:[rbp-0x10]",
+              "src_label": "stack[rbp-0x10]",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 10,
+              "kind_counts": {
+                "data": 10
+              },
+              "pcs": [
+                "0xc7b",
+                "0xc8f",
+                "0xc9b",
+                "0xd6e",
+                "0xdd0"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+      "target_label": "imm@0xb97:operand_imm:0:0xbcd/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xb97:operand_imm:0:0xbcd/i64",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+              "src_label": "imm@0xb97:operand_imm:0:0xbcd/i64",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "control"
+              ],
+              "count": 5,
+              "kind_counts": {
+                "control": 5
+              },
+              "pcs": [
+                "0xba4",
+                "0xbad",
+                "0xbc5",
+                "0x157e",
+                "0x1588"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xb97:operand_imm:0:0xbcd/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+              "src_label": "imm@0xb97:operand_imm:0:0xbcd/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 9,
+              "kind_counts": {
+                "control": 9
+              },
+              "pcs": [
+                "0xba0",
+                "0xba4",
+                "0xba7",
+                "0xbaa",
+                "0xbad",
+                "0xbb3",
+                "0xbbe",
+                "0xbc5"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xb97:operand_imm:0:0xbcd/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+              "src_label": "imm@0xb97:operand_imm:0:0xbcd/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 3,
+              "kind_counts": {
+                "control": 3
+              },
+              "pcs": [
+                "0xb99",
+                "0xbb0",
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+      "target_label": "imm@0xdd6:operand_imm:0:0xda9/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xdd6:operand_imm:0:0xda9/i64",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+              "src_label": "imm@0xdd6:operand_imm:0:0xda9/i64",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0x1695",
+                "0x1736"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xdd6:operand_imm:0:0xda9/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+              "src_label": "imm@0xdd6:operand_imm:0:0xda9/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xddd",
+                "0x1730"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xdd6:operand_imm:0:0xda9/i64",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+              "src_label": "imm@0xdd6:operand_imm:0:0xda9/i64",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0x1695",
+                "0x1736"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+      "target_label": "imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x157e"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x157e"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x157e"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+      "target_label": "imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+              "src_label": "imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x1695"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+              "src_label": "imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x1695"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+              "src_label": "imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x1695"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+      "target_label": "imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+              "src_label": "imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa79"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+              "src_label": "imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa79"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+              "src_label": "imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa79"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+      "target_label": "imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+              "src_label": "imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xb7e"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+              "src_label": "imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xb7e"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+              "src_label": "imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xb7e"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+      "target_label": "imm@0xbad:operand_imm:1:0x9/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xbad:operand_imm:1:0x9/i8",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+              "src_label": "imm@0xbad:operand_imm:1:0x9/i8",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xbad"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xbad:operand_imm:1:0x9/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+              "src_label": "imm@0xbad:operand_imm:1:0x9/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xbad"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xbad:operand_imm:1:0x9/i8",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+              "src_label": "imm@0xbad:operand_imm:1:0x9/i8",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xbad"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+      "target_label": "imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+              "src_label": "imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xbf9"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+              "src_label": "imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xbf9"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+              "src_label": "imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xbf9"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+      "target_label": "imm@0xc11:operand_imm:1:0x1c/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc11:operand_imm:1:0x1c/i8",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+              "src_label": "imm@0xc11:operand_imm:1:0x1c/i8",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc11"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc11:operand_imm:1:0x1c/i8",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+              "src_label": "imm@0xc11:operand_imm:1:0x1c/i8",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc11"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc11:operand_imm:1:0x1c/i8",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+              "src_label": "imm@0xc11:operand_imm:1:0x1c/i8",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc11"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+      "target_label": "imm@0xc16:operand_imm:1:0xf/i32",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc16:operand_imm:1:0xf/i32",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+              "src_label": "imm@0xc16:operand_imm:1:0xf/i32",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc16"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc16:operand_imm:1:0xf/i32",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+              "src_label": "imm@0xc16:operand_imm:1:0xf/i32",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc16"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc16:operand_imm:1:0xf/i32",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+              "src_label": "imm@0xc16:operand_imm:1:0xf/i32",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc16"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+      "target_label": "imm@0xc3f:operand_imm:1:0x1/i32",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc3f:operand_imm:1:0x1/i32",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xc3f:operand_imm:1:0x1/i32",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc3f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc3f:operand_imm:1:0x1/i32",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xc3f:operand_imm:1:0x1/i32",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc3f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc3f:operand_imm:1:0x1/i32",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xc3f:operand_imm:1:0x1/i32",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc3f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+      "target_label": "imm@0xc5d:operand_imm:1:0x1f/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc5d:operand_imm:1:0x1f/i8",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+              "src_label": "imm@0xc5d:operand_imm:1:0x1f/i8",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc5d"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc5d:operand_imm:1:0x1f/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+              "src_label": "imm@0xc5d:operand_imm:1:0x1f/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc5d"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc5d:operand_imm:1:0x1f/i8",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+              "src_label": "imm@0xc5d:operand_imm:1:0x1f/i8",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc5d"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+      "target_label": "imm@0xc7f:operand_imm:1:0x10/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc7f:operand_imm:1:0x10/i8",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+              "src_label": "imm@0xc7f:operand_imm:1:0x10/i8",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc7f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc7f:operand_imm:1:0x10/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+              "src_label": "imm@0xc7f:operand_imm:1:0x10/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc7f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc7f:operand_imm:1:0x10/i8",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+              "src_label": "imm@0xc7f:operand_imm:1:0x10/i8",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc7f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+      "target_label": "imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xca7"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xca7"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xca7"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+      "target_label": "imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+              "src_label": "imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd3f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+              "src_label": "imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd3f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+              "src_label": "imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd3f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+      "target_label": "imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd7f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd7f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+              "src_label": "imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd7f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+      "target_label": "imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+              "src_label": "imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc48"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+              "src_label": "imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc48"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+              "src_label": "imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xc48"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+      "target_label": "imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+              "src_label": "imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xcab"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+              "src_label": "imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xcab"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+              "src_label": "imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xcab"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+      "target_label": "imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant]",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+              "src_label": "imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd83"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant]",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+              "src_label": "imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd83"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+            "reg:zf",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant]",
+            "zf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+              "src_label": "imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant]",
+              "dst": "reg:zf",
+              "dst_label": "zf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd83"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:zf",
+              "src_label": "zf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "stack:[rsp-0x8]",
+      "target_label": "stack[rsp-0x8]",
+      "paths": [
+        {
+          "nodes": [
+            "stack:[rsp-0x8]",
+            "reg:rbp",
+            "reg:of",
+            "var:array2"
+          ],
+          "labels": [
+            "stack[rsp-0x8]",
+            "rbp",
+            "of",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "stack:[rsp-0x8]",
+              "src_label": "stack[rsp-0x8]",
+              "dst": "reg:rbp",
+              "dst_label": "rbp",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xde2"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rbp",
+              "src_label": "rbp",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "data": 24
+              },
+              "pcs": [
+                "0xa70",
+                "0xb93",
+                "0xc83",
+                "0xc8b",
+                "0xc8f",
+                "0xc93",
+                "0xca7",
+                "0xcab"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "stack:[rsp-0x8]",
+            "reg:rbp",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "stack[rsp-0x8]",
+            "rbp",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "stack:[rsp-0x8]",
+              "src_label": "stack[rsp-0x8]",
+              "dst": "reg:rbp",
+              "dst_label": "rbp",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xde2"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rbp",
+              "src_label": "rbp",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 28,
+              "kind_counts": {
+                "data": 28
+              },
+              "pcs": [
+                "0xba0",
+                "0xc0d",
+                "0xc2c",
+                "0xc3c",
+                "0xc45",
+                "0xc7b",
+                "0xc87",
+                "0xc8b"
+              ],
+              "pcs_truncated": 6
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 4,
+                "data": 2
+              },
+              "pcs": [
+                "0xbba",
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "stack:[rsp-0x8]",
+            "reg:rbp",
+            "reg:sf",
+            "var:array2"
+          ],
+          "labels": [
+            "stack[rsp-0x8]",
+            "rbp",
+            "sf",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "stack:[rsp-0x8]",
+              "src_label": "stack[rsp-0x8]",
+              "dst": "reg:rbp",
+              "dst_label": "rbp",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xde2"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rbp",
+              "src_label": "rbp",
+              "dst": "reg:sf",
+              "dst_label": "sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "data": 24
+              },
+              "pcs": [
+                "0xa70",
+                "0xb93",
+                "0xc83",
+                "0xc8b",
+                "0xc8f",
+                "0xc93",
+                "0xca7",
+                "0xcab"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "sf",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xd7b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "forward_paths": [
+    {
+      "target": "reg:pf",
+      "target_label": "pf",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:pf"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "pf"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:pf",
+              "dst_label": "pf",
+              "kinds": [
+                "data"
+              ],
+              "count": 8,
+              "kind_counts": {
+                "data": 8
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc60",
+                "0xc66",
+                "0xd5b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:cf",
+            "reg:pf"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "cf",
+            "pf"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:cf",
+              "dst_label": "cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc60",
+                "0xc66"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "cf",
+              "dst": "reg:pf",
+              "dst_label": "pf",
+              "kinds": [
+                "control"
+              ],
+              "count": 5,
+              "kind_counts": {
+                "control": 5
+              },
+              "pcs": [
+                "0xba4",
+                "0xbad",
+                "0xbc5",
+                "0x157e",
+                "0x1588"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:of",
+            "reg:pf"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "of",
+            "pf"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc60",
+                "0xc66"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "reg:pf",
+              "dst_label": "pf",
+              "kinds": [
+                "control"
+              ],
+              "count": 33,
+              "kind_counts": {
+                "control": 33
+              },
+              "pcs": [
+                "0xb7e",
+                "0xb93",
+                "0xba4",
+                "0xbad",
+                "0xbc5",
+                "0xbf9",
+                "0xc11",
+                "0xc14"
+              ],
+              "pcs_truncated": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "reg:af",
+      "target_label": "af",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:af"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "af"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:af",
+              "dst_label": "af",
+              "kinds": [
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "data": 6
+              },
+              "pcs": [
+                "0xba4",
+                "0xc14",
+                "0xc19",
+                "0xc60",
+                "0xc66",
+                "0xd5b"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:cf",
+            "reg:af"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "cf",
+            "af"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:cf",
+              "dst_label": "cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc60",
+                "0xc66"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "cf",
+              "dst": "reg:af",
+              "dst_label": "af",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0xba4",
+                "0x157e"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:of",
+            "reg:af"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "of",
+            "af"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc60",
+                "0xc66"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "reg:af",
+              "dst_label": "af",
+              "kinds": [
+                "control"
+              ],
+              "count": 21,
+              "kind_counts": {
+                "control": 21
+              },
+              "pcs": [
+                "0xb7e",
+                "0xb93",
+                "0xba4",
+                "0xbf9",
+                "0xc14",
+                "0xc19",
+                "0xc3f",
+                "0xc48"
+              ],
+              "pcs_truncated": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "stack:[rsp+0x0]",
+      "target_label": "stack[rsp+0x0]",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rip",
+            "stack:[rsp+0x0]"
+          ],
+          "labels": [
+            "array2",
+            "rip",
+            "stack[rsp+0x0]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "stack:[rsp+0x0]",
+              "dst_label": "stack[rsp+0x0]",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 1,
+                "data": 1
+              },
+              "pcs": [
+                "0xa94"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:rax",
+            "stack:[rsp+0x0]"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "rax",
+            "stack[rsp+0x0]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc62",
+                "0xc66",
+                "0xc6e"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "stack:[rsp+0x0]",
+              "dst_label": "stack[rsp+0x0]",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa7d"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:rip",
+            "stack:[rsp+0x0]"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "rip",
+            "stack[rsp+0x0]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 30,
+              "kind_counts": {
+                "data": 30
+              },
+              "pcs": [
+                "0xa72",
+                "0xba4",
+                "0xbba",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59"
+              ],
+              "pcs_truncated": 7
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "stack:[rsp+0x0]",
+              "dst_label": "stack[rsp+0x0]",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 1,
+                "data": 1
+              },
+              "pcs": [
+                "0xa94"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "stack:[rbp-0x14]",
+      "target_label": "stack[rbp-0x14]",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rip",
+            "reg:rdi",
+            "stack:[rbp-0x14]"
+          ],
+          "labels": [
+            "array2",
+            "rip",
+            "rdi",
+            "stack[rbp-0x14]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "reg:rdi",
+              "dst_label": "rdi",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xa8d"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdi",
+              "src_label": "rdi",
+              "dst": "stack:[rbp-0x14]",
+              "dst_label": "stack[rbp-0x14]",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xd43"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:cf",
+            "reg:rbp",
+            "stack:[rbp-0x14]"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "cf",
+            "rbp",
+            "stack[rbp-0x14]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:cf",
+              "dst_label": "cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc60",
+                "0xc66"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "cf",
+              "dst": "reg:rbp",
+              "dst_label": "rbp",
+              "kinds": [
+                "control"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "control": 6
+              },
+              "pcs": [
+                "0xbd3",
+                "0x157b",
+                "0x168f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rbp",
+              "src_label": "rbp",
+              "dst": "stack:[rbp-0x14]",
+              "dst_label": "stack[rbp-0x14]",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 1,
+                "data": 1
+              },
+              "pcs": [
+                "0xd43"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:of",
+            "reg:rbp",
+            "stack:[rbp-0x14]"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "of",
+            "rbp",
+            "stack[rbp-0x14]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:of",
+              "dst_label": "of",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc60",
+                "0xc66"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:of",
+              "src_label": "of",
+              "dst": "reg:rbp",
+              "dst_label": "rbp",
+              "kinds": [
+                "control"
+              ],
+              "count": 26,
+              "kind_counts": {
+                "control": 26
+              },
+              "pcs": [
+                "0xb7b",
+                "0xbd3",
+                "0xbf6",
+                "0xcb6",
+                "0xde2",
+                "0xf0d",
+                "0xf16",
+                "0x150c"
+              ],
+              "pcs_truncated": 5
+            },
+            {
+              "src": "reg:rbp",
+              "src_label": "rbp",
+              "dst": "stack:[rbp-0x14]",
+              "dst_label": "stack[rbp-0x14]",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 1,
+                "data": 1
+              },
+              "pcs": [
+                "0xd43"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "reg:r8",
+      "target_label": "r8",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rip",
+            "reg:r8"
+          ],
+          "labels": [
+            "array2",
+            "rip",
+            "r8"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "reg:r8",
+              "dst_label": "r8",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa7f"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:rip",
+            "reg:r8"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "rip",
+            "r8"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 30,
+              "kind_counts": {
+                "data": 30
+              },
+              "pcs": [
+                "0xa72",
+                "0xba4",
+                "0xbba",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59"
+              ],
+              "pcs_truncated": 7
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "reg:r8",
+              "dst_label": "r8",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa7f"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:cf",
+            "reg:rip",
+            "reg:r8"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "cf",
+            "rip",
+            "r8"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:cf",
+              "dst_label": "cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "data": 18
+              },
+              "pcs": [
+                "0xba4",
+                "0xbc5",
+                "0xc11",
+                "0xc14",
+                "0xc19",
+                "0xc59",
+                "0xc60",
+                "0xc66"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "cf",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "control",
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "control": 50,
+                "data": 2
+              },
+              "pcs": [
+                "0xb97",
+                "0xb99",
+                "0xba0",
+                "0xba4",
+                "0xba7",
+                "0xbaa",
+                "0xbad",
+                "0xbb0"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "reg:r8",
+              "dst_label": "r8",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa7f"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "reg:r9",
+      "target_label": "r9",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rdx",
+            "reg:r9"
+          ],
+          "labels": [
+            "array2",
+            "rdx",
+            "r9"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:r9",
+              "dst_label": "r9",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa72"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rip",
+            "reg:rdx",
+            "reg:r9"
+          ],
+          "labels": [
+            "array2",
+            "rip",
+            "rdx",
+            "r9"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xb99"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:r9",
+              "dst_label": "r9",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa72"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rip",
+            "reg:rax",
+            "reg:rdx",
+            "reg:r9"
+          ],
+          "labels": [
+            "array2",
+            "rip",
+            "rax",
+            "rdx",
+            "r9"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0xbba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 22,
+              "kind_counts": {
+                "data": 22
+              },
+              "pcs": [
+                "0xb8b",
+                "0xbb3",
+                "0xbbe",
+                "0xc21",
+                "0xd4a",
+                "0xd54",
+                "0xd74",
+                "0xf10"
+              ],
+              "pcs_truncated": 3
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 16,
+              "kind_counts": {
+                "data": 16
+              },
+              "pcs": [
+                "0xbb0",
+                "0xbba",
+                "0xc10",
+                "0xc59",
+                "0xc60",
+                "0xd51",
+                "0xd5b",
+                "0xd71"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:r9",
+              "dst_label": "r9",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0xa72"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

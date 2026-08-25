@@ -1,0 +1,155 @@
+# Object Path Report
+
+## Backward representative paths
+
+### imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64 (imm@0x400ad0:operand_imm:0:0x400aa6/i64)
+[1] imm@0x400ad0:operand_imm:0:0x400aa6/i64 -[control;count=43;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400ad0:operand_imm:0:0x400aa6/i64 -[control;count=12;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400ad0:operand_imm:0:0x400aa6/i64 -[control;count=34;pcs=0x4009ba,0x4009c4,0x4009ea,...]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64 (imm@0x400b6d:operand_imm:0:0x400b63/i64)
+[1] imm@0x400b6d:operand_imm:0:0x400b63/i64 -[control;count=43;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b6d:operand_imm:0:0x400b63/i64 -[control;count=12;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b6d:operand_imm:0:0x400b63/i64 -[control;count=34;pcs=0x4009ba,0x4009c4,0x4009ea,...]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64 (imm@0x400b85:operand_imm:0:0x400adf/i64)
+[1] imm@0x400b85:operand_imm:0:0x400adf/i64 -[control;count=43;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b85:operand_imm:0:0x400adf/i64 -[control;count=12;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b85:operand_imm:0:0x400adf/i64 -[control;count=34;pcs=0x4009ba,0x4009c4,0x4009ea,...]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64 (imm@0x400b95:operand_imm:0:0x400a9c/i64)
+[1] imm@0x400b95:operand_imm:0:0x400a9c/i64 -[control;count=43;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b95:operand_imm:0:0x400a9c/i64 -[control;count=12;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b95:operand_imm:0:0x400a9c/i64 -[control;count=34;pcs=0x4009ba,0x4009c4,0x4009ea,...]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### reg:unknown (unknown)
+[1] unknown -[addr;count=1;pcs=0x400a6c]-> array2
+[2] unknown -[addr;count=6;pcs=0x400a9c,0x400aa6,0x400ac3,...]-> stack:[rbp-0x10] -[data;count=4;pcs=0x400aa6,0x400c6f]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] unknown -[addr;count=9;pcs=0x4009cd,0x4009d1,0x4009ee,...]-> stack:[rbp-0x18] -[data;count=4;pcs=0x4009d1,0x400a52]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64 (imm@0x400a49:operand_imm:0:0x400a73/i64)
+[1] imm@0x400a49:operand_imm:0:0x400a73/i64 -[control;count=12;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400a49:operand_imm:0:0x400a73/i64 -[control;count=3;pcs=0x4009be,0x400a4b,0x400a62]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400a49:operand_imm:0:0x400a73/i64 -[control;count=6;pcs=0x4009ba,0x4009c4,0x400a56,...]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64 (imm@0x400cb9:operand_imm:0:0x400c8c/i64)
+[1] imm@0x400cb9:operand_imm:0:0x400c8c/i64 -[control;count=2;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400cb9:operand_imm:0:0x400c8c/i64 -[control;count=2;pcs=0x401578,0x401619]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400cb9:operand_imm:0:0x400c8c/i64 -[control;count=2;pcs=0x401578,0x401619]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64 (imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x4008c9]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x4008c9]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x4008c9]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x4009ba:operand_imm:1:0x20:i8 (imm@0x4009ba:operand_imm:1:0x20/i8)
+[1] imm@0x4009ba:operand_imm:1:0x20/i8 -[data;count=1;pcs=0x4009ba]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x4009ba:operand_imm:1:0x20/i8 -[data;count=1;pcs=0x4009ba]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x4009ba:operand_imm:1:0x20/i8 -[data;count=1;pcs=0x4009ba]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x4009ea:operand_imm:1:0x20:i64 (imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x4009ea]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x4009ea]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x4009ea]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x4009fd:operand_imm:1:0x4:i8 (imm@0x4009fd:operand_imm:1:0x4/i8)
+[1] imm@0x4009fd:operand_imm:1:0x4/i8 -[data;count=1;pcs=0x4009fd]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x4009fd:operand_imm:1:0x4/i8 -[data;count=1;pcs=0x4009fd]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x4009fd:operand_imm:1:0x4/i8 -[data;count=1;pcs=0x4009fd]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400a5f:operand_imm:1:0x6:i8 (imm@0x400a5f:operand_imm:1:0x6/i8)
+[1] imm@0x400a5f:operand_imm:1:0x6/i8 -[data;count=1;pcs=0x400a5f]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400a5f:operand_imm:1:0x6/i8 -[data;count=1;pcs=0x400a5f]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400a5f:operand_imm:1:0x6/i8 -[data;count=1;pcs=0x400a5f]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400a87:operand_imm:1:0x40:i64 (imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x400a87]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x400a87]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x400a87]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400aaa:operand_imm:1:0x6:i8 (imm@0x400aaa:operand_imm:1:0x6/i8)
+[1] imm@0x400aaa:operand_imm:1:0x6/i8 -[data;count=1;pcs=0x400aaa]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400aaa:operand_imm:1:0x6/i8 -[data;count=1;pcs=0x400aaa]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400aaa:operand_imm:1:0x6/i8 -[data;count=1;pcs=0x400aaa]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400ac3:operand_imm:1:0x1:i64 (imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant])
+[1] imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400ac3]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400ac3]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400ac3]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b0a:operand_imm:1:0x1:i64 (imm@0x400b0a:operand_imm:1:0x1/i64)
+[1] imm@0x400b0a:operand_imm:1:0x1/i64 -[data;count=1;pcs=0x400b0a]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b0a:operand_imm:1:0x1/i64 -[data;count=1;pcs=0x400b0a]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b0a:operand_imm:1:0x1/i64 -[data;count=1;pcs=0x400b0a]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b10:operand_imm:1:0x3f:i8 (imm@0x400b10:operand_imm:1:0x3f/i8)
+[1] imm@0x400b10:operand_imm:1:0x3f/i8 -[data;count=1;pcs=0x400b10]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b10:operand_imm:1:0x3f/i8 -[data;count=1;pcs=0x400b10]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b10:operand_imm:1:0x3f/i8 -[data;count=1;pcs=0x400b10]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b1a:operand_imm:1:0x2:i8 (imm@0x400b1a:operand_imm:1:0x2/i8)
+[1] imm@0x400b1a:operand_imm:1:0x2/i8 -[data;count=1;pcs=0x400b1a]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b1a:operand_imm:1:0x2/i8 -[data;count=1;pcs=0x400b1a]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b1a:operand_imm:1:0x2/i8 -[data;count=1;pcs=0x400b1a]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b3d:operand_imm:1:0x10:i8 (imm@0x400b3d:operand_imm:1:0x10/i8)
+[1] imm@0x400b3d:operand_imm:1:0x10/i8 -[data;count=1;pcs=0x400b3d]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b3d:operand_imm:1:0x10/i8 -[data;count=1;pcs=0x400b3d]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b3d:operand_imm:1:0x10/i8 -[data;count=1;pcs=0x400b3d]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b63:operand_imm:1:0x1:i64 (imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant])
+[1] imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b63]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b63]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b63]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b7b:operand_imm:1:0x1:i64 (imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant])
+[1] imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b7b]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b7b]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b7b]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400b8b:operand_imm:1:0x1:i64 (imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant])
+[1] imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b8b]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b8b]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant] -[data;count=1;pcs=0x400b8b]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x400c49:operand_imm:1:0x30:i64 (imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x400c49]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x400c49]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x400c49]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+### imm_occurrence:0x401461:operand_imm:1:0x20:i64 (imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x401461]-> reg:cf -[control;count=86;pcs=0x4009b7,0x4009ba,0x4009c1,...]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+[2] imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x401461]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[addr;count=2;pcs=0x400a6c]-> array2
+[3] imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x401461]-> reg:of -[control;count=4;pcs=0x400cc0,0x401613]-> rax -[addr;count=2;pcs=0x400a6c]-> array2
+
+## Forward representative paths
+
+### reg:pf (reg:pf)
+[1] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=25;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:pf
+[2] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:cf -[control;count=33;pcs=0x4009ba,0x4009c4,0x4009ea,...]-> reg:pf
+[3] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:of -[control;count=2;pcs=0x401578,0x401619]-> reg:pf
+
+### reg:af (reg:af)
+[1] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=11;pcs=0x400a45,0x400a56,0x400ab8,...]-> reg:af
+[2] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:cf -[control;count=18;pcs=0x4009ea,0x400a45,0x400a56,...]-> reg:af
+[3] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:of -[control;count=2;pcs=0x401578,0x401619]-> reg:af
+
+### stack:[rbp-0xc] (stack:[rbp-0xc])
+[1] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:cf -[control;count=1;pcs=0x4009b4]-> stack:[rbp-0xc]
+[2] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=2;pcs=0x400b27]-> reg:rcx -[data;count=1;pcs=0x4009b4]-> stack:[rbp-0xc]
+[3] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=50;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:sf -[control;count=1;pcs=0x4009b4]-> stack:[rbp-0xc]
+
+### stack:[rsp+0x0] (stack:[rsp+0x0])
+[1] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=1;pcs=0x4008cd]-> stack:[rsp+0x0]
+[2] array2 -[data;count=2;pcs=0x400a6c]-> rip -[addr|data;count=2;pcs=0x4008e4]-> stack:[rsp+0x0]
+[3] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=98;pcs=0x4008cd,0x4009ae,0x4009ba,...]-> rip -[addr|data;count=2;pcs=0x4008e4]-> stack:[rsp+0x0]
+
+### stack:[rbp-0x24] (stack:[rbp-0x24])
+[1] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=6;pcs=0x400abb,0x400b73,0x400c73]-> reg:rdi -[data;count=1;pcs=0x400c4d]-> stack:[rbp-0x24]
+[2] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:cf -[control;count=22;pcs=0x4009a8,0x4009c7,0x4009ca,...]-> rbp -[addr|data;count=2;pcs=0x400c4d]-> stack:[rbp-0x24]
+[3] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:cf -[control;count=4;pcs=0x400abb,0x400b73]-> reg:rdi -[data;count=1;pcs=0x400c4d]-> stack:[rbp-0x24]
+
+### reg:r9 (reg:r9)
+[1] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=16;pcs=0x4009be,0x400a62,0x400aae,...]-> rdx -[data;count=1;pcs=0x4008c2]-> reg:r9
+[2] array2 -[data;count=2;pcs=0x400a6c]-> rip -[data;count=2;pcs=0x400a4b]-> rdx -[data;count=1;pcs=0x4008c2]-> reg:r9
+[3] array2 -[data;count=2;pcs=0x400a6c]-> rax -[data;count=52;pcs=0x4009ba,0x4009c4,0x4009fd,...]-> reg:cf -[control;count=24;pcs=0x4009be,0x400a0f,0x400a4b,...]-> rdx -[data;count=1;pcs=0x4008c2]-> reg:r9

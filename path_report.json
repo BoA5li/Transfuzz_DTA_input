@@ -1,0 +1,6345 @@
+{
+  "config": {
+    "max_depth": 48,
+    "per_target": 3,
+    "top_targets": 24,
+    "edge_pcs_limit": 8
+  },
+  "backward_paths": [
+    {
+      "target": "imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64",
+      "target_label": "imm@0x400ad0:operand_imm:0:0x400aa6/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400ad0:operand_imm:0:0x400aa6/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64",
+              "src_label": "imm@0x400ad0:operand_imm:0:0x400aa6/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 43,
+              "kind_counts": {
+                "control": 43
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400ad0:operand_imm:0:0x400aa6/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64",
+              "src_label": "imm@0x400ad0:operand_imm:0:0x400aa6/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 12,
+              "kind_counts": {
+                "control": 12
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400ad0:operand_imm:0:0x400aa6/i64",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400ad0:operand_imm:0:0x400aa6:i64",
+              "src_label": "imm@0x400ad0:operand_imm:0:0x400aa6/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "control"
+              ],
+              "count": 34,
+              "kind_counts": {
+                "control": 34
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009ea",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa"
+              ],
+              "pcs_truncated": 26
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64",
+      "target_label": "imm@0x400b6d:operand_imm:0:0x400b63/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b6d:operand_imm:0:0x400b63/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64",
+              "src_label": "imm@0x400b6d:operand_imm:0:0x400b63/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 43,
+              "kind_counts": {
+                "control": 43
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b6d:operand_imm:0:0x400b63/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64",
+              "src_label": "imm@0x400b6d:operand_imm:0:0x400b63/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 12,
+              "kind_counts": {
+                "control": 12
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b6d:operand_imm:0:0x400b63/i64",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b6d:operand_imm:0:0x400b63:i64",
+              "src_label": "imm@0x400b6d:operand_imm:0:0x400b63/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "control"
+              ],
+              "count": 34,
+              "kind_counts": {
+                "control": 34
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009ea",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa"
+              ],
+              "pcs_truncated": 26
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64",
+      "target_label": "imm@0x400b85:operand_imm:0:0x400adf/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b85:operand_imm:0:0x400adf/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64",
+              "src_label": "imm@0x400b85:operand_imm:0:0x400adf/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 43,
+              "kind_counts": {
+                "control": 43
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b85:operand_imm:0:0x400adf/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64",
+              "src_label": "imm@0x400b85:operand_imm:0:0x400adf/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 12,
+              "kind_counts": {
+                "control": 12
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b85:operand_imm:0:0x400adf/i64",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b85:operand_imm:0:0x400adf:i64",
+              "src_label": "imm@0x400b85:operand_imm:0:0x400adf/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "control"
+              ],
+              "count": 34,
+              "kind_counts": {
+                "control": 34
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009ea",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa"
+              ],
+              "pcs_truncated": 26
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64",
+      "target_label": "imm@0x400b95:operand_imm:0:0x400a9c/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b95:operand_imm:0:0x400a9c/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64",
+              "src_label": "imm@0x400b95:operand_imm:0:0x400a9c/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 43,
+              "kind_counts": {
+                "control": 43
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b95:operand_imm:0:0x400a9c/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64",
+              "src_label": "imm@0x400b95:operand_imm:0:0x400a9c/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 12,
+              "kind_counts": {
+                "control": 12
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b95:operand_imm:0:0x400a9c/i64",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b95:operand_imm:0:0x400a9c:i64",
+              "src_label": "imm@0x400b95:operand_imm:0:0x400a9c/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "control"
+              ],
+              "count": 34,
+              "kind_counts": {
+                "control": 34
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009ea",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa"
+              ],
+              "pcs_truncated": 26
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "reg:unknown",
+      "target_label": "unknown",
+      "paths": [
+        {
+          "nodes": [
+            "reg:unknown",
+            "var:array2"
+          ],
+          "labels": [
+            "unknown",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "reg:unknown",
+              "src_label": "unknown",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "addr": 1
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "reg:unknown",
+            "stack:[rbp-0x10]",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "unknown",
+            "stack:[rbp-0x10]",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "reg:unknown",
+              "src_label": "unknown",
+              "dst": "stack:[rbp-0x10]",
+              "dst_label": "stack:[rbp-0x10]",
+              "kinds": [
+                "addr"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "addr": 6
+              },
+              "pcs": [
+                "0x400a9c",
+                "0x400aa6",
+                "0x400ac3",
+                "0x400ac8",
+                "0x400c6b",
+                "0x400c6f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "stack:[rbp-0x10]",
+              "src_label": "stack:[rbp-0x10]",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "data": 4
+              },
+              "pcs": [
+                "0x400aa6",
+                "0x400c6f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "reg:unknown",
+            "stack:[rbp-0x18]",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "unknown",
+            "stack:[rbp-0x18]",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "reg:unknown",
+              "src_label": "unknown",
+              "dst": "stack:[rbp-0x18]",
+              "dst_label": "stack:[rbp-0x18]",
+              "kinds": [
+                "addr"
+              ],
+              "count": 9,
+              "kind_counts": {
+                "addr": 9
+              },
+              "pcs": [
+                "0x4009cd",
+                "0x4009d1",
+                "0x4009ee",
+                "0x400a45",
+                "0x400a52",
+                "0x400ad2",
+                "0x400af6",
+                "0x400b7b"
+              ],
+              "pcs_truncated": 1
+            },
+            {
+              "src": "stack:[rbp-0x18]",
+              "src_label": "stack:[rbp-0x18]",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "data": 4
+              },
+              "pcs": [
+                "0x4009d1",
+                "0x400a52"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64",
+      "target_label": "imm@0x400a49:operand_imm:0:0x400a73/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a49:operand_imm:0:0x400a73/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64",
+              "src_label": "imm@0x400a49:operand_imm:0:0x400a73/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 12,
+              "kind_counts": {
+                "control": 12
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x400a52",
+                "0x400a56",
+                "0x400a59",
+                "0x400a5c"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a49:operand_imm:0:0x400a73/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64",
+              "src_label": "imm@0x400a49:operand_imm:0:0x400a73/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 3,
+              "kind_counts": {
+                "control": 3
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a4b",
+                "0x400a62"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a49:operand_imm:0:0x400a73/i64",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a49:operand_imm:0:0x400a73:i64",
+              "src_label": "imm@0x400a49:operand_imm:0:0x400a73/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "control"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "control": 6
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x400a56",
+                "0x400a5f",
+                "0x401461",
+                "0x40146b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64",
+      "target_label": "imm@0x400cb9:operand_imm:0:0x400c8c/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400cb9:operand_imm:0:0x400c8c/i64",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64",
+              "src_label": "imm@0x400cb9:operand_imm:0:0x400c8c/i64",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400cb9:operand_imm:0:0x400c8c/i64",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64",
+              "src_label": "imm@0x400cb9:operand_imm:0:0x400c8c/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0x401578",
+                "0x401619"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400cb9:operand_imm:0:0x400c8c/i64",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400cb9:operand_imm:0:0x400c8c:i64",
+              "src_label": "imm@0x400cb9:operand_imm:0:0x400c8c/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0x401578",
+                "0x401619"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64",
+      "target_label": "imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64",
+              "src_label": "imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4008c9"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64",
+              "src_label": "imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4008c9"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4008c9:operand_imm:1:0xfffffffffffffff0:i64",
+              "src_label": "imm@0x4008c9:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4008c9"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+      "target_label": "imm@0x4009ba:operand_imm:1:0x20/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009ba:operand_imm:1:0x20/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+              "src_label": "imm@0x4009ba:operand_imm:1:0x20/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009ba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009ba:operand_imm:1:0x20/i8",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+              "src_label": "imm@0x4009ba:operand_imm:1:0x20/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009ba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009ba:operand_imm:1:0x20/i8",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009ba:operand_imm:1:0x20:i8",
+              "src_label": "imm@0x4009ba:operand_imm:1:0x20/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009ba"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x4009ea:operand_imm:1:0x20:i64",
+      "target_label": "imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x4009ea:operand_imm:1:0x20:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009ea:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009ea"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4009ea:operand_imm:1:0x20:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009ea:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009ea"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4009ea:operand_imm:1:0x20:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009ea:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x4009ea:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009ea"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+      "target_label": "imm@0x4009fd:operand_imm:1:0x4/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009fd:operand_imm:1:0x4/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+              "src_label": "imm@0x4009fd:operand_imm:1:0x4/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009fd"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009fd:operand_imm:1:0x4/i8",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+              "src_label": "imm@0x4009fd:operand_imm:1:0x4/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009fd"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x4009fd:operand_imm:1:0x4/i8",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x4009fd:operand_imm:1:0x4:i8",
+              "src_label": "imm@0x4009fd:operand_imm:1:0x4/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009fd"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400a5f:operand_imm:1:0x6:i8",
+      "target_label": "imm@0x400a5f:operand_imm:1:0x6/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400a5f:operand_imm:1:0x6:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a5f:operand_imm:1:0x6/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a5f:operand_imm:1:0x6:i8",
+              "src_label": "imm@0x400a5f:operand_imm:1:0x6/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400a5f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400a5f:operand_imm:1:0x6:i8",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a5f:operand_imm:1:0x6/i8",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a5f:operand_imm:1:0x6:i8",
+              "src_label": "imm@0x400a5f:operand_imm:1:0x6/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400a5f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400a5f:operand_imm:1:0x6:i8",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a5f:operand_imm:1:0x6/i8",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a5f:operand_imm:1:0x6:i8",
+              "src_label": "imm@0x400a5f:operand_imm:1:0x6/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400a5f"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400a87:operand_imm:1:0x40:i64",
+      "target_label": "imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400a87:operand_imm:1:0x40:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a87:operand_imm:1:0x40:i64",
+              "src_label": "imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400a87"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400a87:operand_imm:1:0x40:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a87:operand_imm:1:0x40:i64",
+              "src_label": "imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400a87"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400a87:operand_imm:1:0x40:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400a87:operand_imm:1:0x40:i64",
+              "src_label": "imm@0x400a87:operand_imm:1:0x40/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400a87"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400aaa:operand_imm:1:0x6:i8",
+      "target_label": "imm@0x400aaa:operand_imm:1:0x6/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400aaa:operand_imm:1:0x6:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400aaa:operand_imm:1:0x6/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400aaa:operand_imm:1:0x6:i8",
+              "src_label": "imm@0x400aaa:operand_imm:1:0x6/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400aaa"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400aaa:operand_imm:1:0x6:i8",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400aaa:operand_imm:1:0x6/i8",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400aaa:operand_imm:1:0x6:i8",
+              "src_label": "imm@0x400aaa:operand_imm:1:0x6/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400aaa"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400aaa:operand_imm:1:0x6:i8",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400aaa:operand_imm:1:0x6/i8",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400aaa:operand_imm:1:0x6:i8",
+              "src_label": "imm@0x400aaa:operand_imm:1:0x6/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400aaa"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+      "target_label": "imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400ac3"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400ac3"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400ac3:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400ac3:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400ac3"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b0a:operand_imm:1:0x1:i64",
+      "target_label": "imm@0x400b0a:operand_imm:1:0x1/i64",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b0a:operand_imm:1:0x1:i64",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b0a:operand_imm:1:0x1/i64",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b0a:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b0a:operand_imm:1:0x1/i64",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b0a"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b0a:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b0a:operand_imm:1:0x1/i64",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b0a:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b0a:operand_imm:1:0x1/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b0a"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b0a:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b0a:operand_imm:1:0x1/i64",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b0a:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b0a:operand_imm:1:0x1/i64",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b0a"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b10:operand_imm:1:0x3f:i8",
+      "target_label": "imm@0x400b10:operand_imm:1:0x3f/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b10:operand_imm:1:0x3f:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b10:operand_imm:1:0x3f/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b10:operand_imm:1:0x3f:i8",
+              "src_label": "imm@0x400b10:operand_imm:1:0x3f/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b10"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b10:operand_imm:1:0x3f:i8",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b10:operand_imm:1:0x3f/i8",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b10:operand_imm:1:0x3f:i8",
+              "src_label": "imm@0x400b10:operand_imm:1:0x3f/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b10"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b10:operand_imm:1:0x3f:i8",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b10:operand_imm:1:0x3f/i8",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b10:operand_imm:1:0x3f:i8",
+              "src_label": "imm@0x400b10:operand_imm:1:0x3f/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b10"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b1a:operand_imm:1:0x2:i8",
+      "target_label": "imm@0x400b1a:operand_imm:1:0x2/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b1a:operand_imm:1:0x2:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b1a:operand_imm:1:0x2/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b1a:operand_imm:1:0x2:i8",
+              "src_label": "imm@0x400b1a:operand_imm:1:0x2/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b1a"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b1a:operand_imm:1:0x2:i8",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b1a:operand_imm:1:0x2/i8",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b1a:operand_imm:1:0x2:i8",
+              "src_label": "imm@0x400b1a:operand_imm:1:0x2/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b1a"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b1a:operand_imm:1:0x2:i8",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b1a:operand_imm:1:0x2/i8",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b1a:operand_imm:1:0x2:i8",
+              "src_label": "imm@0x400b1a:operand_imm:1:0x2/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b1a"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b3d:operand_imm:1:0x10:i8",
+      "target_label": "imm@0x400b3d:operand_imm:1:0x10/i8",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b3d:operand_imm:1:0x10:i8",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b3d:operand_imm:1:0x10/i8",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b3d:operand_imm:1:0x10:i8",
+              "src_label": "imm@0x400b3d:operand_imm:1:0x10/i8",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b3d"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b3d:operand_imm:1:0x10:i8",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b3d:operand_imm:1:0x10/i8",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b3d:operand_imm:1:0x10:i8",
+              "src_label": "imm@0x400b3d:operand_imm:1:0x10/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b3d"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b3d:operand_imm:1:0x10:i8",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b3d:operand_imm:1:0x10/i8",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b3d:operand_imm:1:0x10:i8",
+              "src_label": "imm@0x400b3d:operand_imm:1:0x10/i8",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b3d"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+      "target_label": "imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b63"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b63"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b63:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b63:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b63"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64",
+      "target_label": "imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b7b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b7b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b7b:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b7b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b7b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400b8b:operand_imm:1:0x1:i64",
+      "target_label": "imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400b8b:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b8b:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b8b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b8b:operand_imm:1:0x1:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b8b:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b8b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400b8b:operand_imm:1:0x1:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400b8b:operand_imm:1:0x1:i64",
+              "src_label": "imm@0x400b8b:operand_imm:1:0x1/i64 [program_semantic_constant|store_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400b8b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x400c49:operand_imm:1:0x30:i64",
+      "target_label": "imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x400c49:operand_imm:1:0x30:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400c49:operand_imm:1:0x30:i64",
+              "src_label": "imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400c49"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400c49:operand_imm:1:0x30:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400c49:operand_imm:1:0x30:i64",
+              "src_label": "imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400c49"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x400c49:operand_imm:1:0x30:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x400c49:operand_imm:1:0x30:i64",
+              "src_label": "imm@0x400c49:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400c49"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "imm_occurrence:0x401461:operand_imm:1:0x20:i64",
+      "target_label": "imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+      "paths": [
+        {
+          "nodes": [
+            "imm_occurrence:0x401461:operand_imm:1:0x20:i64",
+            "reg:cf",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x401461:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x401461"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 86,
+              "kind_counts": {
+                "control": 86
+              },
+              "pcs": [
+                "0x4009b7",
+                "0x4009ba",
+                "0x4009c1",
+                "0x4009c4",
+                "0x4009d1",
+                "0x4009d9",
+                "0x4009f6",
+                "0x4009fd"
+              ],
+              "pcs_truncated": 35
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x401461:operand_imm:1:0x20:i64",
+            "reg:cf",
+            "reg:rdx",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:cf",
+            "rdx",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x401461:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x401461"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "imm_occurrence:0x401461:operand_imm:1:0x20:i64",
+            "reg:of",
+            "reg:rax",
+            "var:array2"
+          ],
+          "labels": [
+            "imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+            "reg:of",
+            "rax",
+            "array2"
+          ],
+          "steps": [
+            {
+              "src": "imm_occurrence:0x401461:operand_imm:1:0x20:i64",
+              "src_label": "imm@0x401461:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant]",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x401461"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400cc0",
+                "0x401613"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "var:array2",
+              "dst_label": "array2",
+              "kinds": [
+                "addr"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "forward_paths": [
+    {
+      "target": "reg:pf",
+      "target_label": "reg:pf",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:pf"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:pf"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:pf",
+              "dst_label": "reg:pf",
+              "kinds": [
+                "data"
+              ],
+              "count": 25,
+              "kind_counts": {
+                "data": 25
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 17
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:cf",
+            "reg:pf"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:cf",
+            "reg:pf"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:pf",
+              "dst_label": "reg:pf",
+              "kinds": [
+                "control"
+              ],
+              "count": 33,
+              "kind_counts": {
+                "control": 33
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009ea",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa"
+              ],
+              "pcs_truncated": 25
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:of",
+            "reg:pf"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:of",
+            "reg:pf"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:pf",
+              "dst_label": "reg:pf",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0x401578",
+                "0x401619"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "reg:af",
+      "target_label": "reg:af",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:af"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:af"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:af",
+              "dst_label": "reg:af",
+              "kinds": [
+                "data"
+              ],
+              "count": 11,
+              "kind_counts": {
+                "data": 11
+              },
+              "pcs": [
+                "0x400a45",
+                "0x400a56",
+                "0x400ab8",
+                "0x400b14",
+                "0x400b1e",
+                "0x400b21",
+                "0x400b24",
+                "0x400b27"
+              ],
+              "pcs_truncated": 3
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:cf",
+            "reg:af"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:cf",
+            "reg:af"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:af",
+              "dst_label": "reg:af",
+              "kinds": [
+                "control"
+              ],
+              "count": 18,
+              "kind_counts": {
+                "control": 18
+              },
+              "pcs": [
+                "0x4009ea",
+                "0x400a45",
+                "0x400a56",
+                "0x400ab8",
+                "0x400ac3",
+                "0x400ac8",
+                "0x400b14",
+                "0x400b1e"
+              ],
+              "pcs_truncated": 10
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:of",
+            "reg:af"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:of",
+            "reg:af"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:of",
+              "dst_label": "reg:of",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:of",
+              "src_label": "reg:of",
+              "dst": "reg:af",
+              "dst_label": "reg:af",
+              "kinds": [
+                "control"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "control": 2
+              },
+              "pcs": [
+                "0x401578",
+                "0x401619"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "stack:[rbp-0xc]",
+      "target_label": "stack:[rbp-0xc]",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:cf",
+            "stack:[rbp-0xc]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:cf",
+            "stack:[rbp-0xc]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "stack:[rbp-0xc]",
+              "dst_label": "stack:[rbp-0xc]",
+              "kinds": [
+                "control"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "control": 1
+              },
+              "pcs": [
+                "0x4009b4"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:rcx",
+            "stack:[rbp-0xc]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:rcx",
+            "stack:[rbp-0xc]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:rcx",
+              "dst_label": "reg:rcx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400b27"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rcx",
+              "src_label": "reg:rcx",
+              "dst": "stack:[rbp-0xc]",
+              "dst_label": "stack:[rbp-0xc]",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4009b4"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:sf",
+            "stack:[rbp-0xc]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:sf",
+            "stack:[rbp-0xc]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:sf",
+              "dst_label": "reg:sf",
+              "kinds": [
+                "data"
+              ],
+              "count": 50,
+              "kind_counts": {
+                "data": 50
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 17
+            },
+            {
+              "src": "reg:sf",
+              "src_label": "reg:sf",
+              "dst": "stack:[rbp-0xc]",
+              "dst_label": "stack:[rbp-0xc]",
+              "kinds": [
+                "control"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "control": 1
+              },
+              "pcs": [
+                "0x4009b4"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "stack:[rsp+0x0]",
+      "target_label": "stack:[rsp+0x0]",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "stack:[rsp+0x0]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "stack:[rsp+0x0]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "stack:[rsp+0x0]",
+              "dst_label": "stack:[rsp+0x0]",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4008cd"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rip",
+            "stack:[rsp+0x0]"
+          ],
+          "labels": [
+            "array2",
+            "rip",
+            "stack:[rsp+0x0]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "stack:[rsp+0x0]",
+              "dst_label": "stack:[rsp+0x0]",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 1,
+                "data": 1
+              },
+              "pcs": [
+                "0x4008e4"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:rip",
+            "stack:[rsp+0x0]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "rip",
+            "stack:[rsp+0x0]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 98,
+              "kind_counts": {
+                "data": 98
+              },
+              "pcs": [
+                "0x4008cd",
+                "0x4009ae",
+                "0x4009ba",
+                "0x4009be",
+                "0x4009c4",
+                "0x4009d5",
+                "0x4009fd",
+                "0x400a01"
+              ],
+              "pcs_truncated": 41
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "stack:[rsp+0x0]",
+              "dst_label": "stack:[rsp+0x0]",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 1,
+                "data": 1
+              },
+              "pcs": [
+                "0x4008e4"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "stack:[rbp-0x24]",
+      "target_label": "stack:[rbp-0x24]",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:rdi",
+            "stack:[rbp-0x24]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:rdi",
+            "stack:[rbp-0x24]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:rdi",
+              "dst_label": "reg:rdi",
+              "kinds": [
+                "data"
+              ],
+              "count": 6,
+              "kind_counts": {
+                "data": 6
+              },
+              "pcs": [
+                "0x400abb",
+                "0x400b73",
+                "0x400c73"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdi",
+              "src_label": "reg:rdi",
+              "dst": "stack:[rbp-0x24]",
+              "dst_label": "stack:[rbp-0x24]",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400c4d"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:cf",
+            "reg:rbp",
+            "stack:[rbp-0x24]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:cf",
+            "rbp",
+            "stack:[rbp-0x24]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rbp",
+              "dst_label": "rbp",
+              "kinds": [
+                "control"
+              ],
+              "count": 22,
+              "kind_counts": {
+                "control": 22
+              },
+              "pcs": [
+                "0x4009a8",
+                "0x4009c7",
+                "0x4009ca",
+                "0x4009e4",
+                "0x4009e7",
+                "0x400a81",
+                "0x400b9c",
+                "0x4013ef"
+              ],
+              "pcs_truncated": 3
+            },
+            {
+              "src": "reg:rbp",
+              "src_label": "rbp",
+              "dst": "stack:[rbp-0x24]",
+              "dst_label": "stack:[rbp-0x24]",
+              "kinds": [
+                "addr",
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "addr": 1,
+                "data": 1
+              },
+              "pcs": [
+                "0x400c4d"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:cf",
+            "reg:rdi",
+            "stack:[rbp-0x24]"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:cf",
+            "reg:rdi",
+            "stack:[rbp-0x24]"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdi",
+              "dst_label": "reg:rdi",
+              "kinds": [
+                "control"
+              ],
+              "count": 4,
+              "kind_counts": {
+                "control": 4
+              },
+              "pcs": [
+                "0x400abb",
+                "0x400b73"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdi",
+              "src_label": "reg:rdi",
+              "dst": "stack:[rbp-0x24]",
+              "dst_label": "stack:[rbp-0x24]",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x400c4d"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "reg:r9",
+      "target_label": "reg:r9",
+      "paths": [
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:rdx",
+            "reg:r9"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "rdx",
+            "reg:r9"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 16,
+              "kind_counts": {
+                "data": 16
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a62",
+                "0x400aae",
+                "0x400aef",
+                "0x400b07",
+                "0x400b14",
+                "0x400c5b",
+                "0x400c65"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:r9",
+              "dst_label": "reg:r9",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4008c2"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rip",
+            "reg:rdx",
+            "reg:r9"
+          ],
+          "labels": [
+            "array2",
+            "rip",
+            "rdx",
+            "reg:r9"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rip",
+              "dst_label": "rip",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rip",
+              "src_label": "rip",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a4b"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:r9",
+              "dst_label": "reg:r9",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4008c2"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        },
+        {
+          "nodes": [
+            "var:array2",
+            "reg:rax",
+            "reg:cf",
+            "reg:rdx",
+            "reg:r9"
+          ],
+          "labels": [
+            "array2",
+            "rax",
+            "reg:cf",
+            "rdx",
+            "reg:r9"
+          ],
+          "steps": [
+            {
+              "src": "var:array2",
+              "src_label": "array2",
+              "dst": "reg:rax",
+              "dst_label": "rax",
+              "kinds": [
+                "data"
+              ],
+              "count": 2,
+              "kind_counts": {
+                "data": 2
+              },
+              "pcs": [
+                "0x400a6c"
+              ],
+              "pcs_truncated": 0
+            },
+            {
+              "src": "reg:rax",
+              "src_label": "rax",
+              "dst": "reg:cf",
+              "dst_label": "reg:cf",
+              "kinds": [
+                "data"
+              ],
+              "count": 52,
+              "kind_counts": {
+                "data": 52
+              },
+              "pcs": [
+                "0x4009ba",
+                "0x4009c4",
+                "0x4009fd",
+                "0x400a45",
+                "0x400a56",
+                "0x400a5f",
+                "0x400aaa",
+                "0x400ab8"
+              ],
+              "pcs_truncated": 18
+            },
+            {
+              "src": "reg:cf",
+              "src_label": "reg:cf",
+              "dst": "reg:rdx",
+              "dst_label": "rdx",
+              "kinds": [
+                "control"
+              ],
+              "count": 24,
+              "kind_counts": {
+                "control": 24
+              },
+              "pcs": [
+                "0x4009be",
+                "0x400a0f",
+                "0x400a4b",
+                "0x400a62",
+                "0x400aae",
+                "0x400aea",
+                "0x400aef",
+                "0x400afa"
+              ],
+              "pcs_truncated": 4
+            },
+            {
+              "src": "reg:rdx",
+              "src_label": "rdx",
+              "dst": "reg:r9",
+              "dst_label": "reg:r9",
+              "kinds": [
+                "data"
+              ],
+              "count": 1,
+              "kind_counts": {
+                "data": 1
+              },
+              "pcs": [
+                "0x4008c2"
+              ],
+              "pcs_truncated": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

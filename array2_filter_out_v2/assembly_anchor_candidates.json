@@ -1,0 +1,1825 @@
+[
+  {
+    "pc": "0x150f",
+    "mnemonic": "mov",
+    "disasm": "mov eax, dword ptr [rip + 0x20fc6f]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "var:uops_available"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0x150f:mem_disp:1:0x20fc6f:i64",
+      "imm_occurrence:0x150f:mem_scale:1:0x1:i64"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0x1582",
+    "mnemonic": "mov",
+    "disasm": "mov eax, dword ptr [rip + 0x20fbfc]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "var:uops_available"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0x1582:mem_disp:1:0x20fbfc:i64",
+      "imm_occurrence:0x1582:mem_scale:1:0x1:i64"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xb82",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 8], rdi",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rdi",
+      "stack:[rbp-0x8]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xb82:mem_disp:0:0xfffffffffffffff8:i64",
+      "imm_occurrence:0xb82:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xb86",
+    "mnemonic": "call",
+    "disasm": "call 0x150b",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "call_anchor"
+    ],
+    "recommended_mutations": [
+      "call_skip_or_replace"
+    ],
+    "causal_objects": [
+      "stack:[rbp-0x18]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xb86:operand_imm:0:0x150b:i64",
+      "reg:rsp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "调用锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xb8b",
+    "mnemonic": "mov",
+    "disasm": "mov eax, dword ptr [rip + 0x20248f]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "var:array1_size"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xb8b:mem_disp:1:0x20248f:i64",
+      "imm_occurrence:0xb8b:mem_scale:1:0x1:i64"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xb93",
+    "mnemonic": "cmp",
+    "disasm": "cmp qword ptr [rbp - 8], rax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "comparison_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x8]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xb93:mem_disp:0:0xfffffffffffffff8:i64",
+      "imm_occurrence:0xb93:mem_scale:0:0x1:i64",
+      "reg:af",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与比较，变异后可能改变路径",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xba0",
+    "mnemonic": "mov",
+    "disasm": "mov rax, qword ptr [rbp - 8]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x8]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xba0:mem_disp:1:0xfffffffffffffff8:i64",
+      "imm_occurrence:0xba0:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xba7",
+    "mnemonic": "movzx",
+    "disasm": "movzx eax, byte ptr [rax]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "var:array1"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xba7:mem_disp:1:0x0:i64",
+      "imm_occurrence:0xba7:mem_scale:1:0x1:i64"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xbad",
+    "mnemonic": "shl",
+    "disasm": "shl eax, 9",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "arithmetic_anchor",
+      "immediate_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xbad:operand_imm:1:0x9:i8",
+      "reg:rax"
+    ],
+    "explanatory_objects": [
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "含关键立即数",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xbba",
+    "mnemonic": "movzx",
+    "disasm": "movzx edx, byte ptr [rdx + rax]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "reg:rdx"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xbba:mem_disp:1:0x0:i64",
+      "imm_occurrence:0xbba:mem_scale:1:0x1:i64",
+      "var:array2"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xbbe",
+    "mnemonic": "movzx",
+    "disasm": "movzx eax, byte ptr [rip + 0x202544]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "var:temp"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xbbe:mem_disp:1:0x202544:i64",
+      "imm_occurrence:0xbbe:mem_scale:1:0x1:i64"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xbc7",
+    "mnemonic": "mov",
+    "disasm": "mov byte ptr [rip + 0x20253c], al",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "var:temp"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xbc7:mem_disp:0:0x20253c:i64",
+      "imm_occurrence:0xbc7:mem_scale:0:0x1:i64"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xbcd",
+    "mnemonic": "call",
+    "disasm": "call 0x157a",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "call_anchor"
+    ],
+    "recommended_mutations": [
+      "call_skip_or_replace"
+    ],
+    "causal_objects": [
+      "stack:[rbp-0x18]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xbcd:operand_imm:0:0x157a:i64",
+      "reg:rsp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "调用锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xbfd",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 0x28], rdi",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "contextual",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rdi",
+      "stack:[rbp-0x28]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xbfd:mem_disp:0:0xffffffffffffffd8:i64",
+      "imm_occurrence:0xbfd:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "函数序言/尾声指令：函数参数保存 (rdi → 栈)",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": true,
+    "prologue_epilogue_desc": "函数参数保存 (rdi → 栈)"
+  },
+  {
+    "pc": "0xc01",
+    "mnemonic": "mov",
+    "disasm": "mov dword ptr [rbp - 0x1c], 0x1d",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc01:operand_imm:1:0x1d:i32",
+      "stack:[rbp-0x1c]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc01:mem_disp:0:0xffffffffffffffe4:i64",
+      "imm_occurrence:0xc01:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc0d",
+    "mnemonic": "mov",
+    "disasm": "mov eax, dword ptr [rbp - 0x1c]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x1c]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc0d:mem_disp:1:0xffffffffffffffe4:i64",
+      "imm_occurrence:0xc0d:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc11",
+    "mnemonic": "shr",
+    "disasm": "shr edx, 0x1c",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "arithmetic_anchor",
+      "immediate_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc11:operand_imm:1:0x1c:i8",
+      "reg:rdx"
+    ],
+    "explanatory_objects": [
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "含关键立即数",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc16",
+    "mnemonic": "and",
+    "disasm": "and eax, 0xf",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "arithmetic_anchor",
+      "immediate_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc16:operand_imm:1:0xf:i32",
+      "reg:rax"
+    ],
+    "explanatory_objects": [
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "含关键立即数",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc1d",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 0x18], rax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x18]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc1d:mem_disp:0:0xffffffffffffffe8:i64",
+      "imm_occurrence:0xc1d:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc28",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 8], rax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x8]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc28:mem_disp:0:0xfffffffffffffff8:i64",
+      "imm_occurrence:0xc28:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc2c",
+    "mnemonic": "mov",
+    "disasm": "mov rax, qword ptr [rbp - 8]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x8]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc2c:mem_disp:1:0xfffffffffffffff8:i64",
+      "imm_occurrence:0xc2c:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc33",
+    "mnemonic": "mov",
+    "disasm": "mov dword ptr [rbp - 0x20], 0",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc33:operand_imm:1:0x0:i32",
+      "stack:[rbp-0x20]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc33:mem_disp:0:0xffffffffffffffe0:i64",
+      "imm_occurrence:0xc33:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc3c",
+    "mnemonic": "mov",
+    "disasm": "mov eax, dword ptr [rbp - 0x20]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x20]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc3c:mem_disp:1:0xffffffffffffffe0:i64",
+      "imm_occurrence:0xc3c:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc3f",
+    "mnemonic": "add",
+    "disasm": "add eax, 1",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "arithmetic_anchor",
+      "immediate_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc3f:operand_imm:1:0x1:i32",
+      "reg:rax"
+    ],
+    "explanatory_objects": [
+      "reg:af",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "含关键立即数",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc42",
+    "mnemonic": "mov",
+    "disasm": "mov dword ptr [rbp - 0x20], eax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x20]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc42:mem_disp:0:0xffffffffffffffe0:i64",
+      "imm_occurrence:0xc42:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc45",
+    "mnemonic": "mov",
+    "disasm": "mov eax, dword ptr [rbp - 0x20]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x20]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc45:mem_disp:1:0xffffffffffffffe0:i64",
+      "imm_occurrence:0xc45:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc48",
+    "mnemonic": "cmp",
+    "disasm": "cmp eax, 0xc7",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "comparison_anchor",
+      "immediate_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc48:operand_imm:1:0xc7:i32",
+      "reg:rax"
+    ],
+    "explanatory_objects": [
+      "reg:af",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与比较，变异后可能改变路径",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc71",
+    "mnemonic": "mov",
+    "disasm": "mov ax, 0",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "immediate_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc71:operand_imm:1:0x0:i16",
+      "reg:rax"
+    ],
+    "explanatory_objects": [],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc77",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 0x10], rax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc77:mem_disp:0:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xc77:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc7b",
+    "mnemonic": "mov",
+    "disasm": "mov rax, qword ptr [rbp - 0x10]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc7b:mem_disp:1:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xc7b:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc7f",
+    "mnemonic": "shr",
+    "disasm": "shr rax, 0x10",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "arithmetic_anchor",
+      "immediate_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xc7f:operand_imm:1:0x10:i8",
+      "reg:rax"
+    ],
+    "explanatory_objects": [
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "含关键立即数",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc83",
+    "mnemonic": "or",
+    "disasm": "or qword ptr [rbp - 0x10], rax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "arithmetic_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc83:mem_disp:0:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xc83:mem_scale:0:0x1:i64",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc87",
+    "mnemonic": "mov",
+    "disasm": "mov rax, qword ptr [rbp - 0x28]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x28]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc87:mem_disp:1:0xffffffffffffffd8:i64",
+      "imm_occurrence:0xc87:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc8b",
+    "mnemonic": "xor",
+    "disasm": "xor rax, qword ptr [rbp - 0x18]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "arithmetic_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x18]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc8b:mem_disp:1:0xffffffffffffffe8:i64",
+      "imm_occurrence:0xc8b:mem_scale:1:0x1:i64",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc8f",
+    "mnemonic": "and",
+    "disasm": "and rax, qword ptr [rbp - 0x10]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "arithmetic_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc8f:mem_disp:1:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xc8f:mem_scale:1:0x1:i64",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc93",
+    "mnemonic": "xor",
+    "disasm": "xor rax, qword ptr [rbp - 0x18]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "arithmetic_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x18]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc93:mem_disp:1:0xffffffffffffffe8:i64",
+      "imm_occurrence:0xc93:mem_scale:1:0x1:i64",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc97",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 0x10], rax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc97:mem_disp:0:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xc97:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xc9b",
+    "mnemonic": "mov",
+    "disasm": "mov rax, qword ptr [rbp - 0x10]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xc9b:mem_disp:1:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xc9b:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xca2",
+    "mnemonic": "call",
+    "disasm": "call 0xb7a",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "call_anchor"
+    ],
+    "recommended_mutations": [
+      "call_skip_or_replace"
+    ],
+    "causal_objects": [
+      "stack:[rbp-0x38]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xca2:operand_imm:0:0xb7a:i64",
+      "reg:rsp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "调用锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xca7",
+    "mnemonic": "sub",
+    "disasm": "sub dword ptr [rbp - 0x1c], 1",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "arithmetic_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xca7:operand_imm:1:0x1:i32",
+      "stack:[rbp-0x1c]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xca7:mem_disp:0:0xffffffffffffffe4:i64",
+      "imm_occurrence:0xca7:mem_scale:0:0x1:i64",
+      "reg:af",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xcab",
+    "mnemonic": "cmp",
+    "disasm": "cmp dword ptr [rbp - 0x1c], 0",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "comparison_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xcab:operand_imm:1:0x0:i32",
+      "stack:[rbp-0x1c]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xcab:mem_disp:0:0xffffffffffffffe4:i64",
+      "imm_occurrence:0xcab:mem_scale:0:0x1:i64",
+      "reg:af",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与比较，变异后可能改变路径",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd46",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 0x20], rsi",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "contextual",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rsi",
+      "stack:[rbp-0x20]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd46:mem_disp:0:0xffffffffffffffe0:i64",
+      "imm_occurrence:0xd46:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "函数序言/尾声指令：函数参数保存 (rsi → 栈)",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": true,
+    "prologue_epilogue_desc": "函数参数保存 (rsi → 栈)"
+  },
+  {
+    "pc": "0xd4a",
+    "mnemonic": "mov",
+    "disasm": "mov rax, qword ptr [rip + 0x20238f]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "var:secret"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd4a:mem_disp:1:0x20238f:i64",
+      "imm_occurrence:0xd4a:mem_scale:1:0x1:i64"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd61",
+    "mnemonic": "mov",
+    "disasm": "mov qword ptr [rbp - 8], rax",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x8]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd61:mem_disp:0:0xfffffffffffffff8:i64",
+      "imm_occurrence:0xd61:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd65",
+    "mnemonic": "mov",
+    "disasm": "mov dword ptr [rbp - 0x10], 0",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xd65:operand_imm:1:0x0:i32",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd65:mem_disp:0:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xd65:mem_scale:0:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd6e",
+    "mnemonic": "mov",
+    "disasm": "mov eax, dword ptr [rbp - 0x10]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd6e:mem_disp:1:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xd6e:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd7b",
+    "mnemonic": "mov",
+    "disasm": "mov byte ptr [rdx + rax], 1",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xd7b:operand_imm:1:0x1:i8",
+      "reg:rax",
+      "reg:rdx"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd7b:mem_disp:0:0x0:i64",
+      "imm_occurrence:0xd7b:mem_scale:0:0x1:i64",
+      "var:array2"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd7f",
+    "mnemonic": "add",
+    "disasm": "add dword ptr [rbp - 0x10], 1",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "arithmetic_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xd7f:operand_imm:1:0x1:i32",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd7f:mem_disp:0:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xd7f:mem_scale:0:0x1:i64",
+      "reg:af",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数",
+      "算术运算锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd83",
+    "mnemonic": "cmp",
+    "disasm": "cmp dword ptr [rbp - 0x10], 0x1ffff",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "comparison_anchor",
+      "immediate_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "immediate_value_mutation",
+      "instruction_deletion",
+      "opcode_replacement",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32",
+      "stack:[rbp-0x10]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd83:mem_disp:0:0xfffffffffffffff0:i64",
+      "imm_occurrence:0xd83:mem_scale:0:0x1:i64",
+      "reg:af",
+      "reg:cf",
+      "reg:of",
+      "reg:pf",
+      "reg:rbp",
+      "reg:sf",
+      "reg:zf"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与比较，变异后可能改变路径",
+      "参与地址计算",
+      "涉及内存值读写",
+      "含关键立即数"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd8c",
+    "mnemonic": "mov",
+    "disasm": "mov rax, qword ptr [rbp - 8]",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "secondary",
+    "anchor_kinds": [
+      "address_calc_anchor",
+      "memory_value_anchor"
+    ],
+    "recommended_mutations": [
+      "instruction_deletion",
+      "operand_mutation"
+    ],
+    "causal_objects": [
+      "reg:rax",
+      "stack:[rbp-0x8]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd8c:mem_disp:1:0xfffffffffffffff8:i64",
+      "imm_occurrence:0xd8c:mem_scale:1:0x1:i64",
+      "reg:rbp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "参与地址计算",
+      "涉及内存值读写"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  },
+  {
+    "pc": "0xd93",
+    "mnemonic": "call",
+    "disasm": "call 0xbf5",
+    "function": null,
+    "source_file": null,
+    "source_line": null,
+    "anchor_tier": "primary",
+    "anchor_kinds": [
+      "call_anchor"
+    ],
+    "recommended_mutations": [
+      "call_skip_or_replace"
+    ],
+    "causal_objects": [
+      "stack:[rbp-0x28]"
+    ],
+    "explanatory_objects": [
+      "imm_occurrence:0xd93:operand_imm:0:0xbf5:i64",
+      "reg:rsp"
+    ],
+    "related_strong_objects": [],
+    "rationale": [
+      "该指令涉及强相关可变异对象",
+      "调用锚点"
+    ],
+    "is_prologue_epilogue": false,
+    "prologue_epilogue_desc": null
+  }
+]

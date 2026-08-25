@@ -1,0 +1,155 @@
+# Object Path Report
+
+## Backward representative paths
+
+### imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64 (imm@0xd8a:operand_imm:0:0xd6e/i64)
+[1] imm@0xd8a:operand_imm:0:0xd6e/i64 -[control;count=1;pcs=0xd7b]-> array2
+[2] imm@0xd8a:operand_imm:0:0xd6e/i64 -[control;count=34;pcs=0xb7e,0xb93,0xba4,...]-> of -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xd8a:operand_imm:0:0xd6e/i64 -[control;count=47;pcs=0xb8b,0xb91,0xba0,...]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+
+### imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64 (imm@0xc4d:operand_imm:0:0xc3c/i64)
+[1] imm@0xc4d:operand_imm:0:0xc3c/i64 -[control;count=28;pcs=0xb7e,0xb93,0xba4,...]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xc4d:operand_imm:0:0xc3c/i64 -[control;count=40;pcs=0xb8b,0xb91,0xba0,...]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xc4d:operand_imm:0:0xc3c/i64 -[control;count=9;pcs=0xb99,0xbb0,0xbba,...]-> rdx -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+
+### imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64 (imm@0xcaf:operand_imm:0:0xc0d/i64)
+[1] imm@0xcaf:operand_imm:0:0xc0d/i64 -[control;count=28;pcs=0xb7e,0xb93,0xba4,...]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xcaf:operand_imm:0:0xc0d/i64 -[control;count=40;pcs=0xb8b,0xb91,0xba0,...]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xcaf:operand_imm:0:0xc0d/i64 -[control;count=9;pcs=0xb99,0xbb0,0xbba,...]-> rdx -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+
+### reg:unknown (unknown)
+[1] unknown -[addr;count=2;pcs=0xbba,0xd7b]-> array2
+[2] unknown -[addr;count=12;pcs=0xc77,0xc7b,0xc83,...]-> stack[rbp-0x10] -[data;count=8;pcs=0xc83,0xc8f,0xd7f,...]-> of -[control;count=2;pcs=0xd7b]-> array2
+[3] unknown -[addr;count=12;pcs=0xc77,0xc7b,0xc83,...]-> stack[rbp-0x10] -[data;count=10;pcs=0xc7b,0xc8f,0xc9b,...]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+
+### imm_occurrence:0xb97:operand_imm:0:0xbcd:i64 (imm@0xb97:operand_imm:0:0xbcd/i64)
+[1] imm@0xb97:operand_imm:0:0xbcd/i64 -[control;count=5;pcs=0xba4,0xbad,0xbc5,...]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xb97:operand_imm:0:0xbcd/i64 -[control;count=9;pcs=0xba0,0xba4,0xba7,...]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xb97:operand_imm:0:0xbcd/i64 -[control;count=3;pcs=0xb99,0xbb0,0xbba]-> rdx -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+
+### imm_occurrence:0xdd6:operand_imm:0:0xda9:i64 (imm@0xdd6:operand_imm:0:0xda9/i64)
+[1] imm@0xdd6:operand_imm:0:0xda9/i64 -[control;count=2;pcs=0x1695,0x1736]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xdd6:operand_imm:0:0xda9/i64 -[control;count=2;pcs=0xddd,0x1730]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xdd6:operand_imm:0:0xda9/i64 -[control;count=2;pcs=0x1695,0x1736]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0x157e:operand_imm:1:0x20:i64 (imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x157e]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x157e]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0x157e:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x157e]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0x1695:operand_imm:1:0x10:i64 (imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x1695]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x1695]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0x1695:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0x1695]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64 (imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xa79]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xa79]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xa79:operand_imm:1:0xfffffffffffffff0/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xa79]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xb7e:operand_imm:1:0x10:i64 (imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xb7e]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xb7e]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xb7e:operand_imm:1:0x10/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xb7e]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xbad:operand_imm:1:0x9:i8 (imm@0xbad:operand_imm:1:0x9/i8)
+[1] imm@0xbad:operand_imm:1:0x9/i8 -[data;count=1;pcs=0xbad]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xbad:operand_imm:1:0x9/i8 -[data;count=1;pcs=0xbad]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xbad:operand_imm:1:0x9/i8 -[data;count=1;pcs=0xbad]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xbf9:operand_imm:1:0x30:i64 (imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xbf9]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xbf9]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xbf9:operand_imm:1:0x30/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xbf9]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xc11:operand_imm:1:0x1c:i8 (imm@0xc11:operand_imm:1:0x1c/i8)
+[1] imm@0xc11:operand_imm:1:0x1c/i8 -[data;count=1;pcs=0xc11]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xc11:operand_imm:1:0x1c/i8 -[data;count=1;pcs=0xc11]-> rdx -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xc11:operand_imm:1:0x1c/i8 -[data;count=1;pcs=0xc11]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xc16:operand_imm:1:0xf:i32 (imm@0xc16:operand_imm:1:0xf/i32)
+[1] imm@0xc16:operand_imm:1:0xf/i32 -[data;count=1;pcs=0xc16]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xc16:operand_imm:1:0xf/i32 -[data;count=1;pcs=0xc16]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xc16:operand_imm:1:0xf/i32 -[data;count=1;pcs=0xc16]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xc3f:operand_imm:1:0x1:i32 (imm@0xc3f:operand_imm:1:0x1/i32)
+[1] imm@0xc3f:operand_imm:1:0x1/i32 -[data;count=1;pcs=0xc3f]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xc3f:operand_imm:1:0x1/i32 -[data;count=1;pcs=0xc3f]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xc3f:operand_imm:1:0x1/i32 -[data;count=1;pcs=0xc3f]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xc5d:operand_imm:1:0x1f:i8 (imm@0xc5d:operand_imm:1:0x1f/i8)
+[1] imm@0xc5d:operand_imm:1:0x1f/i8 -[data;count=1;pcs=0xc5d]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xc5d:operand_imm:1:0x1f/i8 -[data;count=1;pcs=0xc5d]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xc5d:operand_imm:1:0x1f/i8 -[data;count=1;pcs=0xc5d]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xc7f:operand_imm:1:0x10:i8 (imm@0xc7f:operand_imm:1:0x10/i8)
+[1] imm@0xc7f:operand_imm:1:0x10/i8 -[data;count=1;pcs=0xc7f]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xc7f:operand_imm:1:0x10/i8 -[data;count=1;pcs=0xc7f]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] imm@0xc7f:operand_imm:1:0x10/i8 -[data;count=1;pcs=0xc7f]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xca7:operand_imm:1:0x1:i32 (imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant])
+[1] imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant] -[data;count=1;pcs=0xca7]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant] -[data;count=1;pcs=0xca7]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xca7:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant] -[data;count=1;pcs=0xca7]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xd3f:operand_imm:1:0x20:i64 (imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant])
+[1] imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xd3f]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xd3f]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xd3f:operand_imm:1:0x20/i64 [stack_alignment_constant|structural_abi_constant] -[data;count=1;pcs=0xd3f]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xd7f:operand_imm:1:0x1:i32 (imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant])
+[1] imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant] -[data;count=1;pcs=0xd7f]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant] -[data;count=1;pcs=0xd7f]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xd7f:operand_imm:1:0x1/i32 [program_semantic_constant|store_constant] -[data;count=1;pcs=0xd7f]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xc48:operand_imm:1:0xc7:i32 (imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant])
+[1] imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xc48]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xc48]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xc48:operand_imm:1:0xc7/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xc48]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xcab:operand_imm:1:0x0:i32 (imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant])
+[1] imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xcab]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xcab]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xcab:operand_imm:1:0x0/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xcab]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### imm_occurrence:0xd83:operand_imm:1:0x1ffff:i32 (imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant])
+[1] imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xd83]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xd83]-> sf -[control;count=2;pcs=0xd7b]-> array2
+[3] imm@0xd83:operand_imm:1:0x1ffff/i32 [comparison_constant|program_semantic_constant] -[data;count=1;pcs=0xd83]-> zf -[control;count=2;pcs=0xd7b]-> array2
+
+### stack:[rsp-0x8] (stack[rsp-0x8])
+[1] stack[rsp-0x8] -[data;count=1;pcs=0xde2]-> rbp -[data;count=24;pcs=0xa70,0xb93,0xc83,...]-> of -[control;count=2;pcs=0xd7b]-> array2
+[2] stack[rsp-0x8] -[data;count=1;pcs=0xde2]-> rbp -[data;count=28;pcs=0xba0,0xc0d,0xc2c,...]-> rax -[addr|data;count=6;pcs=0xbba,0xd7b]-> array2
+[3] stack[rsp-0x8] -[data;count=1;pcs=0xde2]-> rbp -[data;count=24;pcs=0xa70,0xb93,0xc83,...]-> sf -[control;count=2;pcs=0xd7b]-> array2
+
+## Forward representative paths
+
+### reg:pf (pf)
+[1] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=8;pcs=0xba4,0xbc5,0xc11,...]-> pf
+[2] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc11,...]-> cf -[control;count=5;pcs=0xba4,0xbad,0xbc5,...]-> pf
+[3] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc11,...]-> of -[control;count=33;pcs=0xb7e,0xb93,0xba4,...]-> pf
+
+### reg:af (af)
+[1] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=6;pcs=0xba4,0xc14,0xc19,...]-> af
+[2] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc11,...]-> cf -[control;count=2;pcs=0xba4,0x157e]-> af
+[3] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc11,...]-> of -[control;count=21;pcs=0xb7e,0xb93,0xba4,...]-> af
+
+### stack:[rsp+0x0] (stack[rsp+0x0])
+[1] array2 -[data;count=2;pcs=0xbba]-> rip -[addr|data;count=2;pcs=0xa94]-> stack[rsp+0x0]
+[2] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc14,...]-> rax -[data;count=1;pcs=0xa7d]-> stack[rsp+0x0]
+[3] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=30;pcs=0xa72,0xba4,0xbba,...]-> rip -[addr|data;count=2;pcs=0xa94]-> stack[rsp+0x0]
+
+### stack:[rbp-0x14] (stack[rbp-0x14])
+[1] array2 -[data;count=2;pcs=0xbba]-> rip -[data;count=2;pcs=0xa8d]-> rdi -[data;count=1;pcs=0xd43]-> stack[rbp-0x14]
+[2] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc11,...]-> cf -[control;count=6;pcs=0xbd3,0x157b,0x168f]-> rbp -[addr|data;count=2;pcs=0xd43]-> stack[rbp-0x14]
+[3] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc11,...]-> of -[control;count=26;pcs=0xb7b,0xbd3,0xbf6,...]-> rbp -[addr|data;count=2;pcs=0xd43]-> stack[rbp-0x14]
+
+### reg:r8 (r8)
+[1] array2 -[data;count=2;pcs=0xbba]-> rip -[data;count=1;pcs=0xa7f]-> r8
+[2] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=30;pcs=0xa72,0xba4,0xbba,...]-> rip -[data;count=1;pcs=0xa7f]-> r8
+[3] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=18;pcs=0xba4,0xbc5,0xc11,...]-> cf -[control|data;count=52;pcs=0xb97,0xb99,0xba0,...]-> rip -[data;count=1;pcs=0xa7f]-> r8
+
+### reg:r9 (r9)
+[1] array2 -[data;count=2;pcs=0xbba]-> rdx -[data;count=1;pcs=0xa72]-> r9
+[2] array2 -[data;count=2;pcs=0xbba]-> rip -[data;count=2;pcs=0xb99]-> rdx -[data;count=1;pcs=0xa72]-> r9
+[3] array2 -[data;count=2;pcs=0xbba]-> rip -[data;count=22;pcs=0xb8b,0xbb3,0xbbe,...]-> rax -[data;count=16;pcs=0xbb0,0xbba,0xc10,...]-> rdx -[data;count=1;pcs=0xa72]-> r9

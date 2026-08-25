@@ -1,0 +1,1101 @@
+[
+  {
+    "object_id": "imm_occurrence:0x150f:mem_disp:1:0x20fc6f:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x150f:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1517:operand_imm:0:0x1577:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "分支目标地址应通过 branch_flip/branch_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x157e:operand_imm:1:0x20:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1582:mem_disp:1:0x20fbfc:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1582:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x158a:operand_imm:0:0x168e:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "分支目标地址应通过 branch_flip/branch_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1695:operand_imm:1:0x10:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1699:mem_disp:0:0xfffffffffffffffc:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1699:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1699:operand_imm:1:0x0:i32",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x16a0:operand_imm:0:0x1730:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1730:mem_disp:1:0x20fa4a:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1730:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1736:mem_disp:0:0xfffffffffffffffc:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1736:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0x1739:operand_imm:0:0x16a5:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xa79:operand_imm:1:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象所有 direct PC 均在 CRT 启动代码区间内",
+      "ABI 结构性常量，不适合作为语义变异对象",
+      "立即数位于 CRT 启动代码中"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xa94:mem_disp:0:0x202546:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象所有 direct PC 均在 CRT 启动代码区间内",
+      "GOT/PLT 重定位偏移 (rip-relative call/jmp)，变异导致调用非法地址",
+      "立即数位于 CRT 启动代码中"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xa94:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象所有 direct PC 均在 CRT 启动代码区间内",
+      "恒等 scale 因子 (×1)，不具备独立变异价值",
+      "立即数位于 CRT 启动代码中"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb7e:operand_imm:1:0x10:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb82:mem_disp:0:0xfffffffffffffff8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb82:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb86:operand_imm:0:0x150b:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "call 直接目标地址应通过 call_skip_or_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb8b:mem_disp:1:0x20248f:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb8b:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb93:mem_disp:0:0xfffffffffffffff8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb93:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xb97:operand_imm:0:0xbcd:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "分支目标地址应通过 branch_flip/branch_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xba0:mem_disp:1:0xfffffffffffffff8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xba0:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xba7:mem_disp:1:0x0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "零偏移量，不改变寻址结果"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xba7:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbba:mem_disp:1:0x0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "零偏移量，不改变寻址结果"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbba:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbbe:mem_disp:1:0x202544:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbbe:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbc7:mem_disp:0:0x20253c:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbc7:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbcd:operand_imm:0:0x157a:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "call 直接目标地址应通过 call_skip_or_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbf9:operand_imm:1:0x30:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbfd:mem_disp:0:0xffffffffffffffd8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xbfd:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc01:mem_disp:0:0xffffffffffffffe4:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc01:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc08:operand_imm:0:0xcab:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc0d:mem_disp:1:0xffffffffffffffe4:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc0d:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc1d:mem_disp:0:0xffffffffffffffe8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc1d:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc28:mem_disp:0:0xfffffffffffffff8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc28:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc2c:mem_disp:1:0xfffffffffffffff8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc2c:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc33:mem_disp:0:0xffffffffffffffe0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc33:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc3a:operand_imm:0:0xc45:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc3c:mem_disp:1:0xffffffffffffffe0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc3c:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc42:mem_disp:0:0xffffffffffffffe0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc42:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc45:mem_disp:1:0xffffffffffffffe0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc45:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc4d:operand_imm:0:0xc3c:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "分支目标地址应通过 branch_flip/branch_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc4f:mem_disp:1:0xffffffffffffffe4:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc4f:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc52:operand_imm:1:0x2aaaaaab:i32",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc5d:operand_imm:1:0x1f:i8",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc77:mem_disp:0:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc77:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc7b:mem_disp:1:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc7b:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc83:mem_disp:0:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc83:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc87:mem_disp:1:0xffffffffffffffd8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc87:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc8b:mem_disp:1:0xffffffffffffffe8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc8b:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc8f:mem_disp:1:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc8f:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc93:mem_disp:1:0xffffffffffffffe8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc93:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc97:mem_disp:0:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc97:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc9b:mem_disp:1:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xc9b:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xca2:operand_imm:0:0xb7a:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "call 直接目标地址应通过 call_skip_or_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xca7:mem_disp:0:0xffffffffffffffe4:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xca7:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xcab:mem_disp:0:0xffffffffffffffe4:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xcab:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xcaf:operand_imm:0:0xc0d:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "分支目标地址应通过 branch_flip/branch_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd3f:operand_imm:1:0x20:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd46:mem_disp:0:0xffffffffffffffe0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd46:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd4a:mem_disp:1:0x20238f:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd4a:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd61:mem_disp:0:0xfffffffffffffff8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd61:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd65:mem_disp:0:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd65:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd6c:operand_imm:0:0xd83:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd6e:mem_disp:1:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd6e:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd7b:mem_disp:0:0x0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "零偏移量，不改变寻址结果"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd7b:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd7f:mem_disp:0:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd7f:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd83:mem_disp:0:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd83:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd8a:operand_imm:0:0xd6e:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "分支目标地址应通过 branch_flip/branch_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd8c:mem_disp:1:0xfffffffffffffff8:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd8c:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd93:operand_imm:0:0xbf5:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "call 直接目标地址应通过 call_skip_or_replace 变异，非立即数直接替换"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd98:operand_imm:0:0xf0c:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd9d:mem_disp:0:0xfffffffffffffff4:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xd9d:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xda0:mem_disp:0:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xda0:mem_scale:0:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xda0:operand_imm:1:0x0:i32",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xda7:operand_imm:0:0xdd0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xdd0:mem_disp:1:0xfffffffffffffff0:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xdd0:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xdd3:mem_disp:1:0xfffffffffffffff4:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xdd3:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xdd6:operand_imm:0:0xda9:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xdd8:operand_imm:0:0x1691:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xddd:operand_imm:1:0x0:i32",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xf10:mem_disp:1:0x20422a:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "ABI 结构性常量，不适合作为语义变异对象"
+    ]
+  },
+  {
+    "object_id": "imm_occurrence:0xf10:mem_scale:1:0x1:i64",
+    "object_type": "imm_occurrence",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点",
+      "恒等 scale 因子 (×1)，不具备独立变异价值"
+    ]
+  },
+  {
+    "object_id": "mem:0x202fe0",
+    "object_type": "mem",
+    "exclusion_reasons": [
+      "mem:* 具体内存地址对象不可在汇编层直接变异，需通过变异其上游地址计算或值写入来间接影响",
+      "对象所有 direct PC 均在 CRT 启动代码区间内"
+    ]
+  },
+  {
+    "object_id": "reg:af",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "对象不在 backward 强相关集合中",
+      "flags 更适合作为分支语义解释，不作为首选直接对象变异入口"
+    ]
+  },
+  {
+    "object_id": "reg:cf",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "flags 更适合作为分支语义解释，不作为首选直接对象变异入口"
+    ]
+  },
+  {
+    "object_id": "reg:of",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "flags 更适合作为分支语义解释，不作为首选直接对象变异入口"
+    ]
+  },
+  {
+    "object_id": "reg:pf",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "对象不在 backward 强相关集合中",
+      "flags 更适合作为分支语义解释，不作为首选直接对象变异入口"
+    ]
+  },
+  {
+    "object_id": "reg:r8",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "对象不在 backward 强相关集合中",
+      "对象所有 direct PC 均在 CRT 启动代码区间内",
+      "寄存器无高价值语义角色",
+      "普通寄存器无高价值语义角色"
+    ]
+  },
+  {
+    "object_id": "reg:r9",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "对象不在 backward 强相关集合中",
+      "对象在用户代码中缺少可变异锚点",
+      "寄存器无高价值语义角色",
+      "普通寄存器无高价值语义角色"
+    ]
+  },
+  {
+    "object_id": "reg:rbp",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "纯栈/帧指针结构用途"
+    ]
+  },
+  {
+    "object_id": "reg:rcx",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "reg:rip",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "rip 是执行推进副产物"
+    ]
+  },
+  {
+    "object_id": "reg:rsp",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "纯栈/帧指针结构用途"
+    ]
+  },
+  {
+    "object_id": "reg:sf",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "flags 更适合作为分支语义解释，不作为首选直接对象变异入口"
+    ]
+  },
+  {
+    "object_id": "reg:unknown",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "对象语义不稳定"
+    ]
+  },
+  {
+    "object_id": "reg:zf",
+    "object_type": "reg",
+    "exclusion_reasons": [
+      "flags 更适合作为分支语义解释，不作为首选直接对象变异入口"
+    ]
+  },
+  {
+    "object_id": "stack:[rbp-0x14]",
+    "object_type": "stack",
+    "exclusion_reasons": [
+      "对象不在 backward 强相关集合中",
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "stack:[rbp-0x4]",
+    "object_type": "stack",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "stack:[rbp-0xc]",
+    "object_type": "stack",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "stack:[rsp+0x0]",
+    "object_type": "stack",
+    "exclusion_reasons": [
+      "对象不在 backward 强相关集合中"
+    ]
+  },
+  {
+    "object_id": "stack:[rsp-0x8]",
+    "object_type": "stack",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "var:array2",
+    "object_type": "var",
+    "exclusion_reasons": [
+      "seed 本身是分析中心，不作为首选上游变异对象"
+    ]
+  },
+  {
+    "object_id": "var:stage1_count",
+    "object_type": "var",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  },
+  {
+    "object_id": "var:uops_cnt",
+    "object_type": "var",
+    "exclusion_reasons": [
+      "对象在用户代码中缺少可变异锚点"
+    ]
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "status": "ok",
+  "seed_object": "var:array2",
+  "seed_symbol": "array2",
+  "counts": {
+    "strong_causal_objects": 26,
+    "strong_full_mutation": 24,
+    "strong_deletion_only": 2,
+    "assembly_anchor_candidates": 25,
+    "explanatory_objects": 2,
+    "excluded_objects": 167
+  },
+  "notes": [
+    "v2.4: tier 精细化 — primary 仅限比较/分支/call/含 var 或 operand_imm 的操作",
+    "v2.4: 函数序言/尾声指令降级为 contextual 并标记 is_prologue_epilogue",
+    "v2.4: anchor 增加 is_prologue_epilogue / prologue_epilogue_desc 字段"
+  ],
+  "diagnostics": {
+    "failure_reasons": {
+      "恒等 scale 因子 (×1)，不具备独立变异价值": 64,
+      "对象在用户代码中缺少可变异锚点": 40,
+      "栈帧局部变量偏移 (rbp-relative)，变异只会破坏栈帧布局": 40,
+      "ABI 结构性常量，不适合作为语义变异对象": 27,
+      "分支目标地址应通过 branch_flip/branch_replace 变异，非立即数直接替换": 7,
+      "call 直接目标地址应通过 call_skip_or_replace 变异，非立即数直接替换": 6,
+      "对象所有 direct PC 均在 CRT 启动代码区间内": 4,
+      "立即数位于 CRT 启动代码中": 4,
+      "零偏移量，不改变寻址结果": 2,
+      "GOT/PLT 重定位偏移 (rip-relative call/jmp)，变异导致调用非法地址": 1,
+      "rip 是执行推进副产物": 1,
+      "seed 本身是分析中心，不作为首选上游变异对象": 1,
+      "对象语义不稳定": 1,
+      "纯栈/帧指针结构用途": 1
+    },
+    "notes": [
+      "strong set: 2 deletion-only + 24 full mutation"
+    ],
+    "strong_type_distribution": {
+      "imm_occurrence": 24,
+      "reg": 2
+    },
+    "anchor_tier_distribution": {
+      "primary": 24,
+      "secondary": 1
+    },
+    "anchor_prologue_epilogue_count": 0,
+    "model_overview": {
+      "seed_object": "var:array2",
+      "seed_symbol": "array2",
+      "backward_objects": 222,
+      "backward_leaf_objects": 189,
+      "forward_objects": 39,
+      "instruction_details": 140,
+      "object_details": 193,
+      "crt_pcs": 7,
+      "prologue_epilogue_pcs": 9,
+      "strong_causal_objects": 26,
+      "strong_full_mutation": 24,
+      "strong_deletion_only": 2,
+      "assembly_anchors": 25,
+      "stack_dedup_groups": 2
+    }
+  }
+}
