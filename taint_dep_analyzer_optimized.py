@@ -3,7 +3,7 @@
 """
 Triton 动态污点 + 双向依赖分析（增强版，方向1 + 方向2 + 方向3 + 方向4 + 方向5 + 方向6）
 
-方向 1：在线控制依赖
+方向 1：静态后支配 + 动态轨迹混合控制依赖
 方向 2：seed-driven / slice-driven 重建
 方向 3：对象去重 / 规范化
 方向 4：循环稳态摘要 / 重复依赖事实聚合
@@ -57,7 +57,7 @@ from revision_helpers import (
 TAINT_SYMBOL_NAME = 'array2'
 DEFAULT_SECRET_LEN = 256 * 512
 
-# 控制依赖展开模式：
+# 混合控制依赖展开模式：
 #   none      -> 不建立控制依赖边
 #   def-only  -> 仅对受分支控制的“定义对象”加 control 边
 #   all       -> 对受分支控制的指令全部建立 inst 控制边，并把条件对象连到该指令定义对象
@@ -598,6 +598,286 @@ def get_main_and_plt_ranges(path):
     return main_addr, plt_ranges, text_end
 
 
+def build_function_ranges(path):
+    """从 ELF 函数符号恢复 ``[(start, end, name)]``，供函数内 CFG 使用。"""
+    ranges = []
+    with open(path, 'rb') as f:
+        elf = ELFFile(f)
+        for table_name in ('.symtab', '.dynsym'):
+            symtab = elf.get_section_by_name(table_name)
+            if not symtab:
+                continue
+            for sym in symtab.iter_symbols():
+                try:
+                    info = sym.entry['st_info']
+                    if info['type'] != 'STT_FUNC':
+                        continue
+                    start = int(sym.entry['st_value'])
+                    size = int(sym.entry['st_size'])
+                    shndx = sym.entry['st_shndx']
+                except Exception:
+                    continue
+                if start <= 0 or size <= 0 or shndx == 'SHN_UNDEF':
+                    continue
+                ranges.append((start, start + size, sym.name or f'sub_{start:x}'))
+
+    # 同一函数可能同时出现在 symtab/dynsym；按范围去重。
+    unique = {}
+    for start, end, name in ranges:
+        unique.setdefault((start, end), name)
+    return [
+        (start, end, unique[(start, end)])
+        for start, end in sorted(unique)
+    ]
+
+
+def compute_postdominators(nodes, successors):
+    """
+    在虚拟统一出口下计算后支配集合和直接后支配节点。
+
+    只返回能够到达某个真实出口的节点；无法到达出口的无限区域被列入
+    ``unresolved_nodes``，调用方不得将其当作严格控制依赖证据。
+    """
+    nodes = {node for node in nodes if _is_pc(node)}
+    succ = {
+        node: {dst for dst in successors.get(node, set()) if dst in nodes}
+        for node in nodes
+    }
+    exits = {node for node in nodes if not succ[node]}
+    if not nodes or not exits:
+        return {
+            'postdominators': {},
+            'immediate_postdominators': {},
+            'exits': exits,
+            'unresolved_nodes': set(nodes),
+        }
+
+    predecessors = defaultdict(set)
+    for src, dsts in succ.items():
+        for dst in dsts:
+            predecessors[dst].add(src)
+
+    can_reach_exit = set(exits)
+    queue = deque(exits)
+    while queue:
+        node = queue.popleft()
+        for pred in predecessors.get(node, set()):
+            if pred not in can_reach_exit:
+                can_reach_exit.add(pred)
+                queue.append(pred)
+
+    unresolved = nodes - can_reach_exit
+    virtual_exit = object()
+    universe = set(can_reach_exit) | {virtual_exit}
+    postdom = {virtual_exit: {virtual_exit}}
+    for node in can_reach_exit:
+        postdom[node] = set(universe)
+
+    changed = True
+    while changed:
+        changed = False
+        for node in can_reach_exit:
+            node_succ = succ[node] & can_reach_exit
+            if not node_succ:
+                node_succ = {virtual_exit}
+            intersection = set(universe)
+            for dst in node_succ:
+                intersection.intersection_update(postdom[dst])
+            updated = {node} | intersection
+            if updated != postdom[node]:
+                postdom[node] = updated
+                changed = True
+
+    clean_postdom = {
+        node: {item for item in values if item is not virtual_exit}
+        for node, values in postdom.items()
+        if node is not virtual_exit
+    }
+    immediate = {}
+    for node, values in clean_postdom.items():
+        strict = values - {node}
+        candidates = [
+            candidate for candidate in strict
+            if not any(
+                candidate in clean_postdom.get(other, set())
+                for other in strict if other != candidate
+            )
+        ]
+        immediate[node] = candidates[0] if len(candidates) == 1 else None
+
+    return {
+        'postdominators': clean_postdom,
+        'immediate_postdominators': immediate,
+        'exits': exits,
+        'unresolved_nodes': unresolved,
+    }
+
+
+def build_control_regions(nodes, successors):
+    """为每条条件 CFG 边计算由后支配定义的控制区域。"""
+    result = compute_postdominators(nodes, successors)
+    if result['unresolved_nodes']:
+        return {}, result
+
+    postdom = result['postdominators']
+    immediate = result['immediate_postdominators']
+    branch_regions = {}
+    for branch_pc in nodes:
+        branch_succ = {
+            dst for dst in successors.get(branch_pc, set()) if dst in nodes
+        }
+        if len(branch_succ) < 2 or branch_pc not in postdom:
+            continue
+        successor_regions = {}
+        for successor in branch_succ:
+            region = set(postdom.get(successor, set())) - set(postdom[branch_pc])
+            region.discard(branch_pc)
+            successor_regions[successor] = region
+        branch_regions[branch_pc] = {
+            'successor_regions': successor_regions,
+            'merge_pc': immediate.get(branch_pc),
+        }
+    return branch_regions, result
+
+
+def recover_function_cfg(ctx, start, end, max_nodes=200000):
+    """利用 Triton 解码器恢复单个函数的保守函数内 CFG。"""
+    nodes = set()
+    successors = defaultdict(set)
+    worklist = [start]
+    decode_failed = False
+    unresolved_indirect = False
+    unresolved_branch_successor = False
+
+    while worklist:
+        pc = worklist.pop()
+        if pc in nodes or not (start <= pc < end):
+            continue
+        if len(nodes) >= max_nodes:
+            decode_failed = True
+            break
+
+        try:
+            opcode = ctx.getConcreteMemoryAreaValue(pc, 16)
+            inst = Instruction()
+            inst.setOpcode(opcode)
+            inst.setAddress(pc)
+            ctx.disassembly(inst)
+            size = int(inst.getSize())
+            disasm = inst.getDisassembly() or ''
+        except Exception:
+            decode_failed = True
+            break
+        if size <= 0:
+            decode_failed = True
+            break
+
+        nodes.add(pc)
+        opc = disasm.split()[0].lower() if disasm else 'unknown'
+        fallthrough = pc + size
+        nexts = set()
+
+        if opc.startswith('ret') or opc in ('hlt', 'ud2'):
+            pass
+        elif opc == 'jmp' or (opc.startswith('j') and opc != 'jmp'):
+            target = None
+            try:
+                operands = list(inst.getOperands())
+                if operands and operands[0].getType() == OPERAND.IMM:
+                    target = int(operands[0].getValue())
+            except Exception:
+                target = None
+            if target is None:
+                unresolved_indirect = True
+            elif start <= target < end:
+                nexts.add(target)
+            # 条件跳转始终还有 fall-through；直接 jmp 没有。
+            if opc != 'jmp':
+                if target is not None and not (start <= target < end):
+                    unresolved_branch_successor = True
+                if start <= fallthrough < end:
+                    nexts.add(fallthrough)
+                else:
+                    unresolved_branch_successor = True
+        elif opc == 'call':
+            if start <= fallthrough < end:
+                nexts.add(fallthrough)
+        elif start <= fallthrough < end:
+            nexts.add(fallthrough)
+
+        successors[pc].update(nexts)
+        worklist.extend(nexts - nodes)
+
+    return {
+        'nodes': nodes,
+        'successors': successors,
+        'complete': (
+            bool(nodes)
+            and not decode_failed
+            and not unresolved_indirect
+            and not unresolved_branch_successor
+        ),
+        'decode_failed': decode_failed,
+        'unresolved_indirect': unresolved_indirect,
+        'unresolved_branch_successor': unresolved_branch_successor,
+    }
+
+
+def build_static_control_model(ctx, path):
+    """恢复函数内 CFG，并为完整函数建立静态后支配控制区域。"""
+    branches = {}
+    functions = {}
+    stats = defaultdict(int)
+
+    for start, end, name in build_function_ranges(path):
+        stats['functions_seen'] += 1
+        cfg = recover_function_cfg(ctx, start, end)
+        complete = cfg['complete']
+        regions = {}
+        postdom_result = {'unresolved_nodes': set()}
+        if complete:
+            regions, postdom_result = build_control_regions(
+                cfg['nodes'], cfg['successors']
+            )
+            if postdom_result['unresolved_nodes']:
+                complete = False
+
+        if complete:
+            stats['functions_modeled'] += 1
+            stats['branches_modeled'] += len(regions)
+            for branch_pc, info in regions.items():
+                branches[branch_pc] = {
+                    'function_start': start,
+                    'function_name': name,
+                    'successor_regions': info['successor_regions'],
+                    'merge_pc': info['merge_pc'],
+                }
+        else:
+            stats['functions_fallback'] += 1
+            if cfg['unresolved_indirect']:
+                stats['functions_with_indirect_jump'] += 1
+            if cfg['decode_failed']:
+                stats['functions_with_decode_failure'] += 1
+            if cfg['unresolved_branch_successor']:
+                stats['functions_with_external_conditional_edge'] += 1
+            if postdom_result.get('unresolved_nodes'):
+                stats['functions_without_exit_path'] += 1
+
+        functions[start] = {
+            'name': name,
+            'end': end,
+            'complete': complete,
+            'node_count': len(cfg['nodes']),
+            'branch_count': len(regions) if complete else 0,
+        }
+
+    return {
+        'branches': branches,
+        'functions': functions,
+        'stats': dict(stats),
+    }
+
+
 # ------------------------------------------------------------------------
 # 基础工具
 # ------------------------------------------------------------------------
@@ -622,10 +902,6 @@ def hex_pc(x):
         return f'0x{x:x}'
     except Exception:
         return str(x)
-
-
-def make_control_context_key(branch_pc, call_depth, alt_pc):
-    return (branch_pc, call_depth, alt_pc)
 
 
 def stable_tuple(items):
@@ -1629,42 +1905,84 @@ def build_seed_object_slice(
 # ------------------------------------------------------------------------
 # 在线控制依赖辅助（方向1）
 # ------------------------------------------------------------------------
+def make_hybrid_control_context(
+    static_control_model,
+    branch_pc,
+    cond_objs,
+    call_depth,
+    taken_next,
+    fallthrough,
+    alt_pc,
+):
+    """优先创建静态后支配上下文；不可证明时显式退回动态近似。"""
+    branch_model = static_control_model.get('branches', {}).get(branch_pc)
+    controlled_pcs = None
+    merge_pc = None
+    evidence = 'dynamic_alt_fallback'
+
+    if branch_model is not None:
+        region = branch_model.get('successor_regions', {}).get(taken_next)
+        if region is not None:
+            controlled_pcs = frozenset(region)
+            merge_pc = branch_model.get('merge_pc')
+            evidence = 'static_postdom_dynamic_edge'
+
+    key = (branch_pc, call_depth, taken_next, evidence)
+    return {
+        'key': key,
+        'branch_pc': branch_pc,
+        'cond_objs': set(cond_objs),
+        'call_depth': call_depth,
+        'taken_next': taken_next,
+        'fallthrough': fallthrough,
+        'alt_pc': alt_pc,
+        'controlled_pcs': controlled_pcs,
+        'merge_pc': merge_pc,
+        'evidence': evidence,
+    }
+
+
 def pop_inactive_control_context(active_control_context, active_control_keys, current_pc, call_depth):
     """
-    在线清理已失活的控制上下文。
-    失活条件与原 trace 后处理保持一致的动态近似：
-      1) 返回到更外层调用深度；
-      2) 执行到未走的另一条后继 alt_pc，且仍处于同一调用深度。
+    在线清理已失活的混合控制上下文。
+
+    静态后支配上下文在同一调用深度离开其严格控制区域时失活；进入被
+    控制的 callee 时继续有效。回退上下文沿用原来的 alt_pc 动态近似。
     """
-    while active_control_context:
-        top = active_control_context[-1]
+    retained = []
+    for cctx in active_control_context:
+        should_pop = call_depth < cctx['call_depth']
+        if not should_pop and call_depth == cctx['call_depth']:
+            if cctx.get('evidence') == 'static_postdom_dynamic_edge':
+                controlled_pcs = cctx.get('controlled_pcs') or frozenset()
+                should_pop = (
+                    current_pc != cctx.get('branch_pc')
+                    and current_pc not in controlled_pcs
+                )
+            else:
+                alt = cctx.get('alt_pc')
+                should_pop = alt is not None and current_pc == alt
 
-        should_pop = False
-
-        if call_depth < top['call_depth']:
-            should_pop = True
+        if should_pop:
+            key = cctx.get('key')
+            if key is not None:
+                active_control_keys.discard(key)
         else:
-            alt = top.get('alt_pc')
-            if alt is not None and current_pc == alt and call_depth == top['call_depth']:
-                should_pop = True
+            retained.append(cctx)
 
-        if not should_pop:
-            break
-
-        popped = active_control_context.pop()
-        k = popped.get('key')
-        if k is not None:
-            active_control_keys.discard(k)
+    active_control_context[:] = retained
 
 
 def apply_online_control_to_inst(
     pc,
     def_objs,
     active_control_context,
+    call_depth,
     inst_controlled_by,
     inst_ctrl_objects,
     inst_edge_meta,
     obj_ctrl_use_pcs,
+    inst_control_evidence=None,
 ):
     """
     将当前活动控制上下文在线施加到当前指令。
@@ -1687,10 +2005,22 @@ def apply_online_control_to_inst(
     for cctx in active_control_context:
         bpc = cctx['branch_pc']
 
+        # 静态上下文只作用于后支配算法确认的 taken-edge 控制区域。
+        if (
+            cctx.get('evidence') == 'static_postdom_dynamic_edge'
+            and call_depth == cctx.get('call_depth')
+            and pc not in (cctx.get('controlled_pcs') or frozenset())
+        ):
+            continue
+
         if bpc != pc and bpc not in seen_branch_pcs:
             seen_branch_pcs.add(bpc)
             inst_controlled_by[pc].add(bpc)
             add_inst_edge_meta(inst_edge_meta, bpc, pc, 'control', pc)
+            if inst_control_evidence is not None:
+                inst_control_evidence[(bpc, pc)].add(
+                    cctx.get('evidence', 'dynamic_alt_fallback')
+                )
 
         merged_cond_objs.update(cctx.get('cond_objs', set()))
 
@@ -2414,7 +2744,8 @@ def build_direct_neighbors(object_edge_meta):
 
 def build_instruction_details(executed_pcs, inst_info, inst_use_objects, inst_def_objects, inst_addr_objects,
                               inst_immediates, inst_controlled_by, inst_uses_taint, inst_repeat_suppressed,
-                              inst_semantic_tags, scope='full', slice_inst_pcs=None, inst_seed_pcs=None):
+                              inst_semantic_tags, inst_control_evidence=None, scope='full',
+                              slice_inst_pcs=None, inst_seed_pcs=None):
     if scope == 'minimal':
         pcs = sorted(pc for pc in (inst_seed_pcs or set()) if isinstance(pc, int))
     elif scope == 'slice':
@@ -2432,6 +2763,12 @@ def build_instruction_details(executed_pcs, inst_info, inst_use_objects, inst_de
             'immediates': sorted(inst_immediates.get(pc, set())),
             'controlled_by': [hex(x) if isinstance(x, int) else str(x) for x in sorted(
                 (c for c in inst_controlled_by.get(pc, set()) if isinstance(c, int)))],
+            'control_evidence': {
+                hex(branch_pc): sorted((inst_control_evidence or {}).get((branch_pc, pc), set()))
+                for branch_pc in sorted(
+                    c for c in inst_controlled_by.get(pc, set()) if isinstance(c, int)
+                )
+            },
             'uses_taint': inst_uses_taint.get(pc, False),
             'suppressed_repeat_records': inst_repeat_suppressed.get(pc, 0),
         }
@@ -2563,6 +2900,17 @@ def main():
     for vaddr, data in segs:
         ctx.setConcreteMemoryAreaValue(vaddr, bytearray(data))
 
+    # 静态阶段：只对 CFG 完整的函数建立后支配控制区域；其余函数运行时回退。
+    static_control_model = build_static_control_model(ctx, path)
+    static_ctrl_stats = static_control_model.get('stats', {})
+    print(
+        f'[+] Static postdom control model: '
+        f'functions={static_ctrl_stats.get("functions_modeled", 0)}/'
+        f'{static_ctrl_stats.get("functions_seen", 0)} '
+        f'branches={static_ctrl_stats.get("branches_modeled", 0)} '
+        f'fallback_functions={static_ctrl_stats.get("functions_fallback", 0)}'
+    )
+
     # -------------------- 运行时初始化 --------------------
     STACK_ADDR, STACK_SIZE = 0x70000000, 0x20000
     ctx.setConcreteMemoryAreaValue(STACK_ADDR, bytearray(STACK_SIZE))
@@ -2660,6 +3008,7 @@ def main():
     inst_immediates = defaultdict(set)
     inst_ctrl_objects = defaultdict(set)
     inst_controlled_by = defaultdict(set)
+    inst_control_evidence = defaultdict(set)
     inst_semantic_tags = defaultdict(set)
 
     # 三张强类型边表：禁止 PC、对象 ID 和对象关系互相混入。
@@ -2717,6 +3066,8 @@ def main():
     # 在线控制依赖上下文（替代 trace / branch_events + 事后重建）
     active_control_context = []
     active_control_keys = set()
+    static_control_context_pushes = 0
+    fallback_control_context_pushes = 0
 
     debug_start_ts = time.time()
     max_active_ctrl_len = 0
@@ -2927,10 +3278,12 @@ def main():
                 old_pc,
                 set(),
                 active_control_context,
+                call_depth,
                 inst_controlled_by,
                 inst_ctrl_objects,
                 inst_edge_meta,
                 obj_ctrl_use_pcs,
+                inst_control_evidence,
             )
 
             inst_count += 1
@@ -2946,10 +3299,12 @@ def main():
                 old_pc,
                 set(),
                 active_control_context,
+                call_depth,
                 inst_controlled_by,
                 inst_ctrl_objects,
                 inst_edge_meta,
                 obj_ctrl_use_pcs,
+                inst_control_evidence,
             )
 
             inst_count += 1
@@ -3679,10 +4034,12 @@ def main():
                 pc,
                 def_objs,
                 active_control_context,
+                call_depth,
                 inst_controlled_by,
                 inst_ctrl_objects,
                 inst_edge_meta,
                 obj_ctrl_use_pcs,
+                inst_control_evidence,
             )
 
             # 指令级地址依赖（方向3：直接基于 canonical obj_id）
@@ -3803,19 +4160,25 @@ def main():
                 alt_pc = branch_fallthrough if next_pc != branch_fallthrough else None
 
             if CONTROL_EXPANSION_MODE != 'none':
-                ctx_key = make_control_context_key(pc, call_depth, alt_pc)
+                new_control_context = make_hybrid_control_context(
+                    static_control_model=static_control_model,
+                    branch_pc=pc,
+                    cond_objs=branch_cond_objs,
+                    call_depth=call_depth,
+                    taken_next=next_pc,
+                    fallthrough=branch_fallthrough,
+                    alt_pc=alt_pc,
+                )
+                ctx_key = new_control_context['key']
 
                 if ctx_key not in active_control_keys:
-                    active_control_context.append({
-                        'key': ctx_key,
-                        'branch_pc': pc,
-                        'cond_objs': set(branch_cond_objs),
-                        'call_depth': call_depth,
-                        'taken_next': next_pc,
-                        'fallthrough': branch_fallthrough,
-                        'alt_pc': alt_pc,
-                    })
+                    active_control_context.append(new_control_context)
                     active_control_keys.add(ctx_key)
+
+                    if new_control_context['evidence'] == 'static_postdom_dynamic_edge':
+                        static_control_context_pushes += 1
+                    else:
+                        fallback_control_context_pushes += 1
 
                     if len(active_control_context) > max_active_ctrl_len:
                         max_active_ctrl_len = len(active_control_context)
@@ -3826,6 +4189,8 @@ def main():
                             f'[dbg] ctrl-push: branch_pc={hex_pc(pc)} '
                             f'taken_next={hex_pc(next_pc)} '
                             f'alt_pc={hex_pc(alt_pc) if alt_pc is not None else None} '
+                            f'merge_pc={hex_pc(new_control_context.get("merge_pc")) if new_control_context.get("merge_pc") is not None else None} '
+                            f'evidence={new_control_context["evidence"]} '
                             f'call_depth={call_depth} '
                             f'active_ctrl={len(active_control_context)} '
                             f'cond_objs={cond_preview}'
@@ -4324,6 +4689,7 @@ def main():
         inst_uses_taint=inst_uses_taint,
         inst_repeat_suppressed=inst_repeat_suppressed,
         inst_semantic_tags=inst_semantic_tags,
+        inst_control_evidence=inst_control_evidence,
         scope=summary_scope,
         slice_inst_pcs=slice_inst_pcs,
         inst_seed_pcs=inst_seed_pcs,
@@ -4364,6 +4730,12 @@ def main():
             'backward_instruction_nodes': len(backward_inst_reachable),
             'forward_instruction_nodes': len(forward_inst_reachable),
             'control_expansion_mode': CONTROL_EXPANSION_MODE,
+            'static_postdom_functions_seen': static_ctrl_stats.get('functions_seen', 0),
+            'static_postdom_functions_modeled': static_ctrl_stats.get('functions_modeled', 0),
+            'static_postdom_branches_modeled': static_ctrl_stats.get('branches_modeled', 0),
+            'static_postdom_fallback_functions': static_ctrl_stats.get('functions_fallback', 0),
+            'static_control_context_pushes': static_control_context_pushes,
+            'fallback_control_context_pushes': fallback_control_context_pushes,
             'postprocess_mode': mode_opts['mode'],
             'summary_scope': summary_scope,
             'max_instructions': max_instructions,
@@ -4413,6 +4785,17 @@ def main():
             'top_targets': mode_opts['path_report_top_targets'],
             'backward_target_count': len(path_report.get('backward_paths', [])) if path_report else 0,
             'forward_target_count': len(path_report.get('forward_paths', [])) if path_report else 0,
+        },
+        'hybrid_control_dependence': {
+            'model': 'static-postdom-plus-dynamic-taken-edge',
+            'fallback': 'dynamic-alt-successor-approximation',
+            'static_model_stats': dict(sorted(static_ctrl_stats.items())),
+            'static_context_pushes': static_control_context_pushes,
+            'fallback_context_pushes': fallback_control_context_pushes,
+            'evidence_labels': [
+                'static_postdom_dynamic_edge',
+                'dynamic_alt_fallback',
+            ],
         },
         'files': exported_files,
     }

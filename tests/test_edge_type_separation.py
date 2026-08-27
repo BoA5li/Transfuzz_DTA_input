@@ -215,5 +215,127 @@ class TaintInitializationTests(unittest.TestCase):
             analyzer.taint_memory_region(object(), 0x404000, True)
 
 
+class HybridControlDependenceTests(unittest.TestCase):
+    def test_diamond_cfg_uses_merge_as_immediate_postdominator(self):
+        nodes = {0x100, 0x110, 0x120, 0x130, 0x140}
+        successors = {
+            0x100: {0x110, 0x120},
+            0x110: {0x130},
+            0x120: {0x130},
+            0x130: {0x140},
+            0x140: set(),
+        }
+
+        regions, result = analyzer.build_control_regions(nodes, successors)
+
+        self.assertEqual(result['unresolved_nodes'], set())
+        self.assertEqual(result['immediate_postdominators'][0x100], 0x130)
+        self.assertEqual(regions[0x100]['successor_regions'][0x110], {0x110})
+        self.assertEqual(regions[0x100]['successor_regions'][0x120], {0x120})
+
+    def test_multi_exit_branch_has_no_false_common_merge(self):
+        nodes = {0x200, 0x210, 0x220}
+        successors = {
+            0x200: {0x210, 0x220},
+            0x210: set(),
+            0x220: set(),
+        }
+
+        regions, result = analyzer.build_control_regions(nodes, successors)
+
+        self.assertIsNone(result['immediate_postdominators'][0x200])
+        self.assertEqual(regions[0x200]['successor_regions'][0x210], {0x210})
+        self.assertEqual(regions[0x200]['successor_regions'][0x220], {0x220})
+
+    def test_cfg_without_exit_is_not_claimed_as_strict_control(self):
+        nodes = {0x300, 0x310}
+        successors = {0x300: {0x310}, 0x310: {0x300}}
+
+        regions, result = analyzer.build_control_regions(nodes, successors)
+
+        self.assertEqual(regions, {})
+        self.assertEqual(result['unresolved_nodes'], nodes)
+
+    def test_dynamic_taken_edge_selects_static_region_and_expires_at_merge(self):
+        static_model = {
+            'branches': {
+                0x400: {
+                    'successor_regions': {
+                        0x410: {0x410, 0x411},
+                        0x420: {0x420},
+                    },
+                    'merge_pc': 0x430,
+                }
+            }
+        }
+        context = analyzer.make_hybrid_control_context(
+            static_model, 0x400, {'reg:zf'}, 0, 0x410, 0x405, 0x420
+        )
+        active = [context]
+        keys = {context['key']}
+
+        self.assertEqual(context['evidence'], 'static_postdom_dynamic_edge')
+        self.assertEqual(context['controlled_pcs'], frozenset({0x410, 0x411}))
+
+        analyzer.pop_inactive_control_context(active, keys, 0x411, 0)
+        self.assertEqual(len(active), 1)
+        analyzer.pop_inactive_control_context(active, keys, 0x430, 0)
+        self.assertEqual(active, [])
+        self.assertEqual(keys, set())
+
+    def test_incomplete_static_model_uses_labeled_dynamic_fallback(self):
+        context = analyzer.make_hybrid_control_context(
+            {'branches': {}}, 0x500, {'reg:zf'}, 0, 0x510, 0x505, 0x520
+        )
+        self.assertEqual(context['evidence'], 'dynamic_alt_fallback')
+        self.assertIsNone(context['controlled_pcs'])
+
+    def test_control_edge_records_static_evidence(self):
+        context = analyzer.make_hybrid_control_context(
+            {
+                'branches': {
+                    0x600: {
+                        'successor_regions': {0x610: {0x610}},
+                        'merge_pc': 0x620,
+                    }
+                }
+            },
+            0x600,
+            {'reg:zf'},
+            0,
+            0x610,
+            0x605,
+            0x620,
+        )
+        inst_controlled_by = {}
+        inst_ctrl_objects = {}
+        obj_ctrl_use_pcs = {}
+        evidence = {}
+
+        from collections import defaultdict
+        inst_controlled_by = defaultdict(set)
+        inst_ctrl_objects = defaultdict(set)
+        obj_ctrl_use_pcs = defaultdict(set)
+        evidence = defaultdict(set)
+        edges = {}
+        analyzer.apply_online_control_to_inst(
+            0x610,
+            {'var:out'},
+            [context],
+            0,
+            inst_controlled_by,
+            inst_ctrl_objects,
+            edges,
+            obj_ctrl_use_pcs,
+            evidence,
+        )
+
+        self.assertIn((0x600, 0x610), edges)
+        self.assertEqual(inst_controlled_by[0x610], {0x600})
+        self.assertEqual(
+            evidence[(0x600, 0x610)], {'static_postdom_dynamic_edge'}
+        )
+
+
 if __name__ == '__main__':
     unittest.main()
