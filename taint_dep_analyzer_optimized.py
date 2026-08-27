@@ -1107,13 +1107,76 @@ class ObjectCanonicalizer:
 # ------------------------------------------------------------------------
 # 图与依赖辅助
 # ------------------------------------------------------------------------
-def add_edge_meta(edge_meta, src, dst, kind, pc=None, count=1):
+def _add_typed_edge_meta(edge_meta, src, dst, kind, pc=None, count=1):
     info = edge_meta.setdefault((src, dst), {'kinds': set(), 'pcs': set(), 'count': 0, 'kind_counts': {}})
     info['kinds'].add(kind)
     info['count'] += count
     info['kind_counts'][kind] = info['kind_counts'].get(kind, 0) + count
     if pc is not None:
         info['pcs'].add(pc)
+
+
+def _is_pc(value):
+    """PC 节点必须是整数；显式排除 bool（bool 是 int 的子类）。"""
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def add_inst_edge_meta(inst_edge_meta, src_pc, dst_pc, kind, pc=None, count=1):
+    """只向指令依赖图写入 PC -> PC 边。"""
+    if not _is_pc(src_pc) or not _is_pc(dst_pc):
+        raise TypeError(
+            'instruction edge endpoints must both be integer PCs: '
+            f'src={src_pc!r} ({type(src_pc).__name__}), '
+            f'dst={dst_pc!r} ({type(dst_pc).__name__})'
+        )
+    if pc is not None and not _is_pc(pc):
+        raise TypeError(f'instruction edge evidence pc must be an integer PC: {pc!r}')
+    _add_typed_edge_meta(inst_edge_meta, src_pc, dst_pc, kind, pc=pc, count=count)
+
+
+def add_object_edge_meta(object_edge_meta, src_oid, dst_oid, kind, pc=None, count=1):
+    """只向对象因果依赖图写入 object-id -> object-id 边。"""
+    if not isinstance(src_oid, str) or not isinstance(dst_oid, str):
+        raise TypeError(
+            'object edge endpoints must both be string object IDs: '
+            f'src={src_oid!r} ({type(src_oid).__name__}), '
+            f'dst={dst_oid!r} ({type(dst_oid).__name__})'
+        )
+    if pc is not None and not _is_pc(pc):
+        raise TypeError(f'object edge evidence pc must be an integer PC: {pc!r}')
+    _add_typed_edge_meta(object_edge_meta, src_oid, dst_oid, kind, pc=pc, count=count)
+
+
+def add_object_relation_meta(object_relation_meta, src_oid, dst_oid, relation, pc=None, count=1):
+    """
+    记录对象身份/结构关系（alias、member-of、canonical-equivalent 等）。
+
+    这些关系不是 data/address/control 因果边，禁止写入 inst_edge_meta 或
+    object_edge_meta，避免对象等价关系改变依赖可达性。
+    """
+    if not isinstance(src_oid, str) or not isinstance(dst_oid, str):
+        raise TypeError(
+            'object relation endpoints must both be string object IDs: '
+            f'src={src_oid!r} ({type(src_oid).__name__}), '
+            f'dst={dst_oid!r} ({type(dst_oid).__name__})'
+        )
+    if pc is not None and not _is_pc(pc):
+        raise TypeError(f'object relation evidence pc must be an integer PC: {pc!r}')
+    _add_typed_edge_meta(object_relation_meta, src_oid, dst_oid, relation, pc=pc, count=count)
+
+
+def validate_edge_table_types(inst_edge_meta, object_edge_meta, object_relation_meta):
+    """在切片/导出前 fail closed，禁止通过过滤静默丢弃类型污染边。"""
+    for src, dst in inst_edge_meta:
+        if not _is_pc(src) or not _is_pc(dst):
+            raise TypeError(f'invalid instruction edge key: {(src, dst)!r}')
+    for table_name, table in (
+        ('object dependency', object_edge_meta),
+        ('object relation', object_relation_meta),
+    ):
+        for src, dst in table:
+            if not isinstance(src, str) or not isinstance(dst, str):
+                raise TypeError(f'invalid {table_name} edge key: {(src, dst)!r}')
 
 
 def build_adj_from_edge_meta(edge_meta):
@@ -1202,9 +1265,10 @@ def make_loop_fact_signature(
     addr_objs,
     imm_objs,
     mem_objs,
-    raw_data_src_edges,
-    obj_data_src_edges,
-    obj_addr_src_edges,
+    raw_inst_data_edges,
+    canonical_inst_data_edges,
+    inst_addr_edges,
+    object_relations,
     active_ctrl_branch_sig,
     active_ctrl_obj_sig,
     use_tainted_regs,
@@ -1230,9 +1294,10 @@ def make_loop_fact_signature(
         stable_tuple(addr_objs),
         stable_tuple(imm_objs),
         stable_tuple(mem_objs),
-        tuple(sorted(raw_data_src_edges)),
-        tuple(sorted(obj_data_src_edges)),
-        tuple(sorted(obj_addr_src_edges)),
+        tuple(sorted(raw_inst_data_edges)),
+        tuple(sorted(canonical_inst_data_edges)),
+        tuple(sorted(inst_addr_edges)),
+        tuple(sorted(object_relations)),
         active_ctrl_branch_sig,
         active_ctrl_obj_sig,
         stable_tuple(use_tainted_regs),
@@ -1337,7 +1402,7 @@ def build_seed_object_slice(
             for dst in inst_def_objects.get(pc, set()):
                 if oid == dst:
                     continue
-                add_edge_meta(object_edge_meta, oid, dst, 'data', pc)
+                add_object_edge_meta(object_edge_meta, oid, dst, 'data', pc)
                 if dst not in forward_obj_reachable:
                     forward_obj_reachable.add(dst)
                     q.append(dst)
@@ -1346,7 +1411,7 @@ def build_seed_object_slice(
             for dst in inst_mem_objects.get(pc, set()):
                 if oid == dst:
                     continue
-                add_edge_meta(object_edge_meta, oid, dst, 'addr', pc)
+                add_object_edge_meta(object_edge_meta, oid, dst, 'addr', pc)
                 if dst not in forward_obj_reachable:
                     forward_obj_reachable.add(dst)
                     q.append(dst)
@@ -1356,7 +1421,7 @@ def build_seed_object_slice(
                 for dst in inst_def_objects.get(pc, set()):
                     if oid == dst:
                         continue
-                    add_edge_meta(object_edge_meta, oid, dst, 'control', pc)
+                    add_object_edge_meta(object_edge_meta, oid, dst, 'control', pc)
                     if dst not in forward_obj_reachable:
                         forward_obj_reachable.add(dst)
                         q.append(dst)
@@ -1372,7 +1437,7 @@ def build_seed_object_slice(
             for src in inst_use_objects.get(pc, set()):
                 if src == oid:
                     continue
-                add_edge_meta(object_edge_meta, src, oid, 'data', pc)
+                add_object_edge_meta(object_edge_meta, src, oid, 'data', pc)
                 if src not in backward_obj_reachable:
                     backward_obj_reachable.add(src)
                     q.append(src)
@@ -1381,7 +1446,7 @@ def build_seed_object_slice(
                 for src in control_src_objects_by_pc.get(pc, set()):
                     if src == oid:
                         continue
-                    add_edge_meta(object_edge_meta, src, oid, 'control', pc)
+                    add_object_edge_meta(object_edge_meta, src, oid, 'control', pc)
                     if src not in backward_obj_reachable:
                         backward_obj_reachable.add(src)
                         q.append(src)
@@ -1391,7 +1456,7 @@ def build_seed_object_slice(
                 for src in inst_addr_objects.get(pc, set()):
                     if src == oid:
                         continue
-                    add_edge_meta(object_edge_meta, src, oid, 'addr', pc)
+                    add_object_edge_meta(object_edge_meta, src, oid, 'addr', pc)
                     if src not in backward_obj_reachable:
                         backward_obj_reachable.add(src)
                         q.append(src)
@@ -1506,7 +1571,7 @@ def apply_online_control_to_inst(
         if bpc != pc and bpc not in seen_branch_pcs:
             seen_branch_pcs.add(bpc)
             inst_controlled_by[pc].add(bpc)
-            add_edge_meta(inst_edge_meta, bpc, pc, 'control', pc)
+            add_inst_edge_meta(inst_edge_meta, bpc, pc, 'control', pc)
 
         merged_cond_objs.update(cctx.get('cond_objs', set()))
 
@@ -1550,6 +1615,21 @@ def build_edge_details(edge_meta):
             'count': meta['count'],
             'kind_counts': dict(sorted(meta['kind_counts'].items())),
         }
+    return details
+
+
+def build_object_relation_details(object_relation_meta):
+    """将独立的对象关系表转换为可 JSON 序列化的稳定列表。"""
+    details = []
+    for (src_oid, dst_oid), meta in sorted(object_relation_meta.items()):
+        details.append({
+            'source_object': src_oid,
+            'target_object': dst_oid,
+            'relations': sorted(meta['kinds']),
+            'pcs': sorted_hex_list(meta['pcs']),
+            'count': meta['count'],
+            'relation_counts': dict(sorted(meta['kind_counts'].items())),
+        })
     return details
 
 
@@ -2447,9 +2527,12 @@ def main():
     inst_controlled_by = defaultdict(set)
     inst_semantic_tags = defaultdict(set)
 
-    # 指令依赖边（数据/地址/控制）
+    # 三张强类型边表：禁止 PC、对象 ID 和对象关系互相混入。
+    #   inst_edge_meta:       (int PC, int PC) -> data/addr/control
+    #   object_edge_meta:     (str OID, str OID) -> data/addr/control
+    #   object_relation_meta: (str OID, str OID) -> alias/member-of/equivalence
     inst_edge_meta = {}
-    object_edge_meta_global = {}
+    object_relation_meta = {}
 
     # 对象级依赖图
     node_meta = {}
@@ -2999,9 +3082,10 @@ def main():
         inst_info[pc]['semantic_tags'] = set(inst_semantic_tags[pc])
 
         # ---------- 局部依赖事实：先收集，再决定是否写入持久结构 ----------
-        local_raw_data_edges = set()
-        local_obj_data_edges = set()
-        local_obj_addr_edges = set()
+        local_raw_inst_data_edges = set()
+        local_canonical_inst_data_edges = set()
+        local_inst_addr_edges = set()
+        local_object_relations = set()
 
         use_objs = set()
         def_objs = set()
@@ -3038,12 +3122,12 @@ def main():
         for reg in read_regs:
             rname = reg.getName()
             if rname in last_def_reg:
-                local_raw_data_edges.add((last_def_reg[rname], pc))
+                local_raw_inst_data_edges.add((last_def_reg[rname], pc))
 
         for mem in read_mems:
             maddr = mem.getAddress()
             if maddr in last_def_mem:
-                local_raw_data_edges.add((last_def_mem[maddr], pc))
+                local_raw_inst_data_edges.add((last_def_mem[maddr], pc))
 
         # ---------- 对象节点收集：寄存器 / 内存 / immediate ----------
         # 读寄存器对象（方向3：统一 reg canonical id）
@@ -3061,7 +3145,7 @@ def main():
 
             use_objs.add(obj_id)
             if obj_id in last_def_obj:
-                local_obj_data_edges.add((last_def_obj[obj_id], pc))
+                local_canonical_inst_data_edges.add((last_def_obj[obj_id], pc))
 
         # 写寄存器对象
         for reg, _ in written_regs_info:
@@ -3082,7 +3166,7 @@ def main():
                     last_def_pc = last_def_obj[obj_id]
                     # 关键：把 parent 加入 use_objs，建立 RMW 依赖
                     use_objs.add(obj_id)
-                    local_obj_data_edges.add((last_def_pc, pc))
+                    local_canonical_inst_data_edges.add((last_def_pc, pc))
                     partial_rmw_count += 1
                     add_node_tags(node_meta, obj_id, 'partial_write_rmw_parent')
                 add_inst_tags(inst_semantic_tags, pc, 'partial_write_rmw')
@@ -3110,7 +3194,7 @@ def main():
                 use_objs.add(alias_oid)
                 mem_objs_local.add(alias_oid)
                 if alias_oid in last_def_obj:
-                    local_obj_data_edges.add((last_def_obj[alias_oid], pc))
+                    local_canonical_inst_data_edges.add((last_def_obj[alias_oid], pc))
 
             # 即使 obj_id 本身没在 last_def_obj 里，别名可能有
             # 上面的循环已经处理了
@@ -3267,7 +3351,7 @@ def main():
 
         for src in addr_objs:
             if src in last_def_obj:
-                local_obj_addr_edges.add((last_def_obj[src], pc))
+                local_inst_addr_edges.add((last_def_obj[src], pc))
 
         # ---------- taint 观测（当前实现仍保留） ----------
         used_tainted_reg = any(ctx.isRegisterTainted(reg) for reg, _ in read_regs_info)
@@ -3364,18 +3448,11 @@ def main():
                         'type': 'var' if dst_oid.startswith('var:') else 'mem',
                         'tags': set(),
                     }
-                # 添加对象级边（记录在 obj_data_src_edges 或单独的桥接结构中）
-                edge_key = (src_oid, dst_oid)
-                if edge_key not in object_edge_meta_global:
-                    object_edge_meta_global[edge_key] = {
-                        'type': etype,
-                        'pcs': set(),
-                    }
-                object_edge_meta_global[edge_key]['pcs'].add(pc)
-
-            # 同时把桥接边加入当前指令的对象级源边集合
-            for (src_oid, dst_oid, etype) in local_bridge_edges:
-                local_obj_data_edges.add((src_oid, dst_oid))
+                # seed bridge 表达对象身份对应关系，不是指令数据依赖。
+                add_object_relation_meta(
+                    object_relation_meta, src_oid, dst_oid, etype, pc=pc
+                )
+                local_object_relations.add((src_oid, dst_oid, etype))
 
         record_dynamic_facts = True
 
@@ -3390,9 +3467,10 @@ def main():
             addr_objs=addr_objs,
             imm_objs=imm_objs,
             mem_objs=mem_objs_local,
-            raw_data_src_edges=local_raw_data_edges,
-            obj_data_src_edges=local_obj_data_edges,
-            obj_addr_src_edges=local_obj_addr_edges,
+            raw_inst_data_edges=local_raw_inst_data_edges,
+            canonical_inst_data_edges=local_canonical_inst_data_edges,
+            inst_addr_edges=local_inst_addr_edges,
+            object_relations=local_object_relations,
             active_ctrl_branch_sig=active_ctrl_branch_sig,
             active_ctrl_obj_sig=active_ctrl_obj_sig,
             use_tainted_regs=use_tainted_regs,
@@ -3446,9 +3524,9 @@ def main():
         # ---------- 持久化记录（仅对首次 / 非重复签名写入） ----------
         if record_dynamic_facts:
             # 原始 DFG（仅最近定义）
-            for src, dst in local_raw_data_edges:
+            for src, dst in local_raw_inst_data_edges:
                 dfg_edges.add((src, dst))
-                add_edge_meta(inst_edge_meta, src, dst, 'data', pc)
+                add_inst_edge_meta(inst_edge_meta, src, dst, 'data', pc)
             
             for imm_oid in imm_objs:
                 inst_immediates[pc].add(imm_oid)
@@ -3473,12 +3551,12 @@ def main():
             )
 
             # 指令级地址依赖（方向3：直接基于 canonical obj_id）
-            for src, dst in local_obj_addr_edges:
-                add_edge_meta(inst_edge_meta, src, dst, 'addr', pc)
+            for src, dst in local_inst_addr_edges:
+                add_inst_edge_meta(inst_edge_meta, src, dst, 'addr', pc)
 
             # 指令级数据依赖（对象级最近定义）
-            for src, dst in local_obj_data_edges:
-                add_edge_meta(inst_edge_meta, src, dst, 'data', pc)
+            for src, dst in local_canonical_inst_data_edges:
+                add_inst_edge_meta(inst_edge_meta, src, dst, 'data', pc)
 
             inst_taint_io[pc] = {
                 'use_regs': set(use_tainted_regs),
@@ -3760,11 +3838,12 @@ def main():
             obj_seed_nodes.add(oid)
     
     # ==================== 修订点7 后处理：合并桥接边到 slice 输入 ====================
-    # 将 object_edge_meta_global 中的桥接边注入到 inst_def_objects / inst_use_objects
+    # 将 object_relation_meta 中的 seed 身份关系映射到 slice 的 use/def 事实。
+    # 关系边本身保持在独立表中，绝不写入指令依赖图或对象因果图。
     # 使得 build_seed_object_slice 能够发现 seed 与运行时 mem objects 的连接
 
     # 方法：确保每条桥接边的两端节点在 node_meta 中存在
-    for (src_oid, dst_oid), edge_info in object_edge_meta_global.items():
+    for (src_oid, dst_oid), edge_info in object_relation_meta.items():
         if src_oid not in node_meta:
             node_meta[src_oid] = {'type': 'bridge', 'tags': set()}
         if dst_oid not in node_meta:
@@ -3789,8 +3868,8 @@ def main():
                     inst_use_objects[bridge_pc].add(src_oid)
                     inst_def_objects[bridge_pc].add(dst_oid)
 
-    print(f'[plan2-fix7] total bridge edges in object_edge_meta_global: '
-          f'{len(object_edge_meta_global)}')
+    print(f'[plan2-fix7] total object relations in object_relation_meta: '
+          f'{len(object_relation_meta)}')
     print(f'[plan2-fix7] node_meta size after bridging: {len(node_meta)}')
 
     # 方向2：只围绕 seed 构造对象 slice
@@ -3843,6 +3922,13 @@ def main():
     obj_use_pcs = slice_result['obj_use_pcs']
     obj_addr_use_pcs = slice_result['obj_addr_use_pcs']
     obj_ctrl_use_pcs = slice_result['obj_ctrl_use_pcs']
+
+    # 三张图在任何遍历和导出前必须满足端点类型不变量。
+    validate_edge_table_types(
+        inst_edge_meta=inst_edge_meta,
+        object_edge_meta=object_edge_meta,
+        object_relation_meta=object_relation_meta,
+    )
 
     obj_succ, obj_pred = build_adj_from_edge_meta(object_edge_meta)
     obj_leaf_nodes = compute_leaf_nodes(backward_obj_reachable, obj_pred)
@@ -3969,21 +4055,12 @@ def main():
 
     exported_files = {}
 
-    # ==================== 导出前统一清洗数据类型 ====================
-    # 诊断：统计污染情况
-    _total_edges = len(inst_edge_meta)
-    _int_edges = sum(1 for (s, d) in inst_edge_meta.keys()
-                     if isinstance(s, int) and isinstance(d, int))
-    _mixed_edges = _total_edges - _int_edges
-    print(f'[type-check] inst_edge_meta: {_total_edges} total, '
-          f'{_int_edges} int-int, {_mixed_edges} mixed-type')
-
-    # 创建纯整数版本的边元数据（供所有导出函数使用）
-    inst_edge_meta_int_only = {
-        (src, dst): meta
-        for (src, dst), meta in inst_edge_meta.items()
-        if isinstance(src, int) and isinstance(dst, int)
-    }
+    # 类型错误必须在写入时或上面的统一验证中失败；禁止导出前静默过滤。
+    print(
+        f'[type-check] inst_edges={len(inst_edge_meta)} int-int; '
+        f'object_edges={len(object_edge_meta)} str-str; '
+        f'object_relations={len(object_relation_meta)} str-str'
+    )
 
     # 创建纯整数版本的 CFG 边
     cfg_edges = {
@@ -4127,6 +4204,7 @@ def main():
             'cfg_edges': len(cfg_edges),
             'inst_dependency_edges': len(inst_edge_meta),
             'object_dependency_edges': len(object_edge_meta),
+            'object_relation_edges': len(object_relation_meta),
             'backward_object_nodes': len(backward_obj_reachable),
             'forward_object_nodes': len(forward_obj_reachable),
             'backward_instruction_nodes': len(backward_inst_reachable),
@@ -4163,6 +4241,7 @@ def main():
         },
         'instruction_details': instruction_details,
         'object_details': object_details,
+        'object_relations': build_object_relation_details(object_relation_meta),
         'loop_summarization': {
             'enabled': LOOP_SUMMARIZATION_ENABLED,
             'suppress_after': LOOP_SUMMARIZATION_SUPPRESS_AFTER,
