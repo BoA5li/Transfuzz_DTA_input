@@ -105,5 +105,78 @@ class EdgeTypeSeparationTests(unittest.TestCase):
         self.assertEqual(details[0]['pcs'], ['0x401108'])
 
 
+class SysvProcessVectorTests(unittest.TestCase):
+    def test_initial_stack_contains_argc_and_argv_pointer_table(self):
+        layout = analyzer.build_minimal_sysv_process_vector(
+            stack_addr=0x70000000,
+            stack_size=0x20000,
+            argv=('prog',),
+        )
+
+        values = [
+            int.from_bytes(layout['entry_stack_image'][offset:offset + 8], 'little')
+            for offset in range(0, len(layout['entry_stack_image']), 8)
+        ]
+        argc, argv0_pointer, argv_terminator, envp_terminator, at_null, null_value = values
+
+        self.assertEqual(argc, 1)
+        self.assertEqual(layout['argc'], 1)
+        self.assertEqual(argv0_pointer, layout['arg_addresses'][0])
+        self.assertEqual(layout['argv_addr'], layout['initial_rsp'] + 8)
+        self.assertNotEqual(layout['argv_addr'], layout['arg_addresses'][0])
+        self.assertEqual(argv_terminator, 0)
+        self.assertEqual(envp_terminator, 0)
+        self.assertEqual((at_null, null_value), (0, 0))
+        self.assertEqual(layout['envp_addr'], layout['argv_addr'] + 16)
+        self.assertEqual(layout['auxv_addr'], layout['envp_addr'] + 8)
+        self.assertEqual(layout['initial_rsp'] % 16, 0)
+        self.assertEqual(layout['string_writes'], ((argv0_pointer, b'prog\0'),))
+
+    def test_multiple_arguments_have_distinct_pointers_and_null_terminators(self):
+        layout = analyzer.build_minimal_sysv_process_vector(
+            stack_addr=0x70000000,
+            stack_size=0x20000,
+            argv=('prog', '--mode', 'full'),
+        )
+
+        values = [
+            int.from_bytes(layout['entry_stack_image'][offset:offset + 8], 'little')
+            for offset in range(0, len(layout['entry_stack_image']), 8)
+        ]
+        self.assertEqual(layout['argc'], 3)
+        self.assertEqual(values[0], 3)
+        self.assertEqual(values[1:4], list(layout['arg_addresses']))
+        self.assertEqual(values[4:], [0, 0, 0, 0])
+        self.assertEqual(
+            [raw for _, raw in layout['string_writes']],
+            [b'prog\0', b'--mode\0', b'full\0'],
+        )
+
+    def test_invalid_or_oversized_arguments_fail_closed(self):
+        with self.assertRaises(ValueError):
+            analyzer.build_minimal_sysv_process_vector(0x70000000, 0x20000, ('bad\0arg',))
+        with self.assertRaises(ValueError):
+            analyzer.build_minimal_sysv_process_vector(0x70000000, 0x110, ('prog',))
+
+    def test_libc_arguments_are_remapped_for_main(self):
+        layout = analyzer.build_minimal_sysv_process_vector(
+            0x70000000, 0x20000, ('prog', '--mode')
+        )
+        main_args = analyzer.derive_main_process_args(
+            layout['argc'], layout['argv_addr'], 0x70000000, 0x20000
+        )
+
+        self.assertEqual(
+            main_args,
+            (layout['argc'], layout['argv_addr'], layout['envp_addr']),
+        )
+
+    def test_invalid_libc_argv_is_rejected(self):
+        with self.assertRaises(ValueError):
+            analyzer.derive_main_process_args(1, 0x60000000, 0x70000000, 0x20000)
+        with self.assertRaises(ValueError):
+            analyzer.derive_main_process_args(4097, 0x70001000, 0x70000000, 0x20000)
+
+
 if __name__ == '__main__':
     unittest.main()

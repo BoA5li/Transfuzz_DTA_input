@@ -323,6 +323,104 @@ def prefixed_name(prefix, filename):
     return f'{prefix}{filename}' if prefix else filename
 
 
+def build_minimal_sysv_process_vector(stack_addr, stack_size, argv=('prog',)):
+    """
+    构造 Linux/SysV AMD64 进程入口所需的最小初始栈布局。
+
+    ELF ``e_entry`` 指向的 ``_start`` 并不按 ``main`` 的函数调用约定接收
+    ``rdi``/``rsi``；它从初始 ``rsp`` 读取如下数据：
+
+      [rsp]            argc
+      [rsp + 8]        argv[0] -> NUL 结尾字符串
+      ...
+      argv[argc]       NULL
+      envp[0]          NULL
+      auxv[0]          AT_NULL, 0
+
+    返回纯数据描述，便于在不依赖 Triton 的单元测试中验证 ABI 布局。
+    """
+    if not isinstance(stack_addr, int) or not isinstance(stack_size, int):
+        raise TypeError('stack_addr and stack_size must be integers')
+    if stack_size <= 0:
+        raise ValueError('stack_size must be positive')
+
+    encoded_args = []
+    for arg in argv:
+        if isinstance(arg, str):
+            raw = arg.encode('utf-8')
+        elif isinstance(arg, (bytes, bytearray)):
+            raw = bytes(arg)
+        else:
+            raise TypeError('argv entries must be str or bytes')
+        if b'\0' in raw:
+            raise ValueError('argv entries must not contain embedded NUL bytes')
+        encoded_args.append(raw + b'\0')
+
+    pointer_size = 8
+    stack_end = stack_addr + stack_size
+    # 在栈顶下方保留空间，且保持 Linux x86-64 入口要求的 16 字节对齐。
+    initial_rsp = (stack_end - 0x1000) & ~0xF
+    if initial_rsp < stack_addr:
+        raise ValueError('stack region is too small for the initial process stack')
+
+    argc = len(encoded_args)
+    argv_addr = initial_rsp + pointer_size
+    envp_addr = argv_addr + (argc + 1) * pointer_size
+    auxv_addr = envp_addr + pointer_size
+
+    # argc + argv 指针与 NULL + envp NULL + AT_NULL/value 两个字。
+    entry_word_count = 1 + argc + 1 + 1 + 2
+    string_cursor = (initial_rsp + entry_word_count * pointer_size + 0xF) & ~0xF
+
+    arg_addresses = []
+    string_writes = []
+    for raw in encoded_args:
+        arg_addresses.append(string_cursor)
+        string_writes.append((string_cursor, raw))
+        string_cursor += len(raw)
+
+    if string_cursor > stack_end:
+        raise ValueError('argv layout does not fit in the configured stack region')
+
+    entry_stack_values = [argc] + arg_addresses + [0, 0, 0, 0]
+    entry_stack_image = b''.join(
+        value.to_bytes(pointer_size, byteorder='little', signed=False)
+        for value in entry_stack_values
+    )
+
+    return {
+        'initial_rsp': initial_rsp,
+        'argc': argc,
+        'argv_addr': argv_addr,
+        'envp_addr': envp_addr,
+        'auxv_addr': auxv_addr,
+        'entry_stack_image': entry_stack_image,
+        'arg_addresses': tuple(arg_addresses),
+        'string_writes': tuple(string_writes),
+    }
+
+
+def derive_main_process_args(argc, argv_addr, stack_addr, stack_size):
+    """校验 libc 启动参数并推导 ``main(argc, argv, envp)`` 的三个参数。"""
+    if not all(isinstance(value, int) for value in (
+        argc, argv_addr, stack_addr, stack_size
+    )):
+        raise TypeError('process argument values must be integers')
+    if argc < 0 or argc > 4096:
+        raise ValueError(f'invalid argc: {argc}')
+    if stack_size <= 0:
+        raise ValueError('stack_size must be positive')
+
+    argv_table_end = argv_addr + (argc + 1) * 8
+    if not (
+        stack_addr <= argv_addr
+        and argv_table_end + 8 <= stack_addr + stack_size
+    ):
+        raise ValueError('argv is outside the configured stack region')
+
+    return argc, argv_addr, argv_table_end
+
+
 # ------------------------------------------------------------------------
 # ELF / 符号 / 调试信息辅助
 # ------------------------------------------------------------------------
@@ -2447,14 +2545,28 @@ def main():
     # -------------------- 运行时初始化 --------------------
     STACK_ADDR, STACK_SIZE = 0x70000000, 0x20000
     ctx.setConcreteMemoryAreaValue(STACK_ADDR, bytearray(STACK_SIZE))
-    rsp_val = STACK_ADDR + STACK_SIZE - 0x1000
-    argv_addr = STACK_ADDR + 0x100
-    ctx.setConcreteMemoryAreaValue(argv_addr, b'prog\0')
 
-    ctx.setConcreteRegisterValue(ctx.registers.rsp, rsp_val)
-    ctx.setConcreteRegisterValue(ctx.registers.rdi, 1)
-    ctx.setConcreteRegisterValue(ctx.registers.rsi, argv_addr)
+    process_vector = build_minimal_sysv_process_vector(
+        stack_addr=STACK_ADDR,
+        stack_size=STACK_SIZE,
+        argv=('prog',),
+    )
+    ctx.setConcreteMemoryAreaValue(
+        process_vector['initial_rsp'], process_vector['entry_stack_image']
+    )
+    for string_addr, string_bytes in process_vector['string_writes']:
+        ctx.setConcreteMemoryAreaValue(string_addr, string_bytes)
+
+    # 这里执行的是 ELF e_entry/_start，不是 main；进程参数必须从初始栈传入。
+    ctx.setConcreteRegisterValue(ctx.registers.rsp, process_vector['initial_rsp'])
     ctx.setConcreteRegisterValue(ctx.registers.rip, entry)
+
+    print(
+        f'[+] SysV initial stack: rsp=0x{process_vector["initial_rsp"]:x} '
+        f'argc={process_vector["argc"]} '
+        f'argv=0x{process_vector["argv_addr"]:x} '
+        f'envp=0x{process_vector["envp_addr"]:x}'
+    )
 
     # 定位污点源对象
     taint_source_addr = None
@@ -3755,9 +3867,28 @@ def main():
                             raise RuntimeError('Cannot resolve main address for __libc_start_main hook')
                         if exit_addr is None:
                             raise RuntimeError('exit_addr is None')
+
+                        # glibc 的 _start 调用 __libc_start_main 时，SysV AMD64
+                        # 参数 2/3 分别位于 RSI/RDX，即 argc/argv。该 hook 跳过
+                        # libc 并直接进入 main，因此必须显式改写为
+                        # main(argc, argv, envp) 的 RDI/RSI/RDX 调用约定。
+                        libc_argc = int(ctx.getConcreteRegisterValue(ctx.registers.rsi))
+                        libc_argv = int(ctx.getConcreteRegisterValue(ctx.registers.rdx))
+                        try:
+                            main_argc, main_argv, main_envp = derive_main_process_args(
+                                libc_argc, libc_argv, STACK_ADDR, STACK_SIZE
+                            )
+                        except (TypeError, ValueError) as exc:
+                            raise RuntimeError(
+                                f'Invalid __libc_start_main process arguments: {exc}'
+                            ) from exc
+
                         call_stack.append(exit_addr)
                         call_depth += 1
                         cfg_edges.add((pc, main_addr))
+                        ctx.setConcreteRegisterValue(ctx.registers.rdi, main_argc)
+                        ctx.setConcreteRegisterValue(ctx.registers.rsi, main_argv)
+                        ctx.setConcreteRegisterValue(ctx.registers.rdx, main_envp)
                         ctx.setConcreteRegisterValue(ctx.registers.rip, main_addr)
                         # 注意：这里是进入 main，不是 callee 返回，不需要 caller_saved 注入
                         continue
