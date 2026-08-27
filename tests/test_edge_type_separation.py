@@ -178,5 +178,42 @@ class SysvProcessVectorTests(unittest.TestCase):
             analyzer.derive_main_process_args(4097, 0x70001000, 0x70000000, 0x20000)
 
 
+class TaintInitializationTests(unittest.TestCase):
+    def test_secret_region_is_tainted_without_symbolization(self):
+        class RecordingContext:
+            def __init__(self):
+                self.tainted = []
+
+            def taintMemory(self, memory):
+                self.tainted.append(memory)
+
+            def symbolizeMemory(self, *_args, **_kwargs):
+                self.fail('symbolizeMemory must not be called')
+
+            def fail(self, message):
+                raise AssertionError(message)
+
+        original_memory_access = analyzer.MemoryAccess
+        analyzer.MemoryAccess = lambda address, size: (address, size)
+        try:
+            ctx = RecordingContext()
+            analyzer.taint_memory_region(ctx, 0x404000, 4)
+        finally:
+            analyzer.MemoryAccess = original_memory_access
+
+        self.assertEqual(
+            ctx.tainted,
+            [(0x404000, 1), (0x404001, 1), (0x404002, 1), (0x404003, 1)],
+        )
+
+    def test_invalid_taint_region_is_rejected(self):
+        with self.assertRaises(ValueError):
+            analyzer.taint_memory_region(object(), -1, 1)
+        with self.assertRaises(ValueError):
+            analyzer.taint_memory_region(object(), 0x404000, -1)
+        with self.assertRaises(TypeError):
+            analyzer.taint_memory_region(object(), 0x404000, True)
+
+
 if __name__ == '__main__':
     unittest.main()

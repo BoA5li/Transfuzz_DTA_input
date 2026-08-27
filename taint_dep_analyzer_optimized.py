@@ -421,6 +421,27 @@ def derive_main_process_args(argc, argv_addr, stack_addr, stack_size):
     return argc, argv_addr, argv_table_end
 
 
+def taint_memory_region(ctx, start_addr, size):
+    """
+    仅使用 Triton 污点引擎标记内存区域，不创建逐字节符号变量。
+
+    当前分析器通过 ``isRegisterTainted`` / ``isMemoryTainted`` 提取动态
+    依赖关系，并未消费符号 AST 或路径约束。避免调用 ``symbolizeMemory``
+    可防止大型污点源产生与分析结果无关的符号化时间和内存开销。
+    """
+    if not isinstance(start_addr, int) or isinstance(start_addr, bool):
+        raise TypeError('start_addr must be an integer')
+    if not isinstance(size, int) or isinstance(size, bool):
+        raise TypeError('size must be an integer')
+    if start_addr < 0:
+        raise ValueError('start_addr must be non-negative')
+    if size < 0:
+        raise ValueError('size must be non-negative')
+
+    for offset in range(size):
+        ctx.taintMemory(MemoryAccess(start_addr + offset, 1))
+
+
 # ------------------------------------------------------------------------
 # ELF / 符号 / 调试信息辅助
 # ------------------------------------------------------------------------
@@ -2581,12 +2602,14 @@ def main():
     if taint_source_addr is None:
         raise RuntimeError(f"Cannot find global symbol '{taint_symbol_name}' in ELF")
 
-    for i in range(taint_source_size):
-        m = MemoryAccess(taint_source_addr + i, 1)
-        ctx.taintMemory(m)
-        ctx.symbolizeMemory(m, f'{taint_symbol_name}_byte_{i}')
+    # 当前依赖提取只消费 Triton 污点状态；不创建未使用的逐字节符号 AST。
+    taint_memory_region(ctx, taint_source_addr, taint_source_size)
 
-    print(f'[+] Secret region tainted: {taint_symbol_name} 0x{taint_source_addr:x}-0x{taint_source_addr + taint_source_size - 1:x}')
+    print(
+        f'[+] Secret region tainted (symbolization disabled): '
+        f'{taint_symbol_name} 0x{taint_source_addr:x}-'
+        f'0x{taint_source_addr + taint_source_size - 1:x}'
+    )
 
     objcanon = ObjectCanonicalizer(
         ctx=ctx,
