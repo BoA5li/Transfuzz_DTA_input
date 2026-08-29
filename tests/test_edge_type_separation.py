@@ -3,6 +3,7 @@ import sys
 import types
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 def _load_analyzer_module():
@@ -43,6 +44,131 @@ def _load_analyzer_module():
 
 
 analyzer = _load_analyzer_module()
+
+
+class StructuredInstructionContractTests(unittest.TestCase):
+    def test_parse_authoritative_user_code_range(self):
+        self.assertEqual(
+            analyzer.parse_address_range('0x401000:0x402000'),
+            (0x401000, 0x402000),
+        )
+        with self.assertRaises(ValueError):
+            analyzer.parse_address_range('0x402000:0x401000')
+
+    def test_code_region_evidence_priority_and_unknown_fallback(self):
+        catalog = {
+            'module': 'victim',
+            'explicit_user_ranges': [{'start': 0x5000, 'end': 0x5100}],
+            'sections': [
+                {'name': '.plt', 'start': 0x4000, 'end': 0x4100},
+                {'name': '.text', 'start': 0x5000, 'end': 0x6000},
+            ],
+            'functions': [
+                {'name': '_start', 'start': 0x4010, 'end': 0x4030},
+                {'name': 'victim', 'start': 0x5200, 'end': 0x5300},
+            ],
+        }
+        explicit = analyzer.classify_code_region(0x5050, catalog, {})
+        self.assertEqual(explicit['code_region'], 'user')
+        self.assertEqual(
+            explicit['code_region_provenance'], 'user-specified-target-range'
+        )
+
+        runtime = analyzer.classify_code_region(0x4020, catalog, {})
+        self.assertEqual(runtime['code_region'], 'runtime')
+        self.assertEqual(runtime['code_region_provenance'], 'elf-runtime-section')
+
+        symbol = analyzer.classify_code_region(0x5250, catalog, {})
+        self.assertEqual(symbol['code_region'], 'user')
+        self.assertEqual(symbol['function'], 'victim')
+
+        unknown = analyzer.classify_code_region(0x5500, catalog, {})
+        self.assertEqual(unknown['code_region'], 'unknown')
+        self.assertIsNone(unknown['is_user_code'])
+
+    def test_instruction_details_export_structured_facts(self):
+        details = analyzer.build_instruction_details(
+            executed_pcs={0x401000},
+            inst_info={0x401000: {
+                'disasm': 'mov qword ptr [rbp-0x8], rdi',
+                'mnemonic': 'mov',
+                'operands': [
+                    {'index': 0, 'kind': 'memory', 'base': 'rbp', 'displacement': -8},
+                    {'index': 1, 'kind': 'register', 'register': 'rdi'},
+                ],
+                'implicit_reads': [],
+                'implicit_writes': [],
+                'instruction_role': 'prologue',
+                'function_id': '0x401000',
+                'frame_operation': {'kind': 'argument-spill'},
+                'module': 'victim',
+                'section': '.text',
+                'symbol': 'victim',
+                'function': 'victim',
+                'is_user_code': True,
+                'code_region': 'user',
+                'code_region_provenance': 'elf-function-symbol-range',
+                'source_location': {'file': 'victim.c', 'line': 3},
+            }},
+            inst_use_objects={},
+            inst_def_objects={},
+            inst_addr_objects={},
+            inst_immediates={},
+            inst_controlled_by={},
+            inst_uses_taint={},
+            inst_repeat_suppressed={},
+            inst_semantic_tags={},
+        )
+        record = details['0x401000']
+        self.assertEqual(record['mnemonic'], 'mov')
+        self.assertEqual(record['operands'][0]['kind'], 'memory')
+        self.assertEqual(record['instruction_role'], 'prologue')
+        self.assertEqual(record['frame_operation']['kind'], 'argument-spill')
+        self.assertEqual(record['code_region'], 'user')
+
+    def test_stack_adjustment_requires_a_balanced_function_pair(self):
+        cfg = {
+            'nodes': {0x1000, 0x1004, 0x1008},
+            'successors': {
+                0x1000: {0x1004}, 0x1004: {0x1008}, 0x1008: set(),
+            },
+        }
+        shapes = {
+            0x1000: {
+                'mnemonic': 'sub',
+                'operands': [
+                    {'kind': 'register', 'register': 'rsp'},
+                    {'kind': 'immediate', 'value': 32},
+                ],
+            },
+            0x1004: {'mnemonic': 'mov', 'operands': []},
+            0x1008: {'mnemonic': 'ret', 'operands': []},
+        }
+        with mock.patch.object(
+            analyzer, '_instruction_shape', side_effect=lambda _, pc: shapes[pc]
+        ):
+            roles = analyzer.build_function_instruction_roles(
+                None, 0x1000, 0x1009, 'f', cfg
+            )
+        self.assertEqual(roles[0x1000]['instruction_role'], 'body')
+        self.assertFalse(roles[0x1000]['frame_operation']['balanced'])
+
+        shapes[0x1004] = {
+            'mnemonic': 'add',
+            'operands': [
+                {'kind': 'register', 'register': 'rsp'},
+                {'kind': 'immediate', 'value': 32},
+            ],
+        }
+        with mock.patch.object(
+            analyzer, '_instruction_shape', side_effect=lambda _, pc: shapes[pc]
+        ):
+            roles = analyzer.build_function_instruction_roles(
+                None, 0x1000, 0x1009, 'f', cfg
+            )
+        self.assertEqual(roles[0x1000]['instruction_role'], 'prologue')
+        self.assertEqual(roles[0x1004]['instruction_role'], 'epilogue')
+        self.assertTrue(roles[0x1000]['frame_operation']['balanced'])
 
 
 class EdgeTypeSeparationTests(unittest.TestCase):

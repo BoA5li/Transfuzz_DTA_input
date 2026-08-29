@@ -36,6 +36,7 @@ Triton 动态污点 + 双向依赖分析（增强版，方向1 + 方向2 + 方�
 
 import argparse
 import json
+import os
 import sys
 import time
 from collections import defaultdict, deque
@@ -283,6 +284,16 @@ def parse_args(argv):
         type=int,
         default=None,
         help='override neighborhood DOT hop budget'
+    )
+    parser.add_argument(
+        '--user-code-range',
+        action='append',
+        default=[],
+        metavar='START:END',
+        help=(
+            'authoritative user-code virtual-address range; may be repeated. '
+            'START and END accept decimal or 0x-prefixed integers'
+        )
     )
     return parser.parse_args(argv)
 
@@ -631,6 +642,131 @@ def build_function_ranges(path):
     ]
 
 
+def parse_address_range(spec):
+    """Parse an authoritative ``START:END`` half-open user-code range."""
+    if not isinstance(spec, str) or ':' not in spec:
+        raise ValueError(f'invalid address range {spec!r}; expected START:END')
+    start_text, end_text = spec.split(':', 1)
+    try:
+        start = int(start_text, 0)
+        end = int(end_text, 0)
+    except ValueError as exc:
+        raise ValueError(f'invalid address range {spec!r}') from exc
+    if start < 0 or end <= start:
+        raise ValueError(f'invalid half-open address range {spec!r}')
+    return start, end
+
+
+def build_code_region_catalog(path, explicit_user_ranges=None):
+    """Build structured module/section/function facts for code-region decisions.
+
+    Executable-section membership alone does not prove that an address belongs
+    to user-authored code.  Explicit ranges are authoritative; known runtime
+    sections and symbols are negative evidence; ordinary function symbols and
+    DWARF source mappings are positive evidence.  Remaining executable target
+    addresses stay ``unknown`` rather than being guessed from prologue text.
+    """
+    sections = []
+    with open(path, 'rb') as f:
+        elf = ELFFile(f)
+        for section in elf.iter_sections():
+            try:
+                start = int(section['sh_addr'])
+                size = int(section['sh_size'])
+                flags = int(section['sh_flags'])
+            except Exception:
+                continue
+            if start <= 0 or size <= 0 or not (flags & 0x4):  # SHF_EXECINSTR
+                continue
+            sections.append({
+                'name': section.name,
+                'start': start,
+                'end': start + size,
+                'executable': True,
+            })
+    return {
+        'module': os.path.basename(path),
+        'module_path': os.path.abspath(path),
+        'explicit_user_ranges': [
+            {'start': start, 'end': end}
+            for start, end in (explicit_user_ranges or [])
+        ],
+        'sections': sorted(sections, key=lambda item: item['start']),
+        'functions': [
+            {'start': start, 'end': end, 'name': name}
+            for start, end, name in build_function_ranges(path)
+        ],
+    }
+
+
+def _range_record_for_pc(records, pc):
+    for record in records:
+        if record['start'] <= pc < record['end']:
+            return record
+    return None
+
+
+def classify_code_region(pc, catalog, addr2line_map=None):
+    """Return structured region facts without inspecting disassembly text."""
+    explicit = _range_record_for_pc(catalog.get('explicit_user_ranges', []), pc)
+    section = _range_record_for_pc(catalog.get('sections', []), pc)
+    function = _range_record_for_pc(catalog.get('functions', []), pc)
+    source = (addr2line_map or {}).get(pc)
+    module = catalog.get('module')
+    section_name = section.get('name') if section else None
+    symbol = function.get('name') if function else None
+
+    if explicit is not None:
+        region = 'user'
+        provenance = 'user-specified-target-range'
+        is_user = True
+    elif section_name in {'.plt', '.plt.sec', '.init', '.fini'}:
+        region = 'runtime'
+        provenance = 'elf-runtime-section'
+        is_user = False
+    elif symbol and (
+        symbol == '_start'
+        or symbol.startswith('__libc_')
+        or symbol in {
+            'deregister_tm_clones', 'register_tm_clones',
+            '__do_global_dtors_aux', 'frame_dummy',
+        }
+    ):
+        region = 'runtime'
+        provenance = 'runtime-function-symbol'
+        is_user = False
+    elif function is not None:
+        region = 'user'
+        provenance = 'elf-function-symbol-range'
+        is_user = True
+    elif source is not None:
+        region = 'user'
+        provenance = 'dwarf-source-mapping'
+        is_user = True
+    else:
+        region = 'unknown'
+        provenance = (
+            'target-binary-executable-section'
+            if section is not None else 'no-code-region-evidence'
+        )
+        is_user = None
+
+    source_record = None
+    if source is not None:
+        source_record = {'file': source[0], 'line': source[1]}
+    return {
+        'module': module,
+        'section': section_name,
+        'symbol': symbol,
+        'function': symbol,
+        'function_id': (hex(function['start']) if function else None),
+        'is_user_code': is_user,
+        'code_region': region,
+        'code_region_provenance': provenance,
+        'source_location': source_record,
+    }
+
+
 def compute_postdominators(nodes, successors):
     """
     在虚拟统一出口下计算后支配集合和直接后支配节点。
@@ -823,15 +959,189 @@ def recover_function_cfg(ctx, start, end, max_nodes=200000):
     }
 
 
+def _instruction_shape(ctx, pc):
+    """Decode only structured facts needed for function-frame classification."""
+    try:
+        opcode = ctx.getConcreteMemoryAreaValue(pc, 16)
+        inst = Instruction()
+        inst.setOpcode(opcode)
+        inst.setAddress(pc)
+        ctx.disassembly(inst)
+        disasm = inst.getDisassembly() or ''
+        mnemonic = disasm.split()[0].lower() if disasm else 'unknown'
+        operands = list(inst.getOperands())
+    except Exception:
+        return {'mnemonic': 'unknown', 'operands': [], 'decode_failed': True}
+
+    structured = []
+    for operand in operands:
+        try:
+            operand_type = operand.getType()
+        except Exception:
+            operand_type = None
+        if operand_type == OPERAND.REG:
+            structured.append({
+                'kind': 'register',
+                'register': get_parent_reg_name(ctx, operand),
+            })
+        elif operand_type == OPERAND.IMM:
+            try:
+                value = int(operand.getValue())
+            except Exception:
+                value = None
+            structured.append({'kind': 'immediate', 'value': value})
+        elif operand_type == OPERAND.MEM:
+            structured.append({
+                'kind': 'memory',
+                'base': mem_base_name(ctx, operand),
+                'index': mem_index_name(ctx, operand),
+            })
+        else:
+            structured.append({'kind': 'other'})
+    return {
+        'mnemonic': mnemonic,
+        'operands': structured,
+        'decode_failed': False,
+    }
+
+
+def _bounded_graph_distance(start_nodes, adjacency, limit=8):
+    distances = {}
+    queue = deque((node, 0) for node in start_nodes)
+    while queue:
+        node, distance = queue.popleft()
+        if node in distances and distances[node] <= distance:
+            continue
+        distances[node] = distance
+        if distance >= limit:
+            continue
+        for neighbor in adjacency.get(node, set()):
+            queue.append((neighbor, distance + 1))
+    return distances
+
+
+def build_function_instruction_roles(ctx, start, end, function_name, cfg):
+    """Classify frame instructions using function and CFG context.
+
+    A stack adjustment is called prologue/epilogue only when it is close to the
+    corresponding function boundary. Allocation/release pairs also record
+    whether a matching byte count was observed. Ambiguous instructions remain
+    ``body`` rather than being classified from mnemonic text alone.
+    """
+    nodes = set(cfg.get('nodes') or [])
+    successors = cfg.get('successors') or {}
+    predecessors = defaultdict(set)
+    for src, destinations in successors.items():
+        for dst in destinations:
+            predecessors[dst].add(src)
+    exits = {node for node in nodes if not successors.get(node)}
+    entry_distance = _bounded_graph_distance({start}, successors)
+    exit_distance = _bounded_graph_distance(exits, predecessors)
+    shapes = {pc: _instruction_shape(ctx, pc) for pc in nodes}
+    roles = {
+        pc: {
+            'instruction_role': 'body',
+            'function_id': hex(start),
+            'function': function_name,
+            'frame_operation': None,
+        }
+        for pc in nodes
+    }
+
+    allocations = []
+    releases = []
+    for pc, shape in shapes.items():
+        operands = shape['operands']
+        op0 = operands[0] if len(operands) > 0 else {}
+        op1 = operands[1] if len(operands) > 1 else {}
+        mnemonic = shape['mnemonic']
+        if (
+            mnemonic == 'sub' and op0.get('kind') == 'register'
+            and op0.get('register') in {'rsp', 'esp'}
+            and op1.get('kind') == 'immediate'
+            and entry_distance.get(pc, 999) <= 8
+        ):
+            allocations.append((pc, op1.get('value')))
+        if (
+            mnemonic == 'add' and op0.get('kind') == 'register'
+            and op0.get('register') in {'rsp', 'esp'}
+            and op1.get('kind') == 'immediate'
+            and exit_distance.get(pc, 999) <= 8
+        ):
+            releases.append((pc, op1.get('value')))
+
+    for pc, amount in allocations:
+        matches = [release_pc for release_pc, value in releases if value == amount]
+        if matches:
+            roles[pc]['instruction_role'] = 'prologue'
+        roles[pc]['frame_operation'] = {
+            'kind': 'allocate', 'bytes': amount,
+            'balanced': bool(matches),
+            'matching_pcs': [hex(value) for value in sorted(matches)],
+        }
+    for pc, amount in releases:
+        matches = [alloc_pc for alloc_pc, value in allocations if value == amount]
+        if matches:
+            roles[pc]['instruction_role'] = 'epilogue'
+        roles[pc]['frame_operation'] = {
+            'kind': 'release', 'bytes': amount,
+            'balanced': bool(matches),
+            'matching_pcs': [hex(value) for value in sorted(matches)],
+        }
+
+    for pc, shape in shapes.items():
+        operands = shape['operands']
+        op0 = operands[0] if len(operands) > 0 else {}
+        op1 = operands[1] if len(operands) > 1 else {}
+        mnemonic = shape['mnemonic']
+        near_entry = entry_distance.get(pc, 999) <= 8
+        near_exit = exit_distance.get(pc, 999) <= 8
+
+        if near_entry and mnemonic == 'push' and op0.get('register') == 'rbp':
+            roles[pc]['instruction_role'] = 'prologue'
+            roles[pc]['frame_operation'] = {'kind': 'save-frame-pointer'}
+        elif near_entry and mnemonic in MOVE_LIKE_OPCODES and (
+            op0.get('register'), op1.get('register')
+        ) == ('rbp', 'rsp'):
+            roles[pc]['instruction_role'] = 'prologue'
+            roles[pc]['frame_operation'] = {'kind': 'establish-frame-pointer'}
+        elif near_exit and mnemonic == 'pop' and op0.get('register') == 'rbp':
+            roles[pc]['instruction_role'] = 'epilogue'
+            roles[pc]['frame_operation'] = {'kind': 'restore-frame-pointer'}
+        elif near_exit and mnemonic in {'leave', 'ret', 'retn'}:
+            roles[pc]['instruction_role'] = 'epilogue'
+            roles[pc]['frame_operation'] = {
+                'kind': 'leave' if mnemonic == 'leave' else 'return'
+            }
+        elif near_entry and mnemonic in MOVE_LIKE_OPCODES and (
+            op0.get('kind') == 'memory'
+            and op0.get('base') in {'rsp', 'rbp'}
+            and op1.get('register') in ARG_REGS
+        ):
+            roles[pc]['instruction_role'] = 'prologue'
+            roles[pc]['frame_operation'] = {'kind': 'argument-spill'}
+        elif near_entry and mnemonic == 'push' and op0.get('register') in CALLEE_SAVED_REGS:
+            roles[pc]['instruction_role'] = 'prologue'
+            roles[pc]['frame_operation'] = {'kind': 'callee-save-spill'}
+        elif near_exit and mnemonic == 'pop' and op0.get('register') in CALLEE_SAVED_REGS:
+            roles[pc]['instruction_role'] = 'epilogue'
+            roles[pc]['frame_operation'] = {'kind': 'callee-save-restore'}
+    return roles
+
+
 def build_static_control_model(ctx, path):
     """恢复函数内 CFG，并为完整函数建立静态后支配控制区域。"""
     branches = {}
     functions = {}
+    instruction_structure = {}
     stats = defaultdict(int)
 
     for start, end, name in build_function_ranges(path):
         stats['functions_seen'] += 1
         cfg = recover_function_cfg(ctx, start, end)
+        instruction_structure.update(
+            build_function_instruction_roles(ctx, start, end, name, cfg)
+        )
         complete = cfg['complete']
         regions = {}
         postdom_result = {'unresolved_nodes': set()}
@@ -874,6 +1184,7 @@ def build_static_control_model(ctx, path):
     return {
         'branches': branches,
         'functions': functions,
+        'instruction_structure': instruction_structure,
         'stats': dict(stats),
     }
 
@@ -1023,6 +1334,140 @@ def mem_segment_name(ctx, mop):
     except Exception:
         pass
     return None
+
+
+def _safe_operand_bit_size(operand):
+    for method_name, multiplier in (('getBitSize', 1), ('getSize', 8)):
+        try:
+            value = int(getattr(operand, method_name)()) * multiplier
+            if value > 0:
+                return value
+        except Exception:
+            pass
+    return None
+
+
+def _safe_component_value(component, default=None):
+    if component is None:
+        return default
+    try:
+        return int(component.getValue())
+    except Exception:
+        try:
+            return int(component)
+        except Exception:
+            return default
+
+
+def _merge_access(read, write):
+    if read and write:
+        return 'read_write'
+    if write:
+        return 'write'
+    if read:
+        return 'read'
+    return 'unknown'
+
+
+def build_structured_operands(ctx, inst, read_regs_info=None,
+                              written_regs_info=None, read_mems_info=None,
+                              written_mems_info=None):
+    """Serialize Triton operands independently of disassembly formatting."""
+    read_registers = {
+        get_parent_reg_name(ctx, reg)
+        for reg, _ in (read_regs_info or [])
+    }
+    written_registers = {
+        get_parent_reg_name(ctx, reg)
+        for reg, _ in (written_regs_info or [])
+    }
+    read_addresses = set()
+    written_addresses = set()
+    for mem, _ in (read_mems_info or []):
+        try:
+            read_addresses.add(int(mem.getAddress()))
+        except Exception:
+            pass
+    for mem, _ in (written_mems_info or []):
+        try:
+            written_addresses.add(int(mem.getAddress()))
+        except Exception:
+            pass
+
+    result = []
+    for index, operand in enumerate(list(inst.getOperands())):
+        try:
+            operand_type = operand.getType()
+        except Exception:
+            operand_type = None
+        record = {
+            'index': index,
+            'kind': 'other',
+            'access': 'unknown',
+            'width_bits': _safe_operand_bit_size(operand),
+        }
+        if operand_type == OPERAND.REG:
+            register = get_parent_reg_name(ctx, operand)
+            record.update({
+                'kind': 'register',
+                'register': register,
+                'access': _merge_access(
+                    register in read_registers,
+                    register in written_registers,
+                ),
+            })
+        elif operand_type == OPERAND.IMM:
+            record.update({
+                'kind': 'immediate',
+                'value': _safe_component_value(operand),
+                'access': 'read',
+            })
+        elif operand_type == OPERAND.MEM:
+            try:
+                address = int(operand.getAddress())
+            except Exception:
+                address = None
+            try:
+                displacement = _safe_component_value(operand.getDisplacement(), 0)
+            except Exception:
+                displacement = 0
+            try:
+                scale = _safe_component_value(operand.getScale(), 1)
+            except Exception:
+                scale = 1
+            record.update({
+                'kind': 'memory',
+                'base': mem_base_name(ctx, operand),
+                'index_register': mem_index_name(ctx, operand),
+                'scale': scale,
+                'displacement': displacement,
+                'segment': mem_segment_name(ctx, operand),
+                'concrete_address': address,
+                'access': _merge_access(
+                    address in read_addresses,
+                    address in written_addresses,
+                ),
+            })
+        result.append(record)
+    return result
+
+
+def direct_control_target(inst):
+    try:
+        operands = list(inst.getOperands())
+        if operands and operands[0].getType() == OPERAND.IMM:
+            return int(operands[0].getValue())
+    except Exception:
+        pass
+    return None
+
+
+def structured_implicit_registers(ctx, register_info):
+    return sorted({
+        get_parent_reg_name(ctx, register)
+        for register, _ in (register_info or [])
+        if get_parent_reg_name(ctx, register)
+    })
 
 
 def is_power_of_two(v):
@@ -2756,6 +3201,24 @@ def build_instruction_details(executed_pcs, inst_info, inst_use_objects, inst_de
     return {
         hex(pc): {
             'disasm': inst_info.get(pc, {}).get('disasm'),
+            'mnemonic': inst_info.get(pc, {}).get('mnemonic'),
+            'operands': inst_info.get(pc, {}).get('operands', []),
+            'implicit_reads': inst_info.get(pc, {}).get('implicit_reads', []),
+            'implicit_writes': inst_info.get(pc, {}).get('implicit_writes', []),
+            'instruction_role': inst_info.get(pc, {}).get('instruction_role', 'unknown'),
+            'function_id': inst_info.get(pc, {}).get('function_id'),
+            'frame_operation': inst_info.get(pc, {}).get('frame_operation'),
+            'module': inst_info.get(pc, {}).get('module'),
+            'section': inst_info.get(pc, {}).get('section'),
+            'symbol': inst_info.get(pc, {}).get('symbol'),
+            'function': inst_info.get(pc, {}).get('function'),
+            'is_user_code': inst_info.get(pc, {}).get('is_user_code'),
+            'code_region': inst_info.get(pc, {}).get('code_region', 'unknown'),
+            'code_region_provenance': inst_info.get(pc, {}).get(
+                'code_region_provenance', 'missing'
+            ),
+            'source_location': inst_info.get(pc, {}).get('source_location'),
+            'call_target_symbol': inst_info.get(pc, {}).get('call_target_symbol'),
             'semantic_tags': sorted(inst_semantic_tags.get(pc, set()) | set(inst_info.get(pc, {}).get('semantic_tags', set()))),
             'use_objects': sorted(inst_use_objects.get(pc, set())),
             'def_objects': sorted(inst_def_objects.get(pc, set())),
@@ -2882,6 +3345,7 @@ def main():
     output_prefix = mode_opts['output_prefix']
 
     path = args.binary
+    explicit_user_ranges = [parse_address_range(spec) for spec in args.user_code_range]
 
     # -------------------- 静态准备 --------------------
     segs, entry = load_all_code_segments(path)
@@ -2890,6 +3354,9 @@ def main():
     global_objects, global_var_by_addr = build_global_objects(path)
     got_map = build_got_plt_map(path)
     main_addr, plt_ranges, text_end = get_main_and_plt_ranges(path)
+    code_region_catalog = build_code_region_catalog(
+        path, explicit_user_ranges=explicit_user_ranges
+    )
 
     ctx = TritonContext()
     ctx.setArchitecture(ARCH.X86_64)
@@ -2902,6 +3369,7 @@ def main():
 
     # 静态阶段：只对 CFG 完整的函数建立后支配控制区域；其余函数运行时回退。
     static_control_model = build_static_control_model(ctx, path)
+    instruction_structure_model = static_control_model.get('instruction_structure', {})
     static_ctrl_stats = static_control_model.get('stats', {})
     print(
         f'[+] Static postdom control model: '
@@ -3246,7 +3714,29 @@ def main():
 
         disasm = inst.getDisassembly()
         opc = disasm.split()[0].lower() if disasm else 'unknown'
-        inst_info[pc] = {'opc': opc, 'disasm': disasm, 'size': inst.getSize()}
+        region_facts = classify_code_region(pc, code_region_catalog, addr2line_map)
+        structure_facts = instruction_structure_model.get(pc, {
+            'instruction_role': 'unknown',
+            'function_id': region_facts.get('function_id'),
+            'function': region_facts.get('function'),
+            'frame_operation': None,
+        })
+        inst_info[pc] = {
+            'opc': opc,
+            'mnemonic': opc,
+            'disasm': disasm,
+            'size': inst.getSize(),
+            'operands': build_structured_operands(ctx, inst),
+            'implicit_reads': [],
+            'implicit_writes': [],
+            'call_target_symbol': (
+                symbol_addr_map.get(direct_control_target(inst))
+                if opc == 'call' and direct_control_target(inst) is not None
+                else None
+            ),
+            **region_facts,
+            **structure_facts,
+        }
 
         if DEBUG_PROGRESS and inst_count > 0 and inst_count % DEBUG_PROGRESS_EVERY == 0:
             debug_print_progress(
@@ -3570,6 +4060,29 @@ def main():
         )
         inst_semantic_tags[pc].update(inst_site_tags)
         inst_info[pc]['semantic_tags'] = set(inst_semantic_tags[pc])
+        inst_info[pc]['operands'] = build_structured_operands(
+            ctx=ctx,
+            inst=inst,
+            read_regs_info=read_regs_info,
+            written_regs_info=written_regs_info,
+            read_mems_info=read_mems_info,
+            written_mems_info=written_mems_info,
+        )
+        explicit_operand_registers = {
+            operand.get('register')
+            for operand in inst_info[pc]['operands']
+            if operand.get('kind') == 'register'
+        }
+        all_reads = set(structured_implicit_registers(ctx, read_regs_info))
+        all_writes = set(structured_implicit_registers(ctx, written_regs_info))
+        inst_info[pc]['implicit_reads'] = sorted(
+            register for register in all_reads
+            if register not in explicit_operand_registers
+        )
+        inst_info[pc]['implicit_writes'] = sorted(
+            register for register in all_writes
+            if register not in explicit_operand_registers
+        )
 
         # ---------- 局部依赖事实：先收集，再决定是否写入持久结构 ----------
         local_raw_inst_data_edges = set()
@@ -4751,6 +5264,24 @@ def main():
             'dot_neighborhood_hops': mode_opts['dot_neighborhood_hops'],
             'selected_object_dot_nodes': sorted(selected_object_dot_nodes),
             'selected_inst_dot_pcs': [hex(x) for x in sorted(selected_inst_dot_pcs)],
+        },
+        'code_region_policy': {
+            'module': code_region_catalog.get('module'),
+            'module_path': code_region_catalog.get('module_path'),
+            'explicit_user_ranges': [
+                {
+                    'start': hex(item['start']),
+                    'end': hex(item['end']),
+                }
+                for item in code_region_catalog.get('explicit_user_ranges', [])
+            ],
+            'evidence_priority': [
+                'user-specified-target-range',
+                'elf-runtime-section',
+                'runtime-function-symbol/elf-function-symbol-range',
+                'dwarf-source-mapping',
+                'target-binary-executable-section-as-unknown',
+            ],
         },
         'tainted_registers': sorted(tainted_regs),
         'tainted_memory_addresses': [hex(x) for x in sorted(tainted_mems)],
