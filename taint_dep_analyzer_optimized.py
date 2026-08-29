@@ -735,6 +735,10 @@ def classify_code_region(pc, catalog, addr2line_map=None):
         region = 'runtime'
         provenance = 'runtime-function-symbol'
         is_user = False
+    elif section_name in {'.text', '.text.hot', '.text.unlikely'} and module:
+        region = 'user'
+        provenance = 'target-module-executable-section'
+        is_user = True
     elif function is not None:
         region = 'user'
         provenance = 'elf-function-symbol-range'
@@ -876,6 +880,32 @@ def build_control_regions(nodes, successors):
     return branch_regions, result
 
 
+def canonical_mnemonic(inst):
+    """Return one canonical mnemonic through a single decoder adapter.
+
+    Prefer a structured decoder API when the installed Triton version exposes
+    one.  Older Triton versions expose only the formatted disassembly; that
+    compatibility fallback is intentionally isolated here and its provenance
+    is exported so consumers never need to parse display text themselves.
+    """
+    for method_name in ('getMnemonic', 'getOpcodeName'):
+        method = getattr(inst, method_name, None)
+        if not callable(method):
+            continue
+        try:
+            value = str(method()).strip().lower()
+        except Exception:
+            value = ''
+        if value:
+            return value, f'triton.{method_name}'
+    try:
+        disasm = inst.getDisassembly() or ''
+    except Exception:
+        disasm = ''
+    token = disasm.strip().split(None, 1)[0].lower() if disasm.strip() else 'unknown'
+    return token, 'triton.disassembly-compatibility-adapter'
+
+
 def recover_function_cfg(ctx, start, end, max_nodes=200000):
     """利用 Triton 解码器恢复单个函数的保守函数内 CFG。"""
     nodes = set()
@@ -909,7 +939,7 @@ def recover_function_cfg(ctx, start, end, max_nodes=200000):
             break
 
         nodes.add(pc)
-        opc = disasm.split()[0].lower() if disasm else 'unknown'
+        opc, _mnemonic_provenance = canonical_mnemonic(inst)
         fallthrough = pc + size
         nexts = set()
 
@@ -968,7 +998,7 @@ def _instruction_shape(ctx, pc):
         inst.setAddress(pc)
         ctx.disassembly(inst)
         disasm = inst.getDisassembly() or ''
-        mnemonic = disasm.split()[0].lower() if disasm else 'unknown'
+        mnemonic, mnemonic_provenance = canonical_mnemonic(inst)
         operands = list(inst.getOperands())
     except Exception:
         return {'mnemonic': 'unknown', 'operands': [], 'decode_failed': True}
@@ -1000,6 +1030,7 @@ def _instruction_shape(ctx, pc):
             structured.append({'kind': 'other'})
     return {
         'mnemonic': mnemonic,
+        'mnemonic_provenance': mnemonic_provenance,
         'operands': structured,
         'decode_failed': False,
     }
@@ -1040,16 +1071,75 @@ def build_function_instruction_roles(ctx, start, end, function_name, cfg):
     shapes = {pc: _instruction_shape(ctx, pc) for pc in nodes}
     roles = {
         pc: {
-            'instruction_role': 'body',
+            'instruction_role': 'body' if cfg.get('complete') else 'unknown',
+            'instruction_role_provenance': (
+                'function-cfg-context' if cfg.get('complete')
+                else 'incomplete-function-cfg'
+            ),
             'function_id': hex(start),
             'function': function_name,
             'frame_operation': None,
         }
         for pc in nodes
     }
+    if not cfg.get('complete'):
+        return roles
 
     allocations = []
     releases = []
+    reachable_cache = {
+        pc: _bounded_graph_distance({pc}, successors, limit=len(nodes))
+        for pc in nodes
+    }
+    near_entry_pushes = []
+    near_exit_pops = []
+    frame_setups = []
+    frame_teardowns = []
+    for pc, shape in shapes.items():
+        operands = shape['operands']
+        op0 = operands[0] if len(operands) > 0 else {}
+        op1 = operands[1] if len(operands) > 1 else {}
+        mnemonic = shape['mnemonic']
+        if entry_distance.get(pc, 999) <= 8 and mnemonic == 'push':
+            near_entry_pushes.append((pc, op0.get('register')))
+        if exit_distance.get(pc, 999) <= 8 and mnemonic == 'pop':
+            near_exit_pops.append((pc, op0.get('register')))
+        if entry_distance.get(pc, 999) <= 8 and mnemonic in MOVE_LIKE_OPCODES and (
+            op0.get('register'), op1.get('register')
+        ) == ('rbp', 'rsp'):
+            frame_setups.append(pc)
+        if exit_distance.get(pc, 999) <= 8 and (
+            mnemonic == 'leave'
+            or (
+                mnemonic in MOVE_LIKE_OPCODES
+                and (op0.get('register'), op1.get('register')) == ('rsp', 'rbp')
+            )
+        ):
+            frame_teardowns.append(pc)
+
+    push_matches = {}
+    pop_matches = defaultdict(list)
+    for push_pc, register in near_entry_pushes:
+        matches = [
+            pop_pc for pop_pc, pop_register in near_exit_pops
+            if pop_register == register and pop_pc in reachable_cache[push_pc]
+        ]
+        if register == 'rbp':
+            matches.extend(
+                pc for pc in frame_teardowns if pc in reachable_cache[push_pc]
+            )
+        push_matches[push_pc] = sorted(set(matches))
+        for match in matches:
+            pop_matches[match].append(push_pc)
+
+    setup_matches = {
+        setup_pc: [
+            teardown_pc for teardown_pc in frame_teardowns
+            if teardown_pc in reachable_cache[setup_pc]
+        ]
+        for setup_pc in frame_setups
+    }
+
     for pc, shape in shapes.items():
         operands = shape['operands']
         op0 = operands[0] if len(operands) > 0 else {}
@@ -1071,7 +1161,11 @@ def build_function_instruction_roles(ctx, start, end, function_name, cfg):
             releases.append((pc, op1.get('value')))
 
     for pc, amount in allocations:
-        matches = [release_pc for release_pc, value in releases if value == amount]
+        reachable = _bounded_graph_distance({pc}, successors, limit=len(nodes))
+        matches = [
+            release_pc for release_pc, value in releases
+            if value == amount and release_pc in reachable
+        ]
         if matches:
             roles[pc]['instruction_role'] = 'prologue'
         roles[pc]['frame_operation'] = {
@@ -1080,7 +1174,15 @@ def build_function_instruction_roles(ctx, start, end, function_name, cfg):
             'matching_pcs': [hex(value) for value in sorted(matches)],
         }
     for pc, amount in releases:
-        matches = [alloc_pc for alloc_pc, value in allocations if value == amount]
+        matches = []
+        for alloc_pc, value in allocations:
+            if value != amount:
+                continue
+            reachable = _bounded_graph_distance(
+                {alloc_pc}, successors, limit=len(nodes)
+            )
+            if pc in reachable:
+                matches.append(alloc_pc)
         if matches:
             roles[pc]['instruction_role'] = 'epilogue'
         roles[pc]['frame_operation'] = {
@@ -1097,21 +1199,44 @@ def build_function_instruction_roles(ctx, start, end, function_name, cfg):
         near_entry = entry_distance.get(pc, 999) <= 8
         near_exit = exit_distance.get(pc, 999) <= 8
 
-        if near_entry and mnemonic == 'push' and op0.get('register') == 'rbp':
+        if (
+            near_entry and mnemonic == 'push' and op0.get('register') == 'rbp'
+            and push_matches.get(pc)
+        ):
             roles[pc]['instruction_role'] = 'prologue'
-            roles[pc]['frame_operation'] = {'kind': 'save-frame-pointer'}
+            roles[pc]['frame_operation'] = {
+                'kind': 'save-frame-pointer', 'balanced': True,
+                'matching_pcs': [hex(value) for value in push_matches[pc]],
+            }
         elif near_entry and mnemonic in MOVE_LIKE_OPCODES and (
             op0.get('register'), op1.get('register')
-        ) == ('rbp', 'rsp'):
+        ) == ('rbp', 'rsp') and setup_matches.get(pc):
             roles[pc]['instruction_role'] = 'prologue'
-            roles[pc]['frame_operation'] = {'kind': 'establish-frame-pointer'}
-        elif near_exit and mnemonic == 'pop' and op0.get('register') == 'rbp':
+            roles[pc]['frame_operation'] = {
+                'kind': 'establish-frame-pointer', 'balanced': True,
+                'matching_pcs': [hex(value) for value in setup_matches[pc]],
+            }
+        elif (
+            near_exit and mnemonic == 'pop' and op0.get('register') == 'rbp'
+            and pop_matches.get(pc)
+        ):
             roles[pc]['instruction_role'] = 'epilogue'
-            roles[pc]['frame_operation'] = {'kind': 'restore-frame-pointer'}
+            roles[pc]['frame_operation'] = {
+                'kind': 'restore-frame-pointer', 'balanced': True,
+                'matching_pcs': [hex(value) for value in sorted(pop_matches[pc])],
+            }
         elif near_exit and mnemonic in {'leave', 'ret', 'retn'}:
             roles[pc]['instruction_role'] = 'epilogue'
             roles[pc]['frame_operation'] = {
                 'kind': 'leave' if mnemonic == 'leave' else 'return'
+            }
+        elif near_exit and mnemonic in MOVE_LIKE_OPCODES and (
+            op0.get('register'), op1.get('register')
+        ) == ('rsp', 'rbp') and pop_matches.get(pc):
+            roles[pc]['instruction_role'] = 'epilogue'
+            roles[pc]['frame_operation'] = {
+                'kind': 'restore-stack-pointer', 'balanced': True,
+                'matching_pcs': [hex(value) for value in sorted(pop_matches[pc])],
             }
         elif near_entry and mnemonic in MOVE_LIKE_OPCODES and (
             op0.get('kind') == 'memory'
@@ -1120,12 +1245,26 @@ def build_function_instruction_roles(ctx, start, end, function_name, cfg):
         ):
             roles[pc]['instruction_role'] = 'prologue'
             roles[pc]['frame_operation'] = {'kind': 'argument-spill'}
-        elif near_entry and mnemonic == 'push' and op0.get('register') in CALLEE_SAVED_REGS:
+        elif (
+            near_entry and mnemonic == 'push'
+            and op0.get('register') in CALLEE_SAVED_REGS
+            and push_matches.get(pc)
+        ):
             roles[pc]['instruction_role'] = 'prologue'
-            roles[pc]['frame_operation'] = {'kind': 'callee-save-spill'}
-        elif near_exit and mnemonic == 'pop' and op0.get('register') in CALLEE_SAVED_REGS:
+            roles[pc]['frame_operation'] = {
+                'kind': 'callee-save-spill', 'balanced': True,
+                'matching_pcs': [hex(value) for value in push_matches[pc]],
+            }
+        elif (
+            near_exit and mnemonic == 'pop'
+            and op0.get('register') in CALLEE_SAVED_REGS
+            and pop_matches.get(pc)
+        ):
             roles[pc]['instruction_role'] = 'epilogue'
-            roles[pc]['frame_operation'] = {'kind': 'callee-save-restore'}
+            roles[pc]['frame_operation'] = {
+                'kind': 'callee-save-restore', 'balanced': True,
+                'matching_pcs': [hex(value) for value in sorted(pop_matches[pc])],
+            }
     return roles
 
 
@@ -3187,9 +3326,26 @@ def build_direct_neighbors(object_edge_meta):
     return succ, pred, direct_parents, direct_children, edge_details
 
 
+def build_instruction_edge_indexes(inst_edge_meta):
+    """Serialize complete typed PC-to-PC dependency evidence by endpoint."""
+    parents = defaultdict(dict)
+    children = defaultdict(dict)
+    for (src, dst), meta in inst_edge_meta.items():
+        record = {
+            'kinds': sorted(meta.get('kinds') or []),
+            'pcs': sorted_hex_list(meta.get('pcs') or []),
+            'count': int(meta.get('count', 0) or 0),
+            'kind_counts': dict(sorted((meta.get('kind_counts') or {}).items())),
+        }
+        parents[dst][hex(src)] = record
+        children[src][hex(dst)] = record
+    return parents, children
+
+
 def build_instruction_details(executed_pcs, inst_info, inst_use_objects, inst_def_objects, inst_addr_objects,
                               inst_immediates, inst_controlled_by, inst_uses_taint, inst_repeat_suppressed,
-                              inst_semantic_tags, inst_control_evidence=None, scope='full',
+                              inst_semantic_tags, inst_edge_meta=None,
+                              inst_control_evidence=None, scope='full',
                               slice_inst_pcs=None, inst_seed_pcs=None):
     if scope == 'minimal':
         pcs = sorted(pc for pc in (inst_seed_pcs or set()) if isinstance(pc, int))
@@ -3198,14 +3354,20 @@ def build_instruction_details(executed_pcs, inst_info, inst_use_objects, inst_de
     else:
         pcs = sorted(pc for pc in executed_pcs if isinstance(pc, int))
 
+    parent_edges, child_edges = build_instruction_edge_indexes(inst_edge_meta or {})
+
     return {
         hex(pc): {
             'disasm': inst_info.get(pc, {}).get('disasm'),
             'mnemonic': inst_info.get(pc, {}).get('mnemonic'),
+            'mnemonic_provenance': inst_info.get(pc, {}).get('mnemonic_provenance'),
             'operands': inst_info.get(pc, {}).get('operands', []),
             'implicit_reads': inst_info.get(pc, {}).get('implicit_reads', []),
             'implicit_writes': inst_info.get(pc, {}).get('implicit_writes', []),
             'instruction_role': inst_info.get(pc, {}).get('instruction_role', 'unknown'),
+            'instruction_role_provenance': inst_info.get(pc, {}).get(
+                'instruction_role_provenance', 'missing'
+            ),
             'function_id': inst_info.get(pc, {}).get('function_id'),
             'frame_operation': inst_info.get(pc, {}).get('frame_operation'),
             'module': inst_info.get(pc, {}).get('module'),
@@ -3232,6 +3394,14 @@ def build_instruction_details(executed_pcs, inst_info, inst_use_objects, inst_de
                     c for c in inst_controlled_by.get(pc, set()) if isinstance(c, int)
                 )
             },
+            'instruction_parent_edges': parent_edges.get(pc, {}),
+            'instruction_child_edges': child_edges.get(pc, {}),
+            'dependency_semantics': sorted({
+                kind
+                for edge_group in (parent_edges.get(pc, {}), child_edges.get(pc, {}))
+                for edge in edge_group.values()
+                for kind in edge.get('kinds', [])
+            }),
             'uses_taint': inst_uses_taint.get(pc, False),
             'suppressed_repeat_records': inst_repeat_suppressed.get(pc, 0),
         }
@@ -3713,10 +3883,11 @@ def main():
         ctx.disassembly(inst)
 
         disasm = inst.getDisassembly()
-        opc = disasm.split()[0].lower() if disasm else 'unknown'
+        opc, mnemonic_provenance = canonical_mnemonic(inst)
         region_facts = classify_code_region(pc, code_region_catalog, addr2line_map)
         structure_facts = instruction_structure_model.get(pc, {
             'instruction_role': 'unknown',
+            'instruction_role_provenance': 'function-context-unavailable',
             'function_id': region_facts.get('function_id'),
             'function': region_facts.get('function'),
             'frame_operation': None,
@@ -3724,6 +3895,7 @@ def main():
         inst_info[pc] = {
             'opc': opc,
             'mnemonic': opc,
+            'mnemonic_provenance': mnemonic_provenance,
             'disasm': disasm,
             'size': inst.getSize(),
             'operands': build_structured_operands(ctx, inst),
@@ -5202,6 +5374,7 @@ def main():
         inst_uses_taint=inst_uses_taint,
         inst_repeat_suppressed=inst_repeat_suppressed,
         inst_semantic_tags=inst_semantic_tags,
+        inst_edge_meta=inst_edge_meta,
         inst_control_evidence=inst_control_evidence,
         scope=summary_scope,
         slice_inst_pcs=slice_inst_pcs,
@@ -5278,9 +5451,11 @@ def main():
             'evidence_priority': [
                 'user-specified-target-range',
                 'elf-runtime-section',
-                'runtime-function-symbol/elf-function-symbol-range',
+                'runtime-function-symbol',
+                'target-module-executable-section',
+                'elf-function-symbol-range',
                 'dwarf-source-mapping',
-                'target-binary-executable-section-as-unknown',
+                'unclassified-address-as-unknown',
             ],
         },
         'tainted_registers': sorted(tainted_regs),

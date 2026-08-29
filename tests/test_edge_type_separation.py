@@ -82,7 +82,14 @@ class StructuredInstructionContractTests(unittest.TestCase):
         self.assertEqual(symbol['code_region'], 'user')
         self.assertEqual(symbol['function'], 'victim')
 
-        unknown = analyzer.classify_code_region(0x5500, catalog, {})
+        section_user = analyzer.classify_code_region(0x5500, catalog, {})
+        self.assertEqual(section_user['code_region'], 'user')
+        self.assertEqual(
+            section_user['code_region_provenance'],
+            'target-module-executable-section',
+        )
+
+        unknown = analyzer.classify_code_region(0x6500, catalog, {})
         self.assertEqual(unknown['code_region'], 'unknown')
         self.assertIsNone(unknown['is_user_code'])
 
@@ -118,6 +125,14 @@ class StructuredInstructionContractTests(unittest.TestCase):
             inst_uses_taint={},
             inst_repeat_suppressed={},
             inst_semantic_tags={},
+            inst_edge_meta={
+                (0x400ff0, 0x401000): {
+                    'kinds': {'data', 'addr'},
+                    'pcs': {0x401000},
+                    'count': 2,
+                    'kind_counts': {'data': 1, 'addr': 1},
+                },
+            },
         )
         record = details['0x401000']
         self.assertEqual(record['mnemonic'], 'mov')
@@ -125,10 +140,13 @@ class StructuredInstructionContractTests(unittest.TestCase):
         self.assertEqual(record['instruction_role'], 'prologue')
         self.assertEqual(record['frame_operation']['kind'], 'argument-spill')
         self.assertEqual(record['code_region'], 'user')
+        self.assertEqual(record['dependency_semantics'], ['addr', 'data'])
+        self.assertIn('0x400ff0', record['instruction_parent_edges'])
 
     def test_stack_adjustment_requires_a_balanced_function_pair(self):
         cfg = {
             'nodes': {0x1000, 0x1004, 0x1008},
+            'complete': True,
             'successors': {
                 0x1000: {0x1004}, 0x1004: {0x1008}, 0x1008: set(),
             },
@@ -169,6 +187,43 @@ class StructuredInstructionContractTests(unittest.TestCase):
         self.assertEqual(roles[0x1000]['instruction_role'], 'prologue')
         self.assertEqual(roles[0x1004]['instruction_role'], 'epilogue')
         self.assertTrue(roles[0x1000]['frame_operation']['balanced'])
+
+    def test_callee_saved_push_requires_reachable_matching_pop(self):
+        cfg = {
+            'nodes': {0x2000, 0x2004, 0x2008},
+            'complete': True,
+            'successors': {
+                0x2000: {0x2004}, 0x2004: {0x2008}, 0x2008: set(),
+            },
+        }
+        shapes = {
+            0x2000: {
+                'mnemonic': 'push',
+                'operands': [{'kind': 'register', 'register': 'r12'}],
+            },
+            0x2004: {'mnemonic': 'mov', 'operands': []},
+            0x2008: {'mnemonic': 'ret', 'operands': []},
+        }
+        with mock.patch.object(
+            analyzer, '_instruction_shape', side_effect=lambda _, pc: shapes[pc]
+        ):
+            roles = analyzer.build_function_instruction_roles(
+                None, 0x2000, 0x2009, 'f', cfg
+            )
+        self.assertEqual(roles[0x2000]['instruction_role'], 'body')
+
+        shapes[0x2004] = {
+            'mnemonic': 'pop',
+            'operands': [{'kind': 'register', 'register': 'r12'}],
+        }
+        with mock.patch.object(
+            analyzer, '_instruction_shape', side_effect=lambda _, pc: shapes[pc]
+        ):
+            roles = analyzer.build_function_instruction_roles(
+                None, 0x2000, 0x2009, 'f', cfg
+            )
+        self.assertEqual(roles[0x2000]['instruction_role'], 'prologue')
+        self.assertEqual(roles[0x2004]['instruction_role'], 'epilogue')
 
 
 class EdgeTypeSeparationTests(unittest.TestCase):
