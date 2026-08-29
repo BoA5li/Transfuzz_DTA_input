@@ -54,19 +54,30 @@ def instruction(disasm, *, uses=None, defs=None, addrs=None, immediates=None,
                 mnemonic=None, operands=None, instruction_role="body",
                 function_id="0x401000", frame_operation=None,
                 code_region="user", code_region_provenance="test-fixture",
-                source_location=None, call_target_symbol=None):
+                source_location=None, call_target_symbol=None,
+                module="victim", section=".text", symbol="victim",
+                function="victim", is_user_code=True,
+                parent_edges=None, child_edges=None,
+                dependency_semantics=None):
     return {
         "disasm": disasm,
         "mnemonic": mnemonic or (disasm.split()[0].lower() if disasm else "unknown"),
+        "mnemonic_provenance": "test-fixture",
         "operands": operands or [],
         "implicit_reads": [],
         "implicit_writes": [],
         "instruction_role": instruction_role,
+        "instruction_role_provenance": "test-fixture",
         "function_id": function_id,
         "frame_operation": frame_operation,
         "code_region": code_region,
         "code_region_provenance": code_region_provenance,
         "source_location": source_location,
+        "module": module,
+        "section": section,
+        "symbol": symbol,
+        "function": function,
+        "is_user_code": is_user_code,
         "call_target_symbol": call_target_symbol,
         "semantic_tags": tags or [],
         "use_objects": uses or [],
@@ -75,6 +86,9 @@ def instruction(disasm, *, uses=None, defs=None, addrs=None, immediates=None,
         "immediates": immediates or [],
         "controlled_by": controlled_by or [],
         "control_evidence": control_evidence or {},
+        "instruction_parent_edges": parent_edges or {},
+        "instruction_child_edges": child_edges or {},
+        "dependency_semantics": dependency_semantics or [],
         "uses_taint": False,
         "suppressed_repeat_records": 0,
     }
@@ -214,6 +228,46 @@ class ObjectFilteringTests(unittest.TestCase):
         self.assertEqual(excluded, [])
         self.assertEqual(eligible[0]["object_id"], "reg:rbx")
 
+    def test_unknown_object_type_is_unresolved(self):
+        eligible, excluded = self._decision_for(
+            "opaque:leaf",
+            object_detail(obj_type="opaque", used_by=["0x401020"]),
+        )
+        self.assertEqual(eligible, [])
+        self.assertEqual(excluded[0]["decision"], "unresolved")
+        self.assertIn("leaf-object.type-unresolved", excluded[0]["reason_codes"])
+
+    def test_rsp_relative_stack_displacement_is_filtered(self):
+        object_id = "imm_occurrence:0x401020:mem_disp:0:0x20:test"
+        summary = base_summary()
+        summary["backward"]["objects"] = [object_id]
+        summary["backward"]["leaf_objects"] = [object_id]
+        summary["backward"]["leaf_instructions"] = []
+        summary["object_details"] = {
+            object_id: object_detail(
+                obj_type="imm_occurrence", occurrence_pc="0x401020",
+                operand_index=0,
+            ),
+        }
+        summary["instruction_details"] = {
+            "0x401020": instruction(
+                "mov eax, dword ptr [rsp+0x20]",
+                immediates=[object_id],
+                operands=[{
+                    "index": 0, "kind": "memory", "base": "rsp",
+                    "index_register": None, "scale": 1,
+                    "displacement": 32,
+                }],
+            ),
+        }
+        filt = mcf.LeafDependencyFilter(mcf.DependencyModel(summary))
+        eligible, excluded = filt.filter_leaf_objects()
+        self.assertEqual(eligible, [])
+        self.assertIn(
+            "leaf-object.stack-layout-displacement",
+            excluded[0]["reason_codes"],
+        )
+
     def test_filters_branch_target_but_not_ordinary_immediate(self):
         branch_imm = "imm_occurrence:0x401020:operand_imm:0:0x401100:test"
         self.assertFiltered(
@@ -322,6 +376,48 @@ class InstructionFilteringTests(unittest.TestCase):
         self.assertEqual(eligible, [])
         self.assertIn("leaf-instruction.runtime-code", excluded[0]["reason_codes"])
 
+    def test_unknown_code_region_fails_closed_as_unresolved(self):
+        eligible, excluded = self._filter_instruction(
+            "mov eax, ebx",
+            code_region="unknown",
+            code_region_provenance="no-code-region-evidence",
+            is_user_code=None,
+        )
+        self.assertEqual(eligible, [])
+        self.assertEqual(excluded[0]["decision"], "unresolved")
+        self.assertIn(
+            "leaf-instruction.user-code-region-unresolved",
+            excluded[0]["reason_codes"],
+        )
+
+    def test_invalid_pc_is_unresolved(self):
+        eligible, excluded = self._filter_instruction("mov eax, ebx", pc="not-a-pc")
+        self.assertEqual(eligible, [])
+        self.assertEqual(excluded[0]["decision"], "unresolved")
+        self.assertIn("leaf-instruction.invalid-pc", excluded[0]["reason_codes"])
+
+    def test_structured_identity_and_instruction_edges_are_preserved(self):
+        parent = {
+            "0x401010": {
+                "kinds": ["data", "addr"], "pcs": ["0x401020"],
+                "count": 2, "kind_counts": {"data": 1, "addr": 1},
+            }
+        }
+        eligible, excluded = self._filter_instruction(
+            "mov eax, ebx",
+            parent_edges=parent,
+            dependency_semantics=["addr", "data"],
+        )
+        self.assertEqual(excluded, [])
+        item = eligible[0]
+        self.assertEqual(item["module"], "victim")
+        self.assertEqual(item["section"], ".text")
+        self.assertEqual(item["symbol"], "victim")
+        self.assertEqual(item["function"], "victim")
+        self.assertTrue(item["is_user_code"])
+        self.assertEqual(item["dependency_semantics"], ["addr", "data"])
+        self.assertEqual(item["instruction_parent_edges"], parent)
+
 
 class AnchorMappingTests(unittest.TestCase):
     def test_merges_object_and_instruction_sources_by_pc(self):
@@ -429,6 +525,40 @@ class AnchorMappingTests(unittest.TestCase):
         self.assertIsNone(anchor["source_location"])
         self.assertEqual(len(anchor["source_locations"]), 2)
 
+    def test_filtered_leaf_context_is_explicit_and_not_mutation_eligible(self):
+        object_id = "reg:zf"
+        summary = base_summary()
+        summary["backward"]["objects"] = [object_id]
+        summary["backward"]["leaf_objects"] = [object_id]
+        summary["backward"]["leaf_instructions"] = []
+        summary["object_details"] = {
+            object_id: object_detail(
+                used_by=["0x401020"],
+                child_edges={
+                    "var:secret": {"kinds": ["control"], "pcs": ["0x401020"]}
+                },
+            ),
+        }
+        summary["instruction_details"] = {
+            "0x401020": instruction("jne 0x401030", uses=[object_id]),
+        }
+        filt = mcf.LeafDependencyFilter(mcf.DependencyModel(summary))
+        objects, filtered_objects = filt.filter_leaf_objects()
+        instructions, filtered_instructions = filt.filter_leaf_instructions()
+        anchors = filt.build_anchor_instructions(
+            objects, instructions, filtered_objects, filtered_instructions
+        )
+        self.assertEqual(objects, [])
+        self.assertEqual(len(anchors), 1)
+        self.assertFalse(anchors[0]["eligible_for_mutation_stage"])
+        self.assertEqual(
+            anchors[0]["anchor_sources"], ["filtered_leaf_object_context"]
+        )
+        self.assertEqual(
+            anchors[0]["filtered_leaf_context"][0]["item_id"], object_id
+        )
+        self.assertIn("control", anchors[0]["dependency_semantics"])
+
 
 class OutputContractTests(unittest.TestCase):
     FORBIDDEN_TOKENS = {
@@ -451,7 +581,7 @@ class OutputContractTests(unittest.TestCase):
         )
         self.assertEqual(report["status"], "ok")
         self.assertIn("candidate ranking or priority", report["non_responsibilities"])
-        self.assertFalse(report["capabilities"]["full_instruction_dependency_edge_kinds"])
+        self.assertTrue(report["capabilities"]["full_instruction_dependency_edge_kinds"])
 
     def test_cli_writes_new_files_without_legacy_guidance_fields(self):
         with tempfile.TemporaryDirectory() as temp_dir:

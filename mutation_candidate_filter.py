@@ -50,6 +50,15 @@ def stable_pc_key(pc: str) -> Tuple[int, Any]:
         return (1, str(pc))
 
 
+def is_valid_pc(value: Any) -> bool:
+    if isinstance(value, bool):
+        return False
+    if isinstance(value, int):
+        return value >= 0
+    text = str(value).strip().lower()
+    return bool(re.fullmatch(r"0x[0-9a-f]+", text))
+
+
 def sorted_pcs(values: Iterable[str]) -> List[str]:
     return sorted({norm_hex(v) for v in values if v is not None}, key=stable_pc_key)
 
@@ -147,15 +156,22 @@ class EligibleLeafInstruction:
     leaf_role: str
     disasm: str
     mnemonic: str
+    mnemonic_provenance: Optional[str]
     operands: List[Dict[str, Any]]
     implicit_reads: List[str]
     implicit_writes: List[str]
     instruction_role: str
+    instruction_role_provenance: str
     function_id: Optional[str]
     frame_operation: Optional[Dict[str, Any]]
     code_region: str
     code_region_provenance: str
     source_location: Optional[Dict[str, Any]]
+    module: Optional[str]
+    section: Optional[str]
+    symbol: Optional[str]
+    function: Optional[str]
+    is_user_code: Optional[bool]
     semantic_tags: List[str]
     use_objects: List[str]
     def_objects: List[str]
@@ -163,6 +179,9 @@ class EligibleLeafInstruction:
     immediates: List[str]
     controlled_by: List[str]
     control_evidence: Dict[str, Any]
+    instruction_parent_edges: Dict[str, Any]
+    instruction_child_edges: Dict[str, Any]
+    dependency_semantics: List[str]
     uses_taint: bool
     suppressed_repeat_records: int
 
@@ -338,10 +357,19 @@ class DependencyModel:
 
 
 class LeafDependencyFilter:
-    PRINT_CALL_MARKERS = (
-        "print", "printf", "puts", "write", "fprintf", "sprintf",
-        "snprintf", "vprintf", "cout",
-    )
+    OBSERVATION_CALL_SYMBOLS = {
+        "printf", "puts", "putchar", "write", "fprintf", "sprintf",
+        "snprintf", "vprintf", "vfprintf", "vsprintf", "vsnprintf",
+        "__printf_chk", "__fprintf_chk", "__sprintf_chk", "__snprintf_chk",
+    }
+    SUPPORTED_OBJECT_TYPES = {
+        "reg", "register", "var", "stack", "mem", "memory",
+        "imm", "immediate", "imm_occurrence", "flag",
+    }
+    UNRESOLVED_CATEGORIES = {
+        "missing_metadata", "unresolved_representation",
+        "non_user_code_unresolved",
+    }
 
     def __init__(self, model: DependencyModel, *, include_seed_leaves: bool = False,
                  include_observation_only: bool = False):
@@ -353,6 +381,14 @@ class LeafDependencyFilter:
     def _reason(code: str, category: str, message: str) -> FilterReason:
         return FilterReason(code, category, message)
 
+    @classmethod
+    def _decision(cls, reasons: Sequence[FilterReason]) -> str:
+        return (
+            "unresolved"
+            if any(reason.category in cls.UNRESOLVED_CATEGORIES for reason in reasons)
+            else "filtered"
+        )
+
     def _is_observation_only(self, pcs: Sequence[str]) -> bool:
         if not pcs:
             return False
@@ -360,8 +396,9 @@ class LeafDependencyFilter:
             detail = self.m.instruction_details.get(norm_hex(pc), {})
             if detail.get("mnemonic") != "call":
                 return False
-            target = (detail.get("call_target_symbol") or "").lower()
-            if not any(marker in target for marker in self.PRINT_CALL_MARKERS):
+            target = (detail.get("call_target_symbol") or "").lower().strip()
+            target = target.split("@", 1)[0]
+            if target not in self.OBSERVATION_CALL_SYMBOLS:
                 return False
         return True
 
@@ -437,6 +474,11 @@ class LeafDependencyFilter:
     def _instruction_filter_reasons(self, pc: str, *, leaf_input: bool) -> List[FilterReason]:
         reasons = []
         normalized = norm_hex(pc)
+        if not is_valid_pc(pc):
+            reasons.append(self._reason(
+                "leaf-instruction.invalid-pc", "unresolved_representation",
+                "instruction PC is not a canonical non-negative hexadecimal address",
+            ))
         if leaf_input and not self.include_seed_leaves and normalized in self.m.seed_instruction_pcs:
             reasons.append(self._reason(
                 "leaf-instruction.analysis-seed", "analysis_boundary",
@@ -446,7 +488,13 @@ class LeafDependencyFilter:
         if region == "runtime":
             reasons.append(self._reason(
                 "leaf-instruction.runtime-code", "non_user_code",
-                "instruction is in the detected runtime startup prefix",
+                "upstream structured code-region evidence classifies this instruction as runtime",
+            ))
+        elif region != "user":
+            reasons.append(self._reason(
+                "leaf-instruction.user-code-region-unresolved",
+                "non_user_code_unresolved",
+                "instruction lacks affirmative structured user-code-region evidence",
             ))
         structural = self._structural_instruction_reason(normalized)
         if structural is not None:
@@ -485,10 +533,10 @@ class LeafDependencyFilter:
         if component == "mem_disp" and operand.get("kind") == "memory":
             base = operand.get("base")
             displacement = operand.get("displacement")
-            if base in {"rbp", "ebp"} and displacement is not None:
+            if base in {"rsp", "esp", "rbp", "ebp"} and displacement is not None:
                 reasons.append(self._reason(
                     "leaf-object.stack-layout-displacement", "abi_structure",
-                    "frame-relative displacement identifies a stack layout slot",
+                    "stack/frame-relative displacement identifies a stack layout slot",
                 ))
         if (
             component == "mem_disp"
@@ -530,6 +578,24 @@ class LeafDependencyFilter:
                 })
         return eligible
 
+    def _user_context_relations(self, object_id: str) -> List[dict]:
+        """Return valid user-code mappings without applying mutability rules."""
+        result = []
+        for relation in self.m.direct_object_pc_relations(object_id):
+            pc = relation["pc"]
+            detail = self.m.instruction_details.get(norm_hex(pc))
+            region, evidence = self.m.code_region(pc)
+            if (
+                is_valid_pc(pc) and detail is not None and region == "user"
+                and bool(detail.get("mnemonic"))
+            ):
+                result.append({
+                    **relation,
+                    "code_region": region,
+                    "code_region_evidence": evidence,
+                })
+        return result
+
     def _evaluate_leaf_object(self, object_id: str) -> Tuple[List[FilterReason], List[dict]]:
         detail = self.m.object_details.get(object_id)
         if detail is None:
@@ -539,6 +605,12 @@ class LeafDependencyFilter:
             )], []
 
         reasons: List[FilterReason] = []
+        resolved_type = object_type(object_id, detail).lower()
+        if resolved_type not in self.SUPPORTED_OBJECT_TYPES:
+            reasons.append(self._reason(
+                "leaf-object.type-unresolved", "unresolved_representation",
+                f"unsupported or unknown object representation: {resolved_type}",
+            ))
         if not self.include_seed_leaves and object_id in self.m.seed_objects:
             reasons.append(self._reason(
                 "leaf-object.analysis-seed", "analysis_boundary",
@@ -571,9 +643,13 @@ class LeafDependencyFilter:
             ))
 
         reasons.extend(self._immediate_filter_reasons(object_id, detail))
-        all_direct_pcs = [
-            item["pc"] for item in self.m.direct_object_pc_relations(object_id)
-        ]
+        direct_relations = self.m.direct_object_pc_relations(object_id)
+        all_direct_pcs = [item["pc"] for item in direct_relations]
+        if any(not is_valid_pc(item["pc"]) for item in direct_relations):
+            reasons.append(self._reason(
+                "leaf-object.anchor-pc-invalid", "unresolved_representation",
+                "one or more direct object mappings use an invalid PC",
+            ))
         if (
             not self.include_observation_only
             and self._is_observation_only(all_direct_pcs)
@@ -585,6 +661,16 @@ class LeafDependencyFilter:
 
         anchors = self._eligible_anchor_relations(object_id)
         if not anchors:
+            regions = {
+                self.m.code_region(item["pc"])[0]
+                for item in direct_relations if is_valid_pc(item["pc"])
+            }
+            if regions and "user" not in regions and regions != {"runtime"}:
+                reasons.append(self._reason(
+                    "leaf-object.user-anchor-region-unresolved",
+                    "non_user_code_unresolved",
+                    "direct mappings lack affirmative structured user-code evidence",
+                ))
             reasons.append(self._reason(
                 "leaf-object.user-anchor-missing", "unsupported_representation",
                 "object has no directly mapped non-structural user-code instruction",
@@ -601,8 +687,13 @@ class LeafDependencyFilter:
                     "item_id": object_id,
                     "item_kind": "object",
                     "leaf_role": "backward_leaf",
-                    "decision": "filtered",
+                    "decision": self._decision(reasons),
                     "object_type": object_type(object_id, detail),
+                    "semantic_tags": sorted(detail.get("semantic_tags") or []),
+                    "dependency_edges": self.m.object_dependency_edges(object_id),
+                    "dependency_semantics": self.m.object_dependency_semantics(object_id),
+                    "object_pc_relations": self.m.direct_object_pc_relations(object_id),
+                    "mapping_evidence": self.m.mapping_evidence(object_id),
                     "reason_codes": sorted({reason.code for reason in reasons}),
                     "reasons": [asdict(reason) for reason in sorted(reasons, key=lambda r: r.code)],
                     "related_pcs": sorted_pcs(
@@ -639,8 +730,40 @@ class LeafDependencyFilter:
                     "item_id": pc,
                     "item_kind": "instruction",
                     "leaf_role": "backward_leaf",
-                    "decision": "filtered",
+                    "decision": self._decision(reasons),
                     "disasm": detail.get("disasm"),
+                    "mnemonic": detail.get("mnemonic"),
+                    "mnemonic_provenance": detail.get("mnemonic_provenance"),
+                    "instruction_role": detail.get("instruction_role"),
+                    "instruction_role_provenance": detail.get(
+                        "instruction_role_provenance"
+                    ),
+                    "function_id": detail.get("function_id"),
+                    "module": detail.get("module"),
+                    "section": detail.get("section"),
+                    "symbol": detail.get("symbol"),
+                    "function": detail.get("function"),
+                    "is_user_code": detail.get("is_user_code"),
+                    "code_region": detail.get("code_region") or "unknown",
+                    "code_region_provenance": detail.get(
+                        "code_region_provenance"
+                    ) or "missing",
+                    "semantic_tags": sorted(detail.get("semantic_tags") or []),
+                    "use_objects": sorted(detail.get("use_objects") or []),
+                    "def_objects": sorted(detail.get("def_objects") or []),
+                    "addr_objects": sorted(detail.get("addr_objects") or []),
+                    "immediates": sorted(detail.get("immediates") or []),
+                    "controlled_by": sorted_pcs(detail.get("controlled_by") or []),
+                    "control_evidence": detail.get("control_evidence") or {},
+                    "instruction_parent_edges": detail.get(
+                        "instruction_parent_edges"
+                    ) or {},
+                    "instruction_child_edges": detail.get(
+                        "instruction_child_edges"
+                    ) or {},
+                    "dependency_semantics": sorted(
+                        detail.get("dependency_semantics") or []
+                    ),
                     "reason_codes": sorted({reason.code for reason in reasons}),
                     "reasons": [asdict(reason) for reason in sorted(reasons, key=lambda r: r.code)],
                 })
@@ -650,10 +773,14 @@ class LeafDependencyFilter:
                 leaf_role="backward_leaf",
                 disasm=detail.get("disasm") or "",
                 mnemonic=detail.get("mnemonic") or "",
+                mnemonic_provenance=detail.get("mnemonic_provenance"),
                 operands=detail.get("operands") or [],
                 implicit_reads=detail.get("implicit_reads") or [],
                 implicit_writes=detail.get("implicit_writes") or [],
                 instruction_role=detail.get("instruction_role") or "unknown",
+                instruction_role_provenance=(
+                    detail.get("instruction_role_provenance") or "missing"
+                ),
                 function_id=detail.get("function_id"),
                 frame_operation=detail.get("frame_operation"),
                 code_region=detail.get("code_region") or "unknown",
@@ -661,6 +788,11 @@ class LeafDependencyFilter:
                     detail.get("code_region_provenance") or "missing"
                 ),
                 source_location=detail.get("source_location"),
+                module=detail.get("module"),
+                section=detail.get("section"),
+                symbol=detail.get("symbol"),
+                function=detail.get("function"),
+                is_user_code=detail.get("is_user_code"),
                 semantic_tags=sorted(detail.get("semantic_tags") or []),
                 use_objects=sorted(detail.get("use_objects") or []),
                 def_objects=sorted(detail.get("def_objects") or []),
@@ -668,6 +800,15 @@ class LeafDependencyFilter:
                 immediates=sorted(detail.get("immediates") or []),
                 controlled_by=sorted_pcs(detail.get("controlled_by") or []),
                 control_evidence=detail.get("control_evidence") or {},
+                instruction_parent_edges=(
+                    detail.get("instruction_parent_edges") or {}
+                ),
+                instruction_child_edges=(
+                    detail.get("instruction_child_edges") or {}
+                ),
+                dependency_semantics=sorted(
+                    detail.get("dependency_semantics") or []
+                ),
                 uses_taint=bool(detail.get("uses_taint", False)),
                 suppressed_repeat_records=int(
                     detail.get("suppressed_repeat_records", 0) or 0
@@ -690,6 +831,12 @@ class LeafDependencyFilter:
             instruction.get("controlled_by") or instruction.get("control_evidence")
         ):
             semantics.add("control")
+        if instruction:
+            semantics.update(instruction.get("dependency_semantics") or [])
+            leaf_instruction = instruction.get("leaf_instruction_dependency") or {}
+            semantics.update(leaf_instruction.get("dependency_semantics") or [])
+        for entry in (instruction or {}).get("filtered_leaf_context") or []:
+            semantics.update(entry.get("dependency_semantics") or [])
         return sorted(semantics)
 
     @staticmethod
@@ -717,7 +864,9 @@ class LeafDependencyFilter:
         return locations
 
     def build_anchor_instructions(self, eligible_objects: List[dict],
-                                  eligible_instructions: List[dict]) -> List[dict]:
+                                  eligible_instructions: List[dict],
+                                  filtered_objects: Optional[List[dict]] = None,
+                                  filtered_instructions: Optional[List[dict]] = None) -> List[dict]:
         anchors: Dict[str, dict] = {}
 
         def ensure_anchor(pc: str) -> dict:
@@ -732,12 +881,21 @@ class LeafDependencyFilter:
                 "pc": pc,
                 "disasm": detail.get("disasm") or "",
                 "mnemonic": detail.get("mnemonic") or "",
+                "mnemonic_provenance": detail.get("mnemonic_provenance"),
                 "operands": detail.get("operands") or [],
                 "implicit_reads": detail.get("implicit_reads") or [],
                 "implicit_writes": detail.get("implicit_writes") or [],
                 "instruction_role": detail.get("instruction_role") or "unknown",
+                "instruction_role_provenance": detail.get(
+                    "instruction_role_provenance"
+                ) or "missing",
                 "function_id": detail.get("function_id"),
                 "frame_operation": detail.get("frame_operation"),
+                "module": detail.get("module"),
+                "section": detail.get("section"),
+                "symbol": detail.get("symbol"),
+                "function": detail.get("function"),
+                "is_user_code": detail.get("is_user_code"),
                 "source_location": None,
                 "source_locations": (
                     [direct_source_location] if direct_source_location else []
@@ -747,6 +905,7 @@ class LeafDependencyFilter:
                 "anchor_sources": set(),
                 "leaf_object_dependencies": [],
                 "leaf_instruction_dependency": None,
+                "filtered_leaf_context": [],
                 "instruction_objects": {
                     "use_objects": sorted(detail.get("use_objects") or []),
                     "def_objects": sorted(detail.get("def_objects") or []),
@@ -758,9 +917,15 @@ class LeafDependencyFilter:
                 "semantic_tags": sorted(detail.get("semantic_tags") or []),
                 "controlled_by": sorted_pcs(detail.get("controlled_by") or []),
                 "control_evidence": detail.get("control_evidence") or {},
+                "instruction_parent_edges": detail.get(
+                    "instruction_parent_edges"
+                ) or {},
+                "instruction_child_edges": detail.get(
+                    "instruction_child_edges"
+                ) or {},
                 "input_capability_notes": [
-                    "dependency_summary does not serialize full instruction-edge metadata; "
-                    "instruction data/address edge kinds are not inferred by this filter"
+                    "instruction dependency edge kinds are consumed from upstream; "
+                    "they are never inferred from mnemonic text by this filter"
                 ],
             })
 
@@ -786,14 +951,58 @@ class LeafDependencyFilter:
             anchor["anchor_sources"].add("eligible_leaf_instruction")
             anchor["leaf_instruction_dependency"] = {
                 "is_leaf_instruction": True,
+                "dependency_semantics": instruction.get(
+                    "dependency_semantics"
+                ) or [],
                 "controlled_by": instruction.get("controlled_by") or [],
                 "control_evidence": instruction.get("control_evidence") or {},
             }
+        for obj in filtered_objects or []:
+            for relation in self._user_context_relations(obj["item_id"]):
+                anchor = ensure_anchor(relation["pc"])
+                anchor["anchor_sources"].add("filtered_leaf_object_context")
+                context = {
+                    "item_id": obj["item_id"],
+                    "item_kind": "object",
+                    "decision": obj.get("decision") or "filtered",
+                    "object_type": obj.get("object_type"),
+                    "relation_kinds": relation.get("relation_kinds") or [],
+                    "reason_codes": obj.get("reason_codes") or [],
+                    "dependency_semantics": obj.get("dependency_semantics") or [],
+                }
+                if context not in anchor["filtered_leaf_context"]:
+                    anchor["filtered_leaf_context"].append(context)
+        for instruction in filtered_instructions or []:
+            pc = instruction["item_id"]
+            detail = self.m.instruction_details.get(norm_hex(pc), {})
+            region, _evidence = self.m.code_region(pc)
+            if not (is_valid_pc(pc) and region == "user" and detail.get("mnemonic")):
+                continue
+            anchor = ensure_anchor(pc)
+            anchor["anchor_sources"].add("filtered_leaf_instruction_context")
+            context = {
+                "item_id": pc,
+                "item_kind": "instruction",
+                "decision": instruction.get("decision") or "filtered",
+                "reason_codes": instruction.get("reason_codes") or [],
+                "dependency_semantics": instruction.get(
+                    "dependency_semantics"
+                ) or [],
+            }
+            if context not in anchor["filtered_leaf_context"]:
+                anchor["filtered_leaf_context"].append(context)
         result = []
         for pc in sorted(anchors, key=stable_pc_key):
             anchor = anchors[pc]
             anchor["anchor_sources"] = sorted(anchor["anchor_sources"])
             anchor["leaf_object_dependencies"].sort(key=lambda item: item["object_id"])
+            anchor["filtered_leaf_context"].sort(
+                key=lambda item: (item["item_kind"], item["item_id"])
+            )
+            anchor["eligible_for_mutation_stage"] = bool(
+                {"eligible_leaf_object", "eligible_leaf_instruction"}
+                & set(anchor["anchor_sources"])
+            )
             anchor["dependency_semantics"] = self._anchor_dependency_semantics(
                 anchor["leaf_object_dependencies"], anchor
             )
@@ -835,7 +1044,13 @@ def build_filter_summary(model: DependencyModel, eligible_objects: List[dict],
     for item in filtered_objects + filtered_instructions:
         reason_counts.update(item.get("reason_codes") or [])
 
-    if model.input_warnings:
+    unresolved_object_count = sum(
+        item.get("decision") == "unresolved" for item in filtered_objects
+    )
+    unresolved_instruction_count = sum(
+        item.get("decision") == "unresolved" for item in filtered_instructions
+    )
+    if model.input_warnings or unresolved_object_count or unresolved_instruction_count:
         status = "partial_unresolved"
     elif not eligible_objects and not eligible_instructions:
         status = "no_eligible_leaf_items"
@@ -844,7 +1059,7 @@ def build_filter_summary(model: DependencyModel, eligible_objects: List[dict],
 
     return {
         "status": status,
-        "contract": "leaf-dependency-filter-and-user-anchor-mapper.v2",
+        "contract": "leaf-dependency-filter-and-user-anchor-mapper.v3",
         "input": {
             "leaf_objects": len(model.leaf_object_ids),
             "leaf_instructions": len(model.leaf_instruction_pcs),
@@ -852,18 +1067,32 @@ def build_filter_summary(model: DependencyModel, eligible_objects: List[dict],
         "eligible": {
             "leaf_objects": len(eligible_objects),
             "leaf_instructions": len(eligible_instructions),
-            "anchor_instructions": len(anchors),
+            "anchor_instructions": sum(
+                bool(item.get("eligible_for_mutation_stage")) for item in anchors
+            ),
+            "context_only_anchor_instructions": sum(
+                not bool(item.get("eligible_for_mutation_stage")) for item in anchors
+            ),
         },
         "filtered": {
             "leaf_objects": len(filtered_objects),
             "leaf_instructions": len(filtered_instructions),
+        },
+        "unresolved": {
+            "leaf_objects": unresolved_object_count,
+            "leaf_instructions": unresolved_instruction_count,
         },
         "filter_reason_counts": dict(sorted(reason_counts.items())),
         "input_consistency_warnings": model.input_warnings,
         "capabilities": {
             "object_dependency_edge_kinds": True,
             "instruction_control_evidence": True,
-            "full_instruction_dependency_edge_kinds": False,
+            "full_instruction_dependency_edge_kinds": all(
+                "instruction_parent_edges" in detail
+                and "instruction_child_edges" in detail
+                and "dependency_semantics" in detail
+                for detail in model.instruction_details.values()
+            ),
             "terminal_mapping_loaded": bool(model.mapping_by_object),
             "structured_instruction_operands": all(
                 "operands" in detail and "mnemonic" in detail
@@ -924,7 +1153,10 @@ def main() -> int:
         leaf_filter.filter_leaf_instructions()
     )
     anchors = leaf_filter.build_anchor_instructions(
-        eligible_objects, eligible_instructions
+        eligible_objects,
+        eligible_instructions,
+        filtered_objects,
+        filtered_instructions,
     )
     summary = build_filter_summary(
         model,
