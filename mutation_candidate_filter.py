@@ -116,10 +116,6 @@ def parse_imm_occurrence(object_id: str) -> Optional[Dict[str, Any]]:
     }
 
 
-def to_signed_64(value: int) -> int:
-    return value - (1 << 64) if value >= (1 << 63) else value
-
-
 @dataclass(frozen=True)
 class FilterReason:
     code: str
@@ -150,6 +146,16 @@ class EligibleLeafInstruction:
     pc: str
     leaf_role: str
     disasm: str
+    mnemonic: str
+    operands: List[Dict[str, Any]]
+    implicit_reads: List[str]
+    implicit_writes: List[str]
+    instruction_role: str
+    function_id: Optional[str]
+    frame_operation: Optional[Dict[str, Any]]
+    code_region: str
+    code_region_provenance: str
+    source_location: Optional[Dict[str, Any]]
     semantic_tags: List[str]
     use_objects: List[str]
     def_objects: List[str]
@@ -164,11 +170,9 @@ class EligibleLeafInstruction:
 class DependencyModel:
     DIRECT_MAPPING_GROUPS = {"direct_operand", "structural_role"}
 
-    def __init__(self, dep: dict, mapping: Optional[dict] = None,
-                 path_report: Optional[dict] = None):
+    def __init__(self, dep: dict, mapping: Optional[dict] = None):
         self.dep = dep
         self.mapping = mapping or {}
-        self.path_report = path_report or {}
 
         taint_source = dep.get("taint_source") or {}
         self.seed_objects = set(taint_source.get("seed_object_nodes") or [])
@@ -206,7 +210,6 @@ class DependencyModel:
         self.pc_direct_objects: Dict[str, Set[str]] = defaultdict(set)
         self._build_direct_relation_indexes()
         self._merge_terminal_mapping_relations()
-        self._detect_runtime_code_prefix()
 
     def _validate_input_sets(self) -> None:
         for object_id in sorted(self.leaf_object_ids):
@@ -283,33 +286,14 @@ class DependencyModel:
                         object_id, pc, f"terminal_mapping.{kind}"
                     )
 
-    def _detect_runtime_code_prefix(self) -> None:
-        """Retain the legacy heuristic, but expose it explicitly as uncertain."""
-        self.runtime_prefix_pcs: Set[str] = set()
-        pcs = sorted(self.instruction_details, key=stable_pc_key)
-        first_frame_function = None
-        for index, pc in enumerate(pcs[:-1]):
-            current = (self.instruction_details[pc].get("disasm") or "").lower()
-            following = (
-                self.instruction_details[pcs[index + 1]].get("disasm") or ""
-            ).lower()
-            if "push rbp" in current and "mov rbp, rsp" in following:
-                first_frame_function = pc
-                break
-        if first_frame_function is None:
-            return
-        threshold = int(first_frame_function, 16)
-        self.runtime_prefix_pcs = {
-            pc for pc in pcs
-            if stable_pc_key(pc)[0] == 0 and int(pc, 16) < threshold
-        }
-
     def code_region(self, pc: str) -> Tuple[str, str]:
         normalized = norm_hex(pc)
-        if normalized in self.runtime_prefix_pcs:
-            return "runtime", "frame-prologue-threshold-heuristic"
-        if normalized in self.instruction_details:
-            return "user_or_unknown", "dependency-summary-executed-code"
+        detail = self.instruction_details.get(normalized)
+        if detail is not None:
+            return (
+                detail.get("code_region") or "unknown",
+                detail.get("code_region_provenance") or "missing",
+            )
         return "unknown", "instruction-detail-missing"
 
     def direct_object_pc_relations(self, object_id: str) -> List[dict]:
@@ -369,20 +353,15 @@ class LeafDependencyFilter:
     def _reason(code: str, category: str, message: str) -> FilterReason:
         return FilterReason(code, category, message)
 
-    def _instruction_mnemonic(self, pc: str) -> str:
-        disasm = self.m.instruction_details.get(norm_hex(pc), {}).get("disasm") or ""
-        return disasm.strip().split()[0].lower() if disasm.strip() else ""
-
     def _is_observation_only(self, pcs: Sequence[str]) -> bool:
         if not pcs:
             return False
         for pc in pcs:
-            disasm = (
-                self.m.instruction_details.get(norm_hex(pc), {}).get("disasm") or ""
-            ).lower()
-            if not disasm.startswith("call"):
+            detail = self.m.instruction_details.get(norm_hex(pc), {})
+            if detail.get("mnemonic") != "call":
                 return False
-            if not any(marker in disasm for marker in self.PRINT_CALL_MARKERS):
+            target = (detail.get("call_target_symbol") or "").lower()
+            if not any(marker in target for marker in self.PRINT_CALL_MARKERS):
                 return False
         return True
 
@@ -393,13 +372,12 @@ class LeafDependencyFilter:
                 "leaf-instruction.detail-missing", "missing_metadata",
                 "instruction_details does not contain this PC",
             )
-        disasm = (detail.get("disasm") or "").strip().lower()
-        if not disasm:
+        mnemonic = (detail.get("mnemonic") or "").lower()
+        if not mnemonic:
             return self._reason(
-                "leaf-instruction.disassembly-missing", "missing_metadata",
-                "instruction has no disassembly text",
+                "leaf-instruction.structured-decoding-missing", "missing_metadata",
+                "instruction has no structured mnemonic",
             )
-        mnemonic = disasm.split()[0]
         if mnemonic == "nop":
             return self._reason(
                 "leaf-instruction.padding", "runtime_structure",
@@ -415,44 +393,45 @@ class LeafDependencyFilter:
                 "leaf-instruction.trap-or-invalid", "runtime_structure",
                 "instruction is a trap or explicit invalid operation",
             )
-        if mnemonic in {"ret", "retn", "leave"}:
-            return self._reason(
-                "leaf-instruction.return-structural", "abi_structure",
-                "instruction maintains function return or frame teardown",
-            )
-        if re.match(r"^(push|pop)\s+(?:e|r)bp$", disasm):
-            return self._reason(
-                "leaf-instruction.stack-frame-structural", "abi_structure",
-                "instruction establishes or restores the frame pointer",
-            )
-        if re.match(r"^mov\s+(?:e|r)bp\s*,\s*(?:e|r)sp$", disasm) or re.match(
-            r"^mov\s+(?:e|r)sp\s*,\s*(?:e|r)bp$", disasm
-        ):
-            return self._reason(
-                "leaf-instruction.stack-frame-structural", "abi_structure",
-                "instruction establishes or restores the stack frame",
-            )
-        if re.match(r"^(?:sub|add)\s+(?:e|r)sp\s*,", disasm):
-            return self._reason(
-                "leaf-instruction.stack-space-maintenance", "abi_structure",
-                "instruction allocates or releases stack space",
-            )
-        if re.match(r"^(?:push|pop)\s+(?:rbx|ebx|r1[2-5]|r1[2-5]d)$", disasm):
-            return self._reason(
-                "leaf-instruction.callee-saved-maintenance", "abi_structure",
-                "instruction saves or restores a callee-saved register",
-            )
-        argument_spill = re.match(
-            r"^mov\s+(?:(?:qword|dword|word|byte)\s+ptr\s+)?"
-            r"\[(?:e|r)bp\s*-\s*0x[0-9a-f]+\]\s*,\s*"
-            r"(?:rdi|edi|rsi|esi|rdx|edx|rcx|ecx|r8|r8d|r9|r9d)$",
-            disasm,
-        )
-        if argument_spill:
-            return self._reason(
-                "leaf-instruction.argument-spill", "abi_structure",
-                "instruction spills an ABI argument register into the frame",
-            )
+        role = detail.get("instruction_role") or "unknown"
+        frame_operation = detail.get("frame_operation") or {}
+        operation_kind = frame_operation.get("kind")
+        if role in {"prologue", "epilogue"}:
+            reason_by_operation = {
+                "allocate": (
+                    "leaf-instruction.stack-space-maintenance",
+                    "instruction allocates stack space in function prologue context",
+                ),
+                "release": (
+                    "leaf-instruction.stack-space-maintenance",
+                    "instruction releases stack space in function epilogue context",
+                ),
+                "argument-spill": (
+                    "leaf-instruction.argument-spill",
+                    "instruction spills an ABI argument in function-entry context",
+                ),
+                "callee-save-spill": (
+                    "leaf-instruction.callee-saved-maintenance",
+                    "instruction saves a callee-saved register in prologue context",
+                ),
+                "callee-save-restore": (
+                    "leaf-instruction.callee-saved-maintenance",
+                    "instruction restores a callee-saved register in epilogue context",
+                ),
+                "return": (
+                    "leaf-instruction.return-structural",
+                    "instruction performs function return in epilogue context",
+                ),
+                "leave": (
+                    "leaf-instruction.return-structural",
+                    "instruction tears down the frame in epilogue context",
+                ),
+            }
+            code, message = reason_by_operation.get(operation_kind, (
+                "leaf-instruction.stack-frame-structural",
+                "instruction is identified as function prologue/epilogue structure",
+            ))
+            return self._reason(code, "abi_structure", message)
         return None
 
     def _instruction_filter_reasons(self, pc: str, *, leaf_input: bool) -> List[FilterReason]:
@@ -481,11 +460,12 @@ class LeafDependencyFilter:
         reasons = []
         pc = parsed["pc"]
         component = parsed["component"]
-        value = parsed["value"]
-        mnemonic = self._instruction_mnemonic(pc)
-        disasm = (
-            self.m.instruction_details.get(pc, {}).get("disasm") or ""
-        ).lower()
+        instruction = self.m.instruction_details.get(pc, {})
+        mnemonic = (instruction.get("mnemonic") or "").lower()
+        operand = next((
+            item for item in instruction.get("operands") or []
+            if item.get("index") == parsed["operand_index"]
+        ), {})
         tags = set(detail.get("semantic_tags") or [])
 
         if component == "operand_imm" and (
@@ -502,14 +482,19 @@ class LeafDependencyFilter:
                 "unsupported_representation",
                 "direct call target is not treated as a standalone data immediate",
             ))
-        if component == "mem_disp" and ("rbp" in disasm or "ebp" in disasm):
-            signed = to_signed_64(value)
-            if -4096 <= signed <= 4096:
+        if component == "mem_disp" and operand.get("kind") == "memory":
+            base = operand.get("base")
+            displacement = operand.get("displacement")
+            if base in {"rbp", "ebp"} and displacement is not None:
                 reasons.append(self._reason(
                     "leaf-object.stack-layout-displacement", "abi_structure",
                     "frame-relative displacement identifies a stack layout slot",
                 ))
-        if component == "mem_disp" and "rip" in disasm:
+        if (
+            component == "mem_disp"
+            and operand.get("kind") == "memory"
+            and operand.get("base") in {"rip", "eip"}
+        ):
             reasons.append(self._reason(
                 "leaf-object.relocation-displacement", "runtime_structure",
                 "RIP-relative displacement is treated as code/data relocation structure",
@@ -664,6 +649,18 @@ class LeafDependencyFilter:
                 pc=pc,
                 leaf_role="backward_leaf",
                 disasm=detail.get("disasm") or "",
+                mnemonic=detail.get("mnemonic") or "",
+                operands=detail.get("operands") or [],
+                implicit_reads=detail.get("implicit_reads") or [],
+                implicit_writes=detail.get("implicit_writes") or [],
+                instruction_role=detail.get("instruction_role") or "unknown",
+                function_id=detail.get("function_id"),
+                frame_operation=detail.get("frame_operation"),
+                code_region=detail.get("code_region") or "unknown",
+                code_region_provenance=(
+                    detail.get("code_region_provenance") or "missing"
+                ),
+                source_location=detail.get("source_location"),
                 semantic_tags=sorted(detail.get("semantic_tags") or []),
                 use_objects=sorted(detail.get("use_objects") or []),
                 def_objects=sorted(detail.get("def_objects") or []),
@@ -695,6 +692,30 @@ class LeafDependencyFilter:
             semantics.add("control")
         return sorted(semantics)
 
+    @staticmethod
+    def _normalized_source_location(value: Any, provenance: str) -> Optional[dict]:
+        if not isinstance(value, dict) or not value.get("file") or not value.get("line"):
+            return None
+        return {
+            "file": value.get("file"),
+            "line": value.get("line"),
+            "function": value.get("function"),
+            "provenance": provenance,
+        }
+
+    def _object_source_locations_for_pc(self, obj: dict, pc: str) -> List[dict]:
+        locations = []
+        mapping = obj.get("mapping_evidence") or {}
+        for evidence in mapping.get("source_evidence") or []:
+            if norm_hex(pc) not in {norm_hex(value) for value in evidence.get("pcs") or []}:
+                continue
+            location = self._normalized_source_location(
+                evidence, "terminal-mapping-source-evidence"
+            )
+            if location is not None:
+                locations.append(location)
+        return locations
+
     def build_anchor_instructions(self, eligible_objects: List[dict],
                                   eligible_instructions: List[dict]) -> List[dict]:
         anchors: Dict[str, dict] = {}
@@ -703,12 +724,26 @@ class LeafDependencyFilter:
             pc = norm_hex(pc)
             detail = self.m.instruction_details.get(pc, {})
             region, evidence = self.m.code_region(pc)
+            direct_source_location = self._normalized_source_location(
+                detail.get("source_location"),
+                "dependency-summary-structured-source",
+            )
             return anchors.setdefault(pc, {
                 "pc": pc,
                 "disasm": detail.get("disasm") or "",
+                "mnemonic": detail.get("mnemonic") or "",
+                "operands": detail.get("operands") or [],
+                "implicit_reads": detail.get("implicit_reads") or [],
+                "implicit_writes": detail.get("implicit_writes") or [],
+                "instruction_role": detail.get("instruction_role") or "unknown",
+                "function_id": detail.get("function_id"),
+                "frame_operation": detail.get("frame_operation"),
                 "source_location": None,
+                "source_locations": (
+                    [direct_source_location] if direct_source_location else []
+                ),
                 "code_region": region,
-                "code_region_evidence": evidence,
+                "code_region_provenance": evidence,
                 "anchor_sources": set(),
                 "leaf_object_dependencies": [],
                 "leaf_instruction_dependency": None,
@@ -742,8 +777,8 @@ class LeafDependencyFilter:
                 }
                 if dependency not in anchor["leaf_object_dependencies"]:
                     anchor["leaf_object_dependencies"].append(dependency)
-                anchor["dependency_semantics"].update(
-                    obj.get("dependency_semantics") or []
+                anchor["source_locations"].extend(
+                    self._object_source_locations_for_pc(obj, relation["pc"])
                 )
 
         for instruction in eligible_instructions:
@@ -754,15 +789,40 @@ class LeafDependencyFilter:
                 "controlled_by": instruction.get("controlled_by") or [],
                 "control_evidence": instruction.get("control_evidence") or {},
             }
-            if instruction.get("controlled_by") or instruction.get("control_evidence"):
-                anchor["dependency_semantics"].add("control")
-
         result = []
         for pc in sorted(anchors, key=stable_pc_key):
             anchor = anchors[pc]
             anchor["anchor_sources"] = sorted(anchor["anchor_sources"])
-            anchor["dependency_semantics"] = sorted(anchor["dependency_semantics"])
             anchor["leaf_object_dependencies"].sort(key=lambda item: item["object_id"])
+            anchor["dependency_semantics"] = self._anchor_dependency_semantics(
+                anchor["leaf_object_dependencies"], anchor
+            )
+            unique_locations = {}
+            for item in anchor["source_locations"]:
+                key = (item.get("file"), item.get("line"), item.get("function"))
+                provenance = item.get("provenance")
+                if key not in unique_locations:
+                    unique_locations[key] = {
+                        "file": item.get("file"),
+                        "line": item.get("line"),
+                        "function": item.get("function"),
+                        "provenances": [],
+                    }
+                if provenance and provenance not in unique_locations[key]["provenances"]:
+                    unique_locations[key]["provenances"].append(provenance)
+            for item in unique_locations.values():
+                item["provenances"].sort()
+            anchor["source_locations"] = sorted(
+                unique_locations.values(),
+                key=lambda item: (
+                    item.get("file") or "", item.get("line") or 0,
+                    item.get("function") or "",
+                ),
+            )
+            anchor["source_location"] = (
+                anchor["source_locations"][0]
+                if len(anchor["source_locations"]) == 1 else None
+            )
             result.append(anchor)
         return result
 
@@ -784,7 +844,7 @@ def build_filter_summary(model: DependencyModel, eligible_objects: List[dict],
 
     return {
         "status": status,
-        "contract": "leaf-dependency-filter-and-user-anchor-mapper.v1",
+        "contract": "leaf-dependency-filter-and-user-anchor-mapper.v2",
         "input": {
             "leaf_objects": len(model.leaf_object_ids),
             "leaf_instructions": len(model.leaf_instruction_pcs),
@@ -805,7 +865,14 @@ def build_filter_summary(model: DependencyModel, eligible_objects: List[dict],
             "instruction_control_evidence": True,
             "full_instruction_dependency_edge_kinds": False,
             "terminal_mapping_loaded": bool(model.mapping_by_object),
-            "path_report_loaded_for_context_only": bool(model.path_report),
+            "structured_instruction_operands": all(
+                "operands" in detail and "mnemonic" in detail
+                for detail in model.instruction_details.values()
+            ),
+            "structured_code_regions": all(
+                "code_region" in detail and "code_region_provenance" in detail
+                for detail in model.instruction_details.values()
+            ),
         },
         "non_responsibilities": [
             "mutation operator recommendation",
@@ -836,7 +903,6 @@ def main() -> int:
     )
     parser.add_argument("--dependency-summary", required=True)
     parser.add_argument("--terminal-mapping", default=None)
-    parser.add_argument("--path-report", default=None)
     parser.add_argument("--outdir", default="filter_out")
     parser.add_argument("--include-seed-leaves", action="store_true")
     parser.add_argument("--include-observation-only", action="store_true")
@@ -846,8 +912,7 @@ def main() -> int:
         dependency_summary = json.load(handle)
 
     mapping = load_optional_json(args.terminal_mapping, "terminal mapping")
-    path_report = load_optional_json(args.path_report, "path report")
-    model = DependencyModel(dependency_summary, mapping, path_report)
+    model = DependencyModel(dependency_summary, mapping)
     leaf_filter = LeafDependencyFilter(
         model,
         include_seed_leaves=args.include_seed_leaves,

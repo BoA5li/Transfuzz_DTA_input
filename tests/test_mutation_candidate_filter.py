@@ -4,6 +4,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stderr
+from io import StringIO
 from pathlib import Path
 
 
@@ -48,9 +50,24 @@ def object_detail(*, obj_type="register", tags=None, defined_by=None,
 
 
 def instruction(disasm, *, uses=None, defs=None, addrs=None, immediates=None,
-                tags=None, controlled_by=None, control_evidence=None):
+                tags=None, controlled_by=None, control_evidence=None,
+                mnemonic=None, operands=None, instruction_role="body",
+                function_id="0x401000", frame_operation=None,
+                code_region="user", code_region_provenance="test-fixture",
+                source_location=None, call_target_symbol=None):
     return {
         "disasm": disasm,
+        "mnemonic": mnemonic or (disasm.split()[0].lower() if disasm else "unknown"),
+        "operands": operands or [],
+        "implicit_reads": [],
+        "implicit_writes": [],
+        "instruction_role": instruction_role,
+        "function_id": function_id,
+        "frame_operation": frame_operation,
+        "code_region": code_region,
+        "code_region_provenance": code_region_provenance,
+        "source_location": source_location,
+        "call_target_symbol": call_target_symbol,
         "semantic_tags": tags or [],
         "use_objects": uses or [],
         "def_objects": defs or [],
@@ -246,29 +263,33 @@ class ObjectFilteringTests(unittest.TestCase):
 
 
 class InstructionFilteringTests(unittest.TestCase):
-    def _filter_instruction(self, disasm, pc="0x401020"):
+    def _filter_instruction(self, disasm, pc="0x401020", **facts):
         summary = base_summary()
         summary["backward"]["instructions"] = [pc]
         summary["backward"]["leaf_instructions"] = [pc]
-        summary["instruction_details"] = {pc: instruction(disasm)}
+        summary["instruction_details"] = {pc: instruction(disasm, **facts)}
         filt = mcf.LeafDependencyFilter(mcf.DependencyModel(summary))
         return filt.filter_leaf_instructions()
 
     def test_filters_structural_instructions(self):
         cases = [
-            ("push rbp", "leaf-instruction.stack-frame-structural"),
-            ("mov rbp, rsp", "leaf-instruction.stack-frame-structural"),
-            ("sub rsp, 0x20", "leaf-instruction.stack-space-maintenance"),
-            ("push r12", "leaf-instruction.callee-saved-maintenance"),
-            ("mov qword ptr [rbp - 0x8], rdi", "leaf-instruction.argument-spill"),
-            ("ret", "leaf-instruction.return-structural"),
-            ("nop", "leaf-instruction.padding"),
-            ("endbr64", "leaf-instruction.control-flow-protection"),
-            ("ud2", "leaf-instruction.trap-or-invalid"),
+            ("push rbp", "leaf-instruction.stack-frame-structural", "prologue", {"kind": "save-frame-pointer"}),
+            ("mov rbp, rsp", "leaf-instruction.stack-frame-structural", "prologue", {"kind": "establish-frame-pointer"}),
+            ("sub rsp, 0x20", "leaf-instruction.stack-space-maintenance", "prologue", {"kind": "allocate", "bytes": 32, "balanced": True}),
+            ("push r12", "leaf-instruction.callee-saved-maintenance", "prologue", {"kind": "callee-save-spill"}),
+            ("mov qword ptr [rbp - 0x8], rdi", "leaf-instruction.argument-spill", "prologue", {"kind": "argument-spill"}),
+            ("ret", "leaf-instruction.return-structural", "epilogue", {"kind": "return"}),
+            ("nop", "leaf-instruction.padding", "body", None),
+            ("endbr64", "leaf-instruction.control-flow-protection", "body", None),
+            ("ud2", "leaf-instruction.trap-or-invalid", "body", None),
         ]
-        for disasm, code in cases:
+        for disasm, code, role, frame_operation in cases:
             with self.subTest(disasm=disasm):
-                eligible, excluded = self._filter_instruction(disasm)
+                eligible, excluded = self._filter_instruction(
+                    disasm,
+                    instruction_role=role,
+                    frame_operation=frame_operation,
+                )
                 self.assertEqual(eligible, [])
                 self.assertIn(code, excluded[0]["reason_codes"])
 
@@ -278,6 +299,28 @@ class InstructionFilteringTests(unittest.TestCase):
                 eligible, excluded = self._filter_instruction(disasm)
                 self.assertEqual(excluded, [])
                 self.assertEqual(eligible[0]["disasm"], disasm)
+
+    def test_body_stack_adjustment_is_not_filtered_from_text_alone(self):
+        eligible, excluded = self._filter_instruction(
+            "sub rsp, 0x20",
+            instruction_role="body",
+            frame_operation=None,
+            operands=[
+                {"index": 0, "kind": "register", "register": "rsp", "access": "read_write"},
+                {"index": 1, "kind": "immediate", "value": 32, "access": "read"},
+            ],
+        )
+        self.assertEqual(excluded, [])
+        self.assertEqual(eligible[0]["instruction_role"], "body")
+
+    def test_runtime_region_is_filtered_from_structured_fact(self):
+        eligible, excluded = self._filter_instruction(
+            "mov eax, ebx",
+            code_region="runtime",
+            code_region_provenance="runtime-function-symbol",
+        )
+        self.assertEqual(eligible, [])
+        self.assertIn("leaf-instruction.runtime-code", excluded[0]["reason_codes"])
 
 
 class AnchorMappingTests(unittest.TestCase):
@@ -336,6 +379,56 @@ class AnchorMappingTests(unittest.TestCase):
             for value in relation_by_pc["0x401130"]["relation_kinds"]
         ))
 
+    def test_object_only_anchor_collects_control_semantics(self):
+        summary = base_summary()
+        summary["backward"]["leaf_instructions"] = []
+        summary["instruction_details"]["0x401020"]["controlled_by"] = ["0x401010"]
+        summary["instruction_details"]["0x401020"]["control_evidence"] = {
+            "0x401010": ["static-postdom"]
+        }
+        filt = mcf.LeafDependencyFilter(mcf.DependencyModel(summary))
+        objects, _ = filt.filter_leaf_objects()
+        anchors = filt.build_anchor_instructions(objects, [])
+        anchor = next(item for item in anchors if item["pc"] == "0x401020")
+        self.assertIn("control", anchor["dependency_semantics"])
+
+    def test_unique_and_ambiguous_source_locations_are_explicit(self):
+        summary = base_summary()
+        summary["instruction_details"]["0x401020"]["source_location"] = {
+            "file": "victim.c", "line": 12, "function": "victim"
+        }
+        filt = mcf.LeafDependencyFilter(mcf.DependencyModel(summary))
+        objects, _ = filt.filter_leaf_objects()
+        instructions, _ = filt.filter_leaf_instructions()
+        anchors = filt.build_anchor_instructions(objects, instructions)
+        anchor = next(item for item in anchors if item["pc"] == "0x401020")
+        self.assertEqual(anchor["source_location"]["file"], "victim.c")
+        self.assertEqual(len(anchor["source_locations"]), 1)
+
+        mapping = {
+            "backward_leaf_mappings": [{
+                "node_id": "reg:rax",
+                "pc_relation_entries": [{
+                    "pc": "0x401020",
+                    "relation_kinds": ["direct_use"],
+                    "relation_groups": ["direct_operand"],
+                }],
+                "executed_code_reference": {
+                    "source_evidence": [{
+                        "file": "inlined.h", "line": 7, "function": "helper",
+                        "pcs": ["0x401020"],
+                    }]
+                },
+            }]
+        }
+        filt = mcf.LeafDependencyFilter(mcf.DependencyModel(summary, mapping))
+        objects, _ = filt.filter_leaf_objects()
+        instructions, _ = filt.filter_leaf_instructions()
+        anchors = filt.build_anchor_instructions(objects, instructions)
+        anchor = next(item for item in anchors if item["pc"] == "0x401020")
+        self.assertIsNone(anchor["source_location"])
+        self.assertEqual(len(anchor["source_locations"]), 2)
+
 
 class OutputContractTests(unittest.TestCase):
     FORBIDDEN_TOKENS = {
@@ -386,6 +479,19 @@ class OutputContractTests(unittest.TestCase):
             )
             for token in self.FORBIDDEN_TOKENS:
                 self.assertNotIn(f'"{token}"', serialized)
+
+    def test_path_report_option_is_removed(self):
+        with self.assertRaises(SystemExit), redirect_stderr(StringIO()):
+            old_argv = sys.argv
+            try:
+                sys.argv = [
+                    str(MODULE_PATH),
+                    "--dependency-summary", "unused.json",
+                    "--path-report", "unused-path-report.json",
+                ]
+                mcf.main()
+            finally:
+                sys.argv = old_argv
 
 
 if __name__ == "__main__":
